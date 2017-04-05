@@ -1,0 +1,74 @@
+[2017-04-05 18:59:26] local.ERROR: PDOException: SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'migrations' already exists in /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Database/Connection.php:449
+Stack trace:
+#0 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Database/Connection.php(449): PDOStatement->execute()
+#1 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Database/Connection.php(640): Illuminate\Database\Connection->Illuminate\Database\{closure}('create table `m...', Array)
+#2 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Database/Connection.php(607): Illuminate\Database\Connection->runQueryCallback('create table `m...', Array, Object(Closure))
+#3 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Database/Connection.php(450): Illuminate\Database\Connection->run('create table `m...', Array, Object(Closure))
+#4 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Database/Schema/Blueprint.php(83): Illuminate\Database\Connection->statement('create table `m...')
+#5 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Database/Schema/Builder.php(239): Illuminate\Database\Schema\Blueprint->build(Object(Illuminate\Database\MySqlConnection), Object(Illuminate\Database\Schema\Grammars\MySqlGrammar))
+#6 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Database/Schema/Builder.php(164): Illuminate\Database\Schema\Builder->build(Object(Illuminate\Database\Schema\Blueprint))
+#7 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Database/Migrations/DatabaseMigrationRepository.php(142): Illuminate\Database\Schema\Builder->create('migrations', Object(Closure))
+#8 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/InstallCommand.php(54): Illuminate\Database\Migrations\DatabaseMigrationRepository->createRepository()
+#9 [internal function]: Illuminate\Database\Console\Migrations\InstallCommand->fire()
+#10 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(29): call_user_func_array(Array, Array)
+#11 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(87): Illuminate\Container\BoundMethod::Illuminate\Container\{closure}()
+#12 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(31): Illuminate\Container\BoundMethod::callBoundMethod(Object(Illuminate\Foundation\Application), Array, Object(Closure))
+#13 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Container/Container.php(531): Illuminate\Container\BoundMethod::call(Object(Illuminate\Foundation\Application), Array, Array, NULL)
+#14 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Console/Command.php(182): Illuminate\Container\Container->call(Array)
+#15 /var/www/html/blog/vendor/symfony/console/Command/Command.php(262): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Illuminate\Console\OutputStyle))
+#16 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Console/Command.php(167): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Illuminate\Console\OutputStyle))
+#17 /var/www/html/blog/vendor/symfony/console/Application.php(826): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#18 /var/www/html/blog/vendor/symfony/console/Application.php(190): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Database\Console\Migrations\InstallCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#19 /var/www/html/blog/vendor/symfony/console/Application.php(121): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#20 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(123): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#21 /var/www/html/blog/artisan(35): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#22 {main}
+
+Next Illuminate\Database\QueryException: SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'migrations' already exists (SQL: create table `migrations` (`id` int unsigned not null auto_increment primary key, `migration` varchar(255) not null, `batch` int not null) default character set utf8mb4 collate utf8mb4_unicode_ci) in /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Database/Connection.php:647
+Stack trace:
+#0 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Database/Connection.php(607): Illuminate\Database\Connection->runQueryCallback('create table `m...', Array, Object(Closure))
+#1 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Database/Connection.php(450): Illuminate\Database\Connection->run('create table `m...', Array, Object(Closure))
+#2 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Database/Schema/Blueprint.php(83): Illuminate\Database\Connection->statement('create table `m...')
+#3 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Database/Schema/Builder.php(239): Illuminate\Database\Schema\Blueprint->build(Object(Illuminate\Database\MySqlConnection), Object(Illuminate\Database\Schema\Grammars\MySqlGrammar))
+#4 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Database/Schema/Builder.php(164): Illuminate\Database\Schema\Builder->build(Object(Illuminate\Database\Schema\Blueprint))
+#5 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Database/Migrations/DatabaseMigrationRepository.php(142): Illuminate\Database\Schema\Builder->create('migrations', Object(Closure))
+#6 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/InstallCommand.php(54): Illuminate\Database\Migrations\DatabaseMigrationRepository->createRepository()
+#7 [internal function]: Illuminate\Database\Console\Migrations\InstallCommand->fire()
+#8 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(29): call_user_func_array(Array, Array)
+#9 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(87): Illuminate\Container\BoundMethod::Illuminate\Container\{closure}()
+#10 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(31): Illuminate\Container\BoundMethod::callBoundMethod(Object(Illuminate\Foundation\Application), Array, Object(Closure))
+#11 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Container/Container.php(531): Illuminate\Container\BoundMethod::call(Object(Illuminate\Foundation\Application), Array, Array, NULL)
+#12 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Console/Command.php(182): Illuminate\Container\Container->call(Array)
+#13 /var/www/html/blog/vendor/symfony/console/Command/Command.php(262): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Illuminate\Console\OutputStyle))
+#14 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Console/Command.php(167): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Illuminate\Console\OutputStyle))
+#15 /var/www/html/blog/vendor/symfony/console/Application.php(826): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#16 /var/www/html/blog/vendor/symfony/console/Application.php(190): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Database\Console\Migrations\InstallCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#17 /var/www/html/blog/vendor/symfony/console/Application.php(121): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#18 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(123): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#19 /var/www/html/blog/artisan(35): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#20 {main}  
+[2017-04-05 19:00:08] local.ERROR: Symfony\Component\Console\Exception\CommandNotFoundException: Command "make" is not defined.
+
+Did you mean one of these?
+    make:notification
+    make:controller
+    make:middleware
+    make:migration
+    make:listener
+    make:provider
+    make:command
+    make:request
+    make:policy
+    make:seeder
+    make:event
+    make:model
+    make:auth
+    make:mail
+    make:test
+    make:job in /var/www/html/blog/vendor/symfony/console/Application.php:546
+Stack trace:
+#0 /var/www/html/blog/vendor/symfony/console/Application.php(187): Symfony\Component\Console\Application->find('make')
+#1 /var/www/html/blog/vendor/symfony/console/Application.php(121): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#2 /var/www/html/blog/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(123): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#3 /var/www/html/blog/artisan(35): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 {main}  
