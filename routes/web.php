@@ -5,7 +5,7 @@
  */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/posts/{category}',function (){
@@ -29,7 +29,14 @@ Route::get('/cv}',function (){
  */
 
 Route::get('/admin', [
-        'middleware' => 'auth',
-        'uses' => ''
+        'middleware' => 'auth.basic',
+        'uses' => 'Admin@index'
     ]
 );
+
+Route::get('/insert', 'Admin@insert');
+
+Route::get('/update/{post_id}', 'Admin@update');
+
+Route::get('/delete/{post_id}', 'Admin@delete');
+
