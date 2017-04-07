@@ -102,7 +102,6 @@
 </header>
 <!-- Main Content Start -->
 <div class="container">
-
     <?php echo $__env->yieldContent('contents'); ?>
 </div>
 <!-- Main Content End -->

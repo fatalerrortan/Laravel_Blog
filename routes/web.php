@@ -4,9 +4,7 @@
  * Frontend Routes
  */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'Front@index');
 
 Route::get('/posts/{category}',function (){
     return 'route for category of posts';

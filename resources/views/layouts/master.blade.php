@@ -102,7 +102,6 @@
 </header>
 <!-- Main Content Start -->
 <div class="container">
-
     @yield('contents')
 </div>
 <!-- Main Content End -->
