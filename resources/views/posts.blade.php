@@ -1,27 +1,24 @@
+@extends('layouts.master')
 
-
-<?php $__env->startSection('contents'); ?>
+@section('contents')
     <div class="row">
-        
+        <div class="col-lg-4 col-md-2">
+            <h2 id="category" class="post-title">{{$category}}</h2>
+        </div>
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" id="posts_container">
-            <?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            @foreach($posts as $post)
                 <div class="post-preview">
-                    <a class="post_id" href="post/<?php echo e($post['id']); ?>">
-                        <h2 class="post-title">
-                            <?php echo e($post['title']); ?>
-
-                        </h2>
-                        <h3 class="post-subtitle">
-                            <?php echo e($post['segment']); ?>
-
-                        </h3>
+                    <a class="post_id" href="post/{{$post['id']}}">
+                        <h5>
+                            {{$post['title']}}
+                        </h5>
                     </a>
-                    <p class="post-meta">Posted by <a href="#"><?php echo e($post['autor']); ?></a> <span class="updated_at"><?php echo e($post['updated_at']); ?></span>
-                    <span class="keywords">Keywords: <?php echo App\Http\Controllers\Front::keywords($post['keywords']) ?></span>
+                    <p class="post-meta">Posted by <a href="#">{{$post['autor']}}</a> <span class="updated_at">{{$post['updated_at']}}</span>
+                        <span class='keywords'>Keywords: <?php echo App\Http\Controllers\Front::keywords($post['keywords']) ?></span>
                     </p>
                 </div>
                 <hr>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            @endforeach
         </div>
     </div>
     <div class="row" id="pager" style="display: none">
@@ -29,9 +26,9 @@
             <a class="social-icon"><h3>Get more Posts</h3></a>
         </div>
     </div>
-<?php $__env->stopSection(); ?>
+@endsection
 
-<?php $__env->startSection('extra_js'); ?>
+@section('extra_js')
     <script>
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         jQuery(window).scroll(function() {
@@ -47,6 +44,7 @@
             var postData = new FormData();
             postData.append("_token", CSRF_TOKEN);
             postData.append("last_item_date", last_item_date);
+            postData.append("category", jQuery("#category").html());
             jQuery.ajax({
                 type:"POST",
                 url:"/blog/public/more",
@@ -56,11 +54,9 @@
                 processData:false,
                 data:postData,
                 success:function(html){
-                   jQuery("#posts_container").append(html);
+                    jQuery("#posts_container").append(html);
                 }
             });
         });
     </script>
-<?php $__env->stopSection(); ?>
-
-<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+@endsection

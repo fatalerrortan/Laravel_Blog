@@ -8,5 +8,5 @@ class Posts extends BaseModel
 {
     protected $primaryKey = 'id';
     protected $table = 'posts';
-    protected $fillable = array('title', 'autor','category', 'article', 'segment','image', 'comments','reading_amount');
+    protected $fillable = array('title', 'autor','category', 'article', 'segment', 'keywords','image', 'comments','reading_amount');
 }

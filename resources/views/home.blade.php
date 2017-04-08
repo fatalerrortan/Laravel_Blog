@@ -2,6 +2,7 @@
 
 @section('contents')
     <div class="row">
+        {{--{{App\Http\Controllers\Front::keywords('test')}}--}}
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" id="posts_container">
             @foreach($posts as $post)
                 <div class="post-preview">
@@ -13,7 +14,9 @@
                             {{$post['segment']}}
                         </h3>
                     </a>
-                    <p class="post-meta">Posted by <a href="#">{{$post['autor']}}</a> <span class="updated_at">{{$post['updated_at']}}</span></p>
+                    <p class="post-meta">Posted by <a href="#">{{$post['autor']}}</a> <span class="updated_at">{{$post['updated_at']}}</span>
+                    <span class="keywords">Keywords: <?php echo App\Http\Controllers\Front::keywords($post['keywords']) ?></span>
+                    </p>
                 </div>
                 <hr>
             @endforeach

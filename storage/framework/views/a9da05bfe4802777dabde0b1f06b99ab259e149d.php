@@ -43,11 +43,6 @@
                 <span class="sr-only">Toggle navigation</span>
                 Menu <i class="fa fa-bars"></i>
             </button>
-            
-                
-                
-            
-
                 <a href="https://github.com/fatalerrortan" class="navbar-brand social-icon"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a>
                 <a href="http://weibo.com/fatalerrorxtan" class="navbar-brand social-icon"><i class="fa fa-weibo fa-lg" aria-hidden="true"></i></a>
                 <a href="https://www.facebook.com/xulintan" class="navbar-brand social-icon"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a>
@@ -63,22 +58,33 @@
                     <a class="dropdown-toggle social-icon" data-toggle="dropdown">PHP
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">All for PHP</a></li>
-                        <li><a href="#">Magento</a></li>
-                        <li><a href="#">Laravel</a></li>
+                        <li><a href="/blog/public/posts/php">All for PHP</a></li>
+                        <li><a href="/blog/public/posts/php_magento">Magento</a></li>
+                        <li><a href="/blog/public/posts/php_laravel">php_laravel</a></li>
                     </ul>
                 </li>
                 <li>
                     <a class="dropdown-toggle social-icon" data-toggle="dropdown">Javascript
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">All for JS</a></li>
-                        <li><a href="#">jQuery</a></li>
-                        <li><a href="#">React</a></li>
+                        <li><a href="/blog/public/posts/javascript">All for JS</a></li>
+                        <li><a href="/blog/public/posts/jquery">jQuery</a></li>
+                        <li><a href="/blog/public/posts/react">React</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="contact.html">About</a>
+                </li>
+                <li>
+                    <a class="dropdown-toggle social-icon" data-toggle="dropdown">Search
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li style="width: 500px">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="press ENTER to search" style="width: 500px">
+                            </div><!-- /input-group -->
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </div>
