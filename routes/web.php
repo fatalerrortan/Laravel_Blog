@@ -10,9 +10,11 @@ Route::get('/posts/{category}',function (){
     return 'route for category of posts';
 });
 
-Route::get('/post/{id}',function (){
-    return 'route for single post';
-});
+Route::get('/post/{id}', 'Front@post');
+
+Route::post('more', 'Front@more');
+
+Route::get('test', 'Front@test');
 
 Route::get('/search/{query}',function (){
     return 'route for search';
@@ -23,7 +25,7 @@ Route::get('/cv}',function (){
 });
 
 /*
- * Hackend Routes
+ * Backend Routes
  */
 
 Route::get('/admin', [

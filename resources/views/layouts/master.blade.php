@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <title>XTan Blog</title>
 
@@ -47,16 +48,16 @@
                 {{--<i class="fa fa-weibo fa-2x" aria-hidden="true"></i>--}}
             {{--</a>--}}
 
-                <a class="navbar-brand social-icon"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a>
-                <a class="navbar-brand social-icon"><i class="fa fa-weibo fa-lg" aria-hidden="true"></i></a>
-                <a class="navbar-brand social-icon"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a>
+                <a href="https://github.com/fatalerrortan" class="navbar-brand social-icon"><i class="fa fa-github fa-lg" aria-hidden="true"></i></a>
+                <a href="http://weibo.com/fatalerrorxtan" class="navbar-brand social-icon"><i class="fa fa-weibo fa-lg" aria-hidden="true"></i></a>
+                <a href="https://www.facebook.com/xulintan" class="navbar-brand social-icon"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="http://{{$_SERVER['HTTP_HOST']}}/blog/public">Home</a>
                 </li>
                 <li>
                     <a class="dropdown-toggle social-icon" data-toggle="dropdown">PHP
@@ -113,7 +114,7 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
                     <li>
-                        <a href="#">
+                        <a href="https://github.com/fatalerrortan">
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-circle fa-stack-2x"></i>
                                     <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -121,14 +122,14 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="http://weibo.com/fatalerrorxtan">
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-weibo fa-lg" aria-hidden="true"></i>
                                 </span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="https://www.facebook.com/xulintan">
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-circle fa-stack-2x"></i>
                                     <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -155,6 +156,7 @@
 <!-- Theme JavaScript -->
 <script src="{{asset('js/clean-blog.min.js')}}"></script>
 
+@yield('extra_js')
 </body>
 
 </html>

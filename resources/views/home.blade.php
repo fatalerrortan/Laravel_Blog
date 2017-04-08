@@ -2,11 +2,10 @@
 
 @section('contents')
     <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" id="posts_container">
             @foreach($posts as $post)
                 <div class="post-preview">
-                    <a href="post.html">
+                    <a class="post_id" href="post/{{$post['id']}}">
                         <h2 class="post-title">
                             {{$post['title']}}
                         </h2>
@@ -14,17 +13,47 @@
                             {{$post['segment']}}
                         </h3>
                     </a>
-                    <p class="post-meta">Posted by <a href="#">{{$post['autor']}}</a> {{$post['updated_at']}}</p>
+                    <p class="post-meta">Posted by <a href="#">{{$post['autor']}}</a> <span class="updated_at">{{$post['updated_at']}}</span></p>
                 </div>
                 <hr>
             @endforeach
-            
-            <!-- Pager -->
-            <ul class="pager">
-                <li class="next">
-                    <a href="#">Older Posts &rarr;</a>
-                </li>
-            </ul>
         </div>
     </div>
+    <div class="row" id="pager" style="display: none">
+        <div class="col-md-offset-5">
+            <a class="social-icon"><h3>Get more Posts</h3></a>
+        </div>
+    </div>
+@endsection
+
+@section('extra_js')
+    <script>
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        jQuery(window).scroll(function() {
+            if(jQuery(window).scrollTop() + jQuery(window).height() == jQuery(document).height()) {
+                jQuery("#pager").show();
+            }else {
+                jQuery("#pager").hide();
+            }
+        });
+        jQuery("#pager").click(function () {
+            var last_item_date = jQuery("#posts_container div.post-preview").last().find("span.updated_at").html();
+//            console.log(last_item_date);
+            var postData = new FormData();
+            postData.append("_token", CSRF_TOKEN);
+            postData.append("last_item_date", last_item_date);
+            jQuery.ajax({
+                type:"POST",
+                url:"/blog/public/more",
+                dataType:"text",
+                contentType:false,
+                cache:false,
+                processData:false,
+                data:postData,
+                success:function(html){
+                   jQuery("#posts_container").append(html);
+                }
+            });
+        });
+    </script>
 @endsection
