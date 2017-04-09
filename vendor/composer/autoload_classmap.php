@@ -7,12 +7,17 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AddAutorToPosts' => $baseDir . '/database/migrations/2017_04_07_115310_add_autor_to_posts.php',
+    'AddForeignKeyToComments' => $baseDir . '/database/migrations/2017_04_09_191309_add_foreign_key_to_comments.php',
+    'AddForeignKeyToImages' => $baseDir . '/database/migrations/2017_04_09_191238_add_foreign_key_to_images.php',
     'AddKeywordsToPosts' => $baseDir . '/database/migrations/2017_04_08_192408_add_keywords_to_posts.php',
     'AddSegmentToPosts' => $baseDir . '/database/migrations/2017_04_07_120939_add_segment_to_posts.php',
+    'CreateCommentsTable' => $baseDir . '/database/migrations/2017_04_09_130528_create_comments_table.php',
+    'CreateImagesTable' => $baseDir . '/database/migrations/2017_04_09_130513_create_images_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreatePostsTable' => $baseDir . '/database/migrations/2017_04_05_190018_create_posts_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
+    'DropImageFromPosts' => $baseDir . '/database/migrations/2017_04_09_125844_drop_image_from_posts.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
     'File_Iterator_Factory' => $vendorDir . '/phpunit/php-file-iterator/src/Factory.php',

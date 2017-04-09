@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Posts;
+use App\Images;
 
 class Front extends Controller
 {
@@ -15,9 +16,17 @@ class Front extends Controller
         return view('home', array('page' => 'home', 'posts' => $posts));
     }
 
+    public function getImage($post_id){
+        $images = Images::where('post_id', $post_id)->get();
+        foreach ($images as $image){
+            return $image['image'];
+        }
+    }
+
     public function post($post_id){
         $post = Posts::find($post_id);
-        return view('post', array('page' => 'post', 'post' => $post));
+        $image = $this->getImage($post_id);
+        return view('post', array('page' => 'post', 'post' => $post, 'image' => $image));
     }
 
     public function posts($category){
@@ -42,7 +51,7 @@ class Front extends Controller
         if($flag){
             foreach ($posts as $post){
                 $html .= "<div class='post-preview'>
-                    <a class='post_id' href='".$post['id']."'>
+                    <a class='post_id' href='http://".$_SERVER['HTTP_HOST']."/blog/public/post/".$post['id']."'>
                         <h5>
                           ".$post['title']."
                         </h2>
@@ -56,7 +65,7 @@ class Front extends Controller
         }else{
             foreach ($posts as $post){
                 $html .= "<div class='post-preview'>
-                    <a class='post_id' href='".$post['id']."'>
+                    <a class='post_id' href='http://".$_SERVER['HTTP_HOST']."/blog/public/post/".$post['id']."'>
                         <h2 class='post-title'>
                           ".$post['title']."
                         </h2>
@@ -78,7 +87,8 @@ class Front extends Controller
     }
 
     public function search($query){
-        return view('posts', 'Front@search');
+        $posts = Posts::search($query)->get();
+        return view('posts', array('page' => 'posts', 'posts' => $posts, 'category' => strtoupper("we have found...")));
     }
 
     public static function keywords($keywords){
@@ -90,11 +100,11 @@ class Front extends Controller
         return $html;
     }
 
-    public function test(){
-        $posts = Posts::where('updated_at', '<', '2017-04-06 14:23:23')->orderBy('updated_at', 'desc')->take(4)->get();
-        foreach ($posts as $post){
-            echo $post['id'] . " and " . $post['updated_at']."<br>";
-        }
+    public function test($post_id){
+        $images = Images::where('post_id', $post_id)->get();
+       foreach ($images as $image){
+           print_r($image['id'])."<br>";
+       }
     }
 }
 

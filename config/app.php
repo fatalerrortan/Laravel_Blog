@@ -176,7 +176,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        /*
+         * Sout Search Engine
+         */
+        Laravel\Scout\ScoutServiceProvider::class,
     ],
 
     /*

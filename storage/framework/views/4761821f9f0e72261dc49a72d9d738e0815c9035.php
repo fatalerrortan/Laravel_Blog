@@ -8,7 +8,7 @@
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" id="posts_container">
             <?php $__currentLoopData = $posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="post-preview">
-                    <a class="post_id" href="post/<?php echo e($post['id']); ?>">
+                    <a class="post_id" href="http://<?php echo e($_SERVER['HTTP_HOST']); ?>/blog/public/post/<?php echo e($post['id']); ?>">
                         <h5>
                             <?php echo e($post['title']); ?>
 

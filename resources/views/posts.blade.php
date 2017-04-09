@@ -8,7 +8,7 @@
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" id="posts_container">
             @foreach($posts as $post)
                 <div class="post-preview">
-                    <a class="post_id" href="post/{{$post['id']}}">
+                    <a class="post_id" href="http://{{$_SERVER['HTTP_HOST']}}/blog/public/post/{{$post['id']}}">
                         <h5>
                             {{$post['title']}}
                         </h5>

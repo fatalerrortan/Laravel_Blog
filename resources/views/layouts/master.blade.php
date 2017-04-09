@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
 
@@ -73,7 +73,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="contact.html">About</a>
+                    <a href="contact.html">About/CV</a>
                 </li>
                 <li>
                     <a class="dropdown-toggle social-icon" data-toggle="dropdown">Search
@@ -81,7 +81,7 @@
                     <ul class="dropdown-menu">
                         <li style="width: 500px">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="press ENTER to search" style="width: 500px">
+                                <input type="text" id="search" class="form-control" placeholder="press ENTER to search" style="width: 500px">
                             </div><!-- /input-group -->
                         </li>
                     </ul>
@@ -161,6 +161,15 @@
 
 <!-- Theme JavaScript -->
 <script src="{{asset('js/clean-blog.min.js')}}"></script>
+{{--for search action--}}
+<script>
+    jQuery("#search").keyup(function (e) {
+        if(e.keyCode == 13){
+            var query = jQuery(this).val();
+            window.location = "http://{{$_SERVER['HTTP_HOST']}}/blog/public/search/" + query;
+        }
+    });
+</script>
 
 @yield('extra_js')
 </body>

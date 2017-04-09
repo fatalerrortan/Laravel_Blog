@@ -69,6 +69,7 @@ class ComposerStaticInite929ca03b46e8feac232e4314a24c0a1
         array (
             'League\\Flysystem\\' => 17,
             'Laravel\\Tinker\\' => 15,
+            'Laravel\\Scout\\' => 14,
         ),
         'I' => 
         array (
@@ -198,6 +199,10 @@ class ComposerStaticInite929ca03b46e8feac232e4314a24c0a1
         array (
             0 => __DIR__ . '/..' . '/laravel/tinker/src',
         ),
+        'Laravel\\Scout\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravel/scout/src',
+        ),
         'Illuminate\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
@@ -269,16 +274,32 @@ class ComposerStaticInite929ca03b46e8feac232e4314a24c0a1
                 0 => __DIR__ . '/..' . '/doctrine/inflector/lib',
             ),
         ),
+        'A' => 
+        array (
+            'AlgoliaSearch\\Tests' => 
+            array (
+                0 => __DIR__ . '/..' . '/algolia/algoliasearch-client-php/tests',
+            ),
+            'AlgoliaSearch' => 
+            array (
+                0 => __DIR__ . '/..' . '/algolia/algoliasearch-client-php/src',
+            ),
+        ),
     );
 
     public static $classMap = array (
         'AddAutorToPosts' => __DIR__ . '/../..' . '/database/migrations/2017_04_07_115310_add_autor_to_posts.php',
+        'AddForeignKeyToComments' => __DIR__ . '/../..' . '/database/migrations/2017_04_09_191309_add_foreign_key_to_comments.php',
+        'AddForeignKeyToImages' => __DIR__ . '/../..' . '/database/migrations/2017_04_09_191238_add_foreign_key_to_images.php',
         'AddKeywordsToPosts' => __DIR__ . '/../..' . '/database/migrations/2017_04_08_192408_add_keywords_to_posts.php',
         'AddSegmentToPosts' => __DIR__ . '/../..' . '/database/migrations/2017_04_07_120939_add_segment_to_posts.php',
+        'CreateCommentsTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_09_130528_create_comments_table.php',
+        'CreateImagesTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_09_130513_create_images_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreatePostsTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_05_190018_create_posts_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
+        'DropImageFromPosts' => __DIR__ . '/../..' . '/database/migrations/2017_04_09_125844_drop_image_from_posts.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
         'File_Iterator_Factory' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Factory.php',
