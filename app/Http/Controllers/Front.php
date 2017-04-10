@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Posts;
 use App\Images;
+use App\Comments;
+//get user client ip
+use Illuminate\Support\Facades\Request as IpRequest;
 
 class Front extends Controller
 {
@@ -26,7 +29,8 @@ class Front extends Controller
     public function post($post_id){
         $post = Posts::find($post_id);
         $image = $this->getImage($post_id);
-        return view('post', array('page' => 'post', 'post' => $post, 'image' => $image));
+        $comments = Comments::where("post_id", $post_id)->orderBy("updated_at", "asc")->get();
+        return view('post', array('page' => 'post', 'post' => $post, 'image' => $image, 'comments' => $comments));
     }
 
     public function posts($category){
@@ -86,6 +90,10 @@ class Front extends Controller
         return $html;
     }
 
+    public function about(){
+        return view('about', array('page' => 'about'));
+    }
+
     public function search($query){
         $posts = Posts::search($query)->get();
         return view('posts', array('page' => 'posts', 'posts' => $posts, 'category' => strtoupper("we have found...")));
@@ -100,11 +108,50 @@ class Front extends Controller
         return $html;
     }
 
-    public function test($post_id){
-        $images = Images::where('post_id', $post_id)->get();
-       foreach ($images as $image){
-           print_r($image['id'])."<br>";
-       }
+    public function comment(Request $request){
+        $user_ip = IpRequest::ip();
+        if ($request->isMethod('post')){
+            $email = $request->input('email');
+            $name = $request->input('name');
+            $comment = $request->input('comment');
+            $post_id = $request->input('post_id');
+            Comments::create(array("email" => $email,
+                                    "name" => $name,
+                                    "comment" => $comment,
+                                    "post_id" => $post_id,
+                                    "ip" => $user_ip));
+            $comments = Comments::where("post_id", $post_id)->orderBy("created_at", "desc")->take(1)->get();
+            foreach ($comments as $comment){
+                $html = "<div class=\"col-sm-12\">
+                        <div class=\"panel panel-default\">
+                            <div class=\"panel-heading\">
+                                <strong>".$comment['name']."</strong> <span class=\"text-muted\">".$comment['created_at']."</span>
+                            </div>
+                            <div class=\"panel-body\">
+                                ".$comment['comment']."
+                            </div><!-- /panel-body -->
+                        </div><!-- /panel panel-default -->
+                    </div><!-- /col-sm-5 -->";
+                return $html;
+            }
+        }
+    }
+
+    public function test(){
+        $comments = Comments::where("post_id", 1)->orderBy("created_at", "desc")->take(1)->get();
+        foreach ($comments as $comment){
+            $html = "<div class=\"col-sm-12\">
+                        <div class=\"panel panel-default\">
+                            <div class=\"panel-heading\">
+                                <strong>".$comment['name']."</strong> <span class=\"text-muted\">".$comment['created_at']."</span>
+                            </div>
+                            <div class=\"panel-body\">
+                                ".$comment['comment']."
+                            </div><!-- /panel-body -->
+                        </div><!-- /panel panel-default -->
+                    </div><!-- /col-sm-5 -->";
+            return $html;
+        }
     }
 }
 

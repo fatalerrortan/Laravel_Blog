@@ -73,7 +73,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="contact.html">About/CV</a>
+                    <a href="/blog/public/about">About/CV</a>
                 </li>
                 <li>
                     <a class="dropdown-toggle social-icon" data-toggle="dropdown">Search

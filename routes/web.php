@@ -14,11 +14,13 @@ Route::post('more', 'Front@more');
 
 Route::get('/search/{query}', "Front@search");
 
-Route::get('/cv}',function (){
-    return 'route for CV';
-});
+Route::get('/cv', 'Front@about');
 
-Route::get('test/{post_id}', 'Front@test');
+Route::post('/comment', 'Front@comment');
+
+Route::get('/test', 'Front@test');
+
+Route::get('/about', 'Front@about');
 /*
  * Backend Routes
  */

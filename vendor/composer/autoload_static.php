@@ -289,9 +289,8 @@ class ComposerStaticInite929ca03b46e8feac232e4314a24c0a1
 
     public static $classMap = array (
         'AddAutorToPosts' => __DIR__ . '/../..' . '/database/migrations/2017_04_07_115310_add_autor_to_posts.php',
-        'AddForeignKeyToComments' => __DIR__ . '/../..' . '/database/migrations/2017_04_09_191309_add_foreign_key_to_comments.php',
-        'AddForeignKeyToImages' => __DIR__ . '/../..' . '/database/migrations/2017_04_09_191238_add_foreign_key_to_images.php',
         'AddKeywordsToPosts' => __DIR__ . '/../..' . '/database/migrations/2017_04_08_192408_add_keywords_to_posts.php',
+        'AddNameToComments' => __DIR__ . '/../..' . '/database/migrations/2017_04_10_133700_add_name_to_comments.php',
         'AddSegmentToPosts' => __DIR__ . '/../..' . '/database/migrations/2017_04_07_120939_add_segment_to_posts.php',
         'CreateCommentsTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_09_130528_create_comments_table.php',
         'CreateImagesTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_09_130513_create_images_table.php',

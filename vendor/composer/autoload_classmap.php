@@ -7,9 +7,8 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AddAutorToPosts' => $baseDir . '/database/migrations/2017_04_07_115310_add_autor_to_posts.php',
-    'AddForeignKeyToComments' => $baseDir . '/database/migrations/2017_04_09_191309_add_foreign_key_to_comments.php',
-    'AddForeignKeyToImages' => $baseDir . '/database/migrations/2017_04_09_191238_add_foreign_key_to_images.php',
     'AddKeywordsToPosts' => $baseDir . '/database/migrations/2017_04_08_192408_add_keywords_to_posts.php',
+    'AddNameToComments' => $baseDir . '/database/migrations/2017_04_10_133700_add_name_to_comments.php',
     'AddSegmentToPosts' => $baseDir . '/database/migrations/2017_04_07_120939_add_segment_to_posts.php',
     'CreateCommentsTable' => $baseDir . '/database/migrations/2017_04_09_130528_create_comments_table.php',
     'CreateImagesTable' => $baseDir . '/database/migrations/2017_04_09_130513_create_images_table.php',

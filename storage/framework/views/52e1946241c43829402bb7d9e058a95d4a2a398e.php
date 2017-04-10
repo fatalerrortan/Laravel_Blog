@@ -56,7 +56,7 @@
                 processData:false,
                 data:postData,
                 success:function(html){
-                   jQuery("#posts_container").append(html);
+                    jQuery("#posts_container").append(html);
                 }
             });
         });
