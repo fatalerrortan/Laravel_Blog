@@ -22,7 +22,8 @@
     <link href="<?php echo e(asset('css/font-awesome.min.css')); ?>" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-
+    <link rel="stylesheet" href="https://cdn.rawgit.com/IonicaBizau/github-calendar/gh-pages/dist/github-calendar.css"/>
+    <?php echo $__env->yieldContent("extra_css"); ?>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -117,6 +118,10 @@
 <footer>
     <div class="container">
         <div class="row">
+            <div class="calendar"></div>
+        </div>
+        <hr>
+        <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
                     <li>
@@ -158,11 +163,15 @@
 <!-- Contact Form JavaScript -->
 <script src="<?php echo e(asset('js/jqBootstrapValidation.js')); ?>"></script>
 <script src="<?php echo e(asset('js/contact_me.js')); ?>"></script>
+<script src="https://cdn.rawgit.com/IonicaBizau/github-calendar/gh-pages/dist/github-calendar.min.js"></script>
 
 <!-- Theme JavaScript -->
 <script src="<?php echo e(asset('js/clean-blog.min.js')); ?>"></script>
 
 <script>
+    jQuery(document).ready(function () {
+        GitHubCalendar(".calendar", "fatalerrortan");
+    });
     jQuery("#search").keyup(function (e) {
         if(e.keyCode == 13){
             var query = jQuery(this).val();

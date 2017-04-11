@@ -10,3 +10,63 @@
 a.social-icon:hover{
     cursor:pointer;
 }
+.terminal {
+    width: 100%;
+    font-size: 17px;
+    color: #3765AF;
+    letter-spacing: 2px;
+}
+
+.terminal::before {
+    content: "X@Tan>";
+    margin-right: 10px;
+}
+#progress_magento_1, #progress_magento_2, #progress_laravel, #progress_zend, #progress_wordpress,#progress_jquery, #progress_react, #progress_linux {
+    width: 100%;
+    background-color: grey;
+}
+/*.myBar{*/
+    /*width: 90%;*/
+    /*height: 30px;*/
+    /*background-color: #3765AF;*/
+/*}*/
+#progress_magento_1 .myBar {
+    width: 90%;
+    height: 30px;
+    background-color: #3765AF;
+}
+#progress_magento_2 .myBar {
+    width: 90%;
+    height: 30px;
+    background-color: #3765AF;
+}
+#progress_laravel .myBar {
+    width: 80%;
+    height: 30px;
+    background-color: #3765AF;
+}
+#progress_zend .myBar {
+    width: 70%;
+    height: 30px;
+    background-color: #3765AF;
+}
+#progress_wordpress .myBar {
+    width: 70%;
+    height: 30px;
+    background-color: #3765AF;
+}
+#progress_jquery .myBar {
+    width: 90%;
+    height: 30px;
+    background-color: #3765AF;
+}
+#progress_react .myBar {
+    width: 50%;
+    height: 30px;
+    background-color: #3765AF;
+}
+#progress_linux .myBar {
+    width: 80%;
+    height: 30px;
+    background-color: #3765AF;
+}
