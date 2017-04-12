@@ -108,22 +108,22 @@
                 </div>
             </div>
             <div class="well">
-                <h3>Contact Formula</h3>
+                <h3>Contact Me</h3>
                 <form id="contact">
                     <div class="form-group">
                         <label for="contact_name">Name</label>
-                        <input type="email" class="form-control" id="contact_name">
+                        <input type="text" class="form-control" id="contact_name">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <input type="email" class="form-control" id="contact_email" aria-describedby="emailHelp">
                         <small id="emailHelp" class="form-text text-muted">I will contact you via this email address</small>
                     </div>
                     <div class="form-group">
                         <label for="exampleTextarea">Message</label>
-                        <textarea class="form-control" id="exampleTextarea" rows="10"></textarea>
+                        <textarea class="form-control" id="contact_message" rows="5"></textarea>
                     </div>
-                    <button type="button" class="btn btn-primary">Submit</button>
+                    <button id="contact_button" type="button" class="btn btn-primary">Submit</button>
                 </form>
             </div>
         </div>
@@ -137,6 +137,7 @@
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"></script>
 
     <script>
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         jQuery("#skill_img img").mouseover(function () {
             jQuery(this).effect( "bounce", { times: 3}, "slow");
         });
@@ -169,6 +170,7 @@
                 limit: 20 // optional
             });
         });
+
         function getText() {
             var text = "ls -a /Xulin/Education<br>" +
                     "> (01.09.2008 - 01.06.2012) Shanghai International Studies University<br>" +
@@ -189,6 +191,27 @@
                     "> sudo shutdown -h now";
             return text;
         }
+
+        jQuery("#contact_button").click(function () {
+            var postData = new FormData();
+            postData.append("_token", CSRF_TOKEN);
+            postData.append("name", jQuery("#contact_name").val());
+            postData.append("email", jQuery("#contact_email").val());
+            postData.append("contact_message", jQuery("#contact_message").val());
+            jQuery.ajax({
+                type:"POST",
+                url:"/blog/public/contact",
+                dataType:"text",
+                contentType:false,
+                cache:false,
+                processData:false,
+                data:postData,
+                success:function(html){
+                    var success = "thank you for your message :) , i will contact you as soon as possible";
+                    alert(success);
+                }
+            });
+        });
     </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

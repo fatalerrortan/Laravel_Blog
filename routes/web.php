@@ -21,6 +21,9 @@ Route::post('/comment', 'Front@comment');
 Route::get('/test', 'Front@test');
 
 Route::get('/about', 'Front@about');
+
+Route::post('/contact', 'Front@contact');
+
 /*
  * Backend Routes
  */

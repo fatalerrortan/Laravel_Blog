@@ -8,15 +8,40 @@ use App\Images;
 use App\Comments;
 //get user client ip
 use Illuminate\Support\Facades\Request as IpRequest;
+//event trigger
+use App\Events\EmailTrigger;
+// class for email driver
+use App\Mail\SiteReview;
+use App\Mail\ContactMe;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 class Front extends Controller
 {
     public function index(){
-//        $posts = Posts::all(array('id', 'title', 'autor','category', 'segment','reading_amount', 'created_at', 'updated_at'))
-//            ->take(5);
-//        session('page_number', $page_number);
+/*
+ * Use Event Listener pattern to send email
+ * $user = new User();
+ *      $user->user_ip = IpRequest::ip();
+ *      event(new EmailTrigger($user));
+ */
+        Mail::to("tiemann9898@gmail.com")->send(new SiteReview(IpRequest::ip()));
         $posts = Posts::orderBy('updated_at', 'desc')->take(5)->get();
         return view('home', array('page' => 'home', 'posts' => $posts));
+    }
+
+    public function contact(Request $request){
+        if ($request->isMethod('post')){
+//            NOT allow to use "message" als keyword (pre defined)
+            $contact = array(
+                "name" => (string)$request->input('name'),
+//                "email" => str_replace("@", "(AT)", $request->input('email')),
+                "email" => $request->input('email'),
+                "contact_message" => $request->input('contact_message')
+            );
+//            Log::info($contact['name']." and ".$contact['email']." and ".$contact['message']);
+            Mail::to("tiemann9898@gmail.com")->send(new ContactMe($contact));
+        }
     }
 
     public function getImage($post_id){
@@ -153,6 +178,16 @@ class Front extends Controller
             return $html;
         }
     }
+}
+
+class User{
+    public $user_ip;
+}
+
+class Contact{
+    public $name;
+    public $email;
+    public $message;
 }
 
 
