@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Posts;
+use App\Images;
 use Illuminate\Support\Facades\Log;
 
 class Admin extends Controller{
@@ -39,10 +40,36 @@ class Admin extends Controller{
             'keywords' => $request->input("keywords"),
             'article' => $request->input("post_body"),
         ));
-        return "<h1>Successfully Inserted</h1>
-                <h3><a href='http://".$_SERVER['HTTP_HOST']."/blog/public/admin'>To Admin</a></h3>
-                <<h3>OR</h3>
-                <h3><a href='http://".$_SERVER['HTTP_HOST']."/blog/public/'>To Homepage</a></h3>";
+        $state = "<h1>Successfully Inserted</h1>
+                        <h3><a href='http://".$_SERVER['HTTP_HOST']."/blog/public/admin'>To Admin</a></h3>
+                        <h3>OR</h3>
+                        <h3><a href='http://".$_SERVER['HTTP_HOST']."/blog/public/'>To Homepage</a></h3>";
+        if($request->hasFile('post_img')) {
+//            Log::info(print_r($request->file('post_img')->ge, true));
+            $file = $request->file("post_img");
+            $file->move(public_path("uploads/"), $file->getClientOriginalName());
+            $file_binary = file_get_contents(public_path("uploads/".$file->getClientOriginalName()));
+            $result = $this->saveImage($request->input("post_title"), $request->input("image_name"), $file_binary);
+            if($result){
+                return $state;
+            }else{
+                return "ops Image store error Sorry";
+            }
+        }
+        return $state;
+    }
+
+    public function saveImage($post_title, $image_name, $image){
+        $posts = Posts::where("title", $post_title)->get();
+        $post_id = '';
+        foreach ($posts as $post){$post_id = $post['id'];}
+//        Log::info(print_r($post, true));
+        Images::create(array(
+            'post_id' => $post_id,
+            'name' => $image_name,
+            'image' => $image
+        ));
+        return true;
     }
 
     public function update(Request $request){
@@ -62,9 +89,19 @@ class Admin extends Controller{
     }
 
     public function edit(Request $request){
+//        header('Content-Type: application/json');
         $post = Posts::find($request->input("post_id"));
-        Log::info($post->category);
-        return $post->category;
+        Log::info($post->category." and ".$post->title);
+//        return json_encode(array(
+//            "title" => $post->title,
+//            "category" => $post->category
+//        ));
+        return "{\"title\":\"".str_replace("\"","'",$post->title)."\",
+                \"category\":\"".str_replace("\"","'",$post->category)."\",
+                \"subtitle\":\"".str_replace("\"","'",$post->segment)."\",
+                \"related\":\"".str_replace("\"","'",$post->related)."\",
+                \"keywords\":\"".str_replace("\"","'",$post->keywords)."\",
+                 \"article\":\"".str_replace("\"","'",$post->article)."\"}";
     }
 
     public function operation($pattern, $order){

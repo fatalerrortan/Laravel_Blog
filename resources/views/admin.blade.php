@@ -4,7 +4,7 @@
 
 @section('contents')
     <div class="row well" id="new_post_form" style="border: #2DA02E; border-style: solid; display: none">
-     <form method="post" action="/blog/public/insert">
+     <form method="post" action="/blog/public/insert" enctype="multipart/form-data">
          <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="form-group">
             <select id="post_category" name="post_category" class="form-control" style="width: 10%">
@@ -31,6 +31,10 @@
              <input type="text" name="keywords" class="form-control" id="keywords" placeholder="php,js,os....">
          </div>
         <textarea id="post_body" name="post_body" class="form-control" rows="9"></textarea>
+         <div class="form-group">
+             <label for="image_name">Image Name</label>
+             <input type="text" name="image_name" class="form-control" id="image_name" placeholder="Image Name">
+         </div>
         <div class="form-group">
             <label for="post_img">File input</label>
             <input name="post_img" type="file" id="post_img">
@@ -88,7 +92,7 @@
 @section('extra_js')
     <script>
         var filter_state = {category:"all", order:"desc"};
-        var old_post_obj = {test:"dd"};
+        var old_post_obj = {};
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
         jQuery("#category").change(function () {
@@ -144,7 +148,6 @@
             postData.append("_token", CSRF_TOKEN);
             postData.append("post_id", post_id);
             var old_post = retrieveNewPosts(postData, "edit");
-            console.log(old_post_obj);
             jQuery("#new_post_form").toggle("slow");
             return true;
         }
@@ -163,7 +166,8 @@
                     if(urlPattern != 'edit'){
                         jQuery("tbody").html(html);
                     }else {
-                        old_post_obj.test = html;
+                        old_post_obj = jQuery.parseJSON(html);
+                        console.log(old_post_obj);
                     }
                 }
             });
