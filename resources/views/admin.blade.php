@@ -6,6 +6,8 @@
     <div class="row well" id="new_post_form" style="border: #2DA02E; border-style: solid; display: none">
      <form method="post" action="/blog/public/insert" enctype="multipart/form-data">
          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+         <input type="hidden" id="if_update" name="if_update" value="no">
+         <input type="hidden" id="post_id" name="post_id" value="">
         <div class="form-group">
             <select id="post_category" name="post_category" class="form-control" style="width: 10%">
                 <option value="php">PHP</option>
@@ -39,7 +41,7 @@
             <label for="post_img">File input</label>
             <input name="post_img" type="file" id="post_img">
         </div>
-        <button id="cancle" class="btn btn-default">Cancle</button>
+        <button id="cancle" type="button" class="btn btn-default">Cancle</button>
         <button type="submit" class="btn btn-default">Submit</button>
         <hr>
      </form>
@@ -148,12 +150,22 @@
             postData.append("_token", CSRF_TOKEN);
             postData.append("post_id", post_id);
             var old_post = retrieveNewPosts(postData, "edit");
-            jQuery("#new_post_form").toggle("slow");
+//            console.log(old_post_obj);
             return true;
         }
 
+        function showOldPost() {
+            jQuery("#post_category").val(old_post_obj.category);
+            jQuery("#post_title").val(old_post_obj.title);
+            jQuery("#subtitle").val(old_post_obj.subtitle);
+            jQuery("#related_posts").val(old_post_obj.related);
+            jQuery("#keywords").val(old_post_obj.keywords);
+            jQuery("#post_body").val(old_post_obj.article);
+            jQuery("#post_id").val(old_post_obj.post_id);
+            jQuery("#new_post_form").toggle("slow");
+        }
+
         function retrieveNewPosts(postData, urlPattern) {
-            var result;
             jQuery.ajax({
                 type:"POST",
                 url:"/blog/public/" + urlPattern,
@@ -167,7 +179,8 @@
                         jQuery("tbody").html(html);
                     }else {
                         old_post_obj = jQuery.parseJSON(html);
-                        console.log(old_post_obj);
+                        showOldPost();
+                        jQuery("#if_update").val("yes");
                     }
                 }
             });

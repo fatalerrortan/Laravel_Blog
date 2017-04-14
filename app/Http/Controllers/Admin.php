@@ -31,6 +31,9 @@ class Admin extends Controller{
     }
 
     public function insert(Request $request){
+        if($request->input("if_update") == "yes"){
+            return $this->updatePost($request);
+        }
         Posts::create(array(
             'title' => $request->input("post_title"),
             'autor' => 'Xulin Tan',
@@ -57,6 +60,40 @@ class Admin extends Controller{
             }
         }
         return $state;
+    }
+
+    public function updatePost(Request $request){
+        $post = Posts::find($request->input("post_id"));
+        $post->title = $request->input("post_title");
+        $post->category = $request->input("post_category");
+        $post->segment = $request->input("subtitle");
+        $post->related = $request->input("related_posts");
+        $post->keywords = $request->input("keywords");
+        $post->article = $request->input("post_body");
+        $post->save();
+        if($request->hasFile('post_img')) {
+            $this->updatePostImage($request);
+        }
+        $state = "<h1>Successfully Inserted</h1>
+                        <h3><a href='http://".$_SERVER['HTTP_HOST']."/blog/public/admin'>To Admin</a></h3>
+                        <h3>OR</h3>
+                        <h3><a href='http://".$_SERVER['HTTP_HOST']."/blog/public/post/".$request->input('post_id')."'>To Post</a></h3>";
+        return $state;
+    }
+
+    public function updatePostImage(Request $request){
+//            Log::info(print_r($request->file('post_img')->ge, true));
+        $file = $request->file("post_img");
+        $file->move(public_path("uploads/"), $file->getClientOriginalName());
+        $file_binary = file_get_contents(public_path("uploads/".$file->getClientOriginalName()));
+        $old_image = Images::where("post_id", $request->input("post_id"))->first();
+        if($old_image == null){
+            return $this->saveImage($request->input("post_title"), $request->input("image_name"), $file_binary);
+        }
+        $old_image->name = $request->input("image_name");
+        $old_image->image = $file_binary;
+        $old_image->save();
+        return true;
     }
 
     public function saveImage($post_title, $image_name, $image){
@@ -96,12 +133,13 @@ class Admin extends Controller{
 //            "title" => $post->title,
 //            "category" => $post->category
 //        ));
-        return "{\"title\":\"".str_replace("\"","'",$post->title)."\",
+        return "{\"title\":\"".preg_replace( "/\r|\n/", "", str_replace("\"","'",$post->title))."\",
                 \"category\":\"".str_replace("\"","'",$post->category)."\",
-                \"subtitle\":\"".str_replace("\"","'",$post->segment)."\",
+                \"subtitle\":\"".preg_replace( "/\r|\n/", "", str_replace("\"","'",$post->segment))."\",
                 \"related\":\"".str_replace("\"","'",$post->related)."\",
                 \"keywords\":\"".str_replace("\"","'",$post->keywords)."\",
-                 \"article\":\"".str_replace("\"","'",$post->article)."\"}";
+                \"post_id\":\"".str_replace("\"","'",$post->id)."\",
+                 \"article\":\"".preg_replace( "/\r|\n/", "", str_replace("\"","'",$post->article))."\"}";
     }
 
     public function operation($pattern, $order){
