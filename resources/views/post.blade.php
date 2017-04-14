@@ -5,7 +5,7 @@
 <div class="row">
 
     <!-- Blog Post Content Column -->
-    <div class="col-lg-8">
+    <div class="col-md-8">
 
         <!-- Blog Post -->
 
@@ -19,7 +19,8 @@
 
         <hr>
         <!-- Date/Time -->
-        <p><i class="fa fa-calendar" aria-hidden="true"></i> {{$post['updated_at']}}</p>
+        <p><i class="fa fa-calendar" aria-hidden="true"></i> {{$post['updated_at']}} <span class="keywords">
+                <i class="fa fa-key" aria-hidden="true"></i> <?php echo App\Http\Controllers\Front::keywords($post['keywords']) ?></span></p>
 
         <hr>
 
@@ -62,6 +63,16 @@
                     </div><!-- /col-sm-5 -->
                 @endforeach
             </div><!-- /row -->
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div id="related_posts">
+            <h3>Related Posts</h3>
+            @foreach($related_posts as $related_post)
+                <h5><br><br><br>
+                    <i class="fa fa-plug" aria-hidden="true"></i>
+                    <a class="social-icon" href="http://{{$_SERVER['HTTP_HOST']}}/blog/public/post/{{$related_post['id']}}">{{$related_post['title']}}</a></h5><hr>
+            @endforeach
         </div>
     </div>
         <hr>

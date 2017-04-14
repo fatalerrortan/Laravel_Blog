@@ -53,9 +53,12 @@ class Front extends Controller
 
     public function post($post_id){
         $post = Posts::find($post_id);
+        $post->reading_amount = $post->reading_amount + 1;
+        $post->save();
         $image = $this->getImage($post_id);
         $comments = Comments::where("post_id", $post_id)->orderBy("updated_at", "asc")->get();
-        return view('post', array('page' => 'post', 'post' => $post, 'image' => $image, 'comments' => $comments));
+        $related_posts = Posts::where('related', 'like','%,'.$post_id.',%')->get();
+        return view('post', array('page' => 'post', 'post' => $post, 'image' => $image, 'comments' => $comments, 'related_posts' => $related_posts));
     }
 
     public function posts($category){

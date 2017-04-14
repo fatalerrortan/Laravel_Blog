@@ -3,7 +3,7 @@
 <div class="row">
 
     <!-- Blog Post Content Column -->
-    <div class="col-lg-8">
+    <div class="col-md-8">
 
         <!-- Blog Post -->
 
@@ -17,7 +17,8 @@
 
         <hr>
         <!-- Date/Time -->
-        <p><i class="fa fa-calendar" aria-hidden="true"></i> <?php echo e($post['updated_at']); ?></p>
+        <p><i class="fa fa-calendar" aria-hidden="true"></i> <?php echo e($post['updated_at']); ?> <span class="keywords">
+                <i class="fa fa-key" aria-hidden="true"></i> <?php echo App\Http\Controllers\Front::keywords($post['keywords']) ?></span></p>
 
         <hr>
 
@@ -61,6 +62,16 @@
                     </div><!-- /col-sm-5 -->
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div><!-- /row -->
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div id="related_posts">
+            <h3>Related Posts</h3>
+            <?php $__currentLoopData = $related_posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $related_post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <h5><br><br><br>
+                    <i class="fa fa-plug" aria-hidden="true"></i>
+                    <a class="social-icon" href="http://<?php echo e($_SERVER['HTTP_HOST']); ?>/blog/public/post/<?php echo e($related_post['id']); ?>"><?php echo e($related_post['title']); ?></a></h5><hr>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>
         <hr>

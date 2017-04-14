@@ -39,7 +39,7 @@ class Admin extends Controller{
             'autor' => 'Xulin Tan',
             'segment' => $request->input("subtitle"),
             'category' => $request->input("post_category"),
-            'related' => $request->input("related_posts"),
+            'related' => ",".$request->input("related_posts"),
             'keywords' => $request->input("keywords"),
             'article' => $request->input("post_body"),
         ));
@@ -67,7 +67,7 @@ class Admin extends Controller{
         $post->title = $request->input("post_title");
         $post->category = $request->input("post_category");
         $post->segment = $request->input("subtitle");
-        $post->related = $request->input("related_posts");
+        $post->related = ",".$request->input("related_posts");
         $post->keywords = $request->input("keywords");
         $post->article = $request->input("post_body");
         $post->save();
