@@ -76,6 +76,9 @@
                 <li>
                     <a href="/blog/public/about">About/CV</a>
                 </li>
+                <li id="new_post" style="display: none; background-color: #8eb4cb">
+                    <a class="social-icon" style="color: #2ca02c">New Post</a>
+                </li>
                 <li>
                     <a class="dropdown-toggle social-icon" data-toggle="dropdown">Search
                         <span class="caret"></span></a>
@@ -172,6 +175,10 @@
 <script>
     jQuery(document).ready(function () {
         GitHubCalendar(".calendar", "fatalerrortan");
+        var current_page = "{{$page}}";
+        if (current_page == "admin") {
+            jQuery("#new_post").show();
+        }
     });
     jQuery("#search").keyup(function (e) {
         if(e.keyCode == 13){

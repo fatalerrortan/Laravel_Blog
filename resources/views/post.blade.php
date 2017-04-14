@@ -29,7 +29,11 @@
 
         <!-- Post Content -->
         <div class="post_content">
-            {{$post['article']}}
+            <?php
+                $doc = new DOMDocument();
+                $doc->loadHTML($post['article']);
+                echo $doc->saveHTML();
+            ?>
         </div>
         <hr>
 

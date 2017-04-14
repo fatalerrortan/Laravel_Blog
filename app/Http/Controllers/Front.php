@@ -25,7 +25,7 @@ class Front extends Controller
  *      $user->user_ip = IpRequest::ip();
  *      event(new EmailTrigger($user));
  */
-        Mail::to("tiemann9898@gmail.com")->send(new SiteReview(IpRequest::ip()));
+//        Mail::to("tiemann9898@gmail.com")->send(new SiteReview(IpRequest::ip()));
         $posts = Posts::orderBy('updated_at', 'desc')->take(5)->get();
         return view('home', array('page' => 'home', 'posts' => $posts));
     }

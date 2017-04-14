@@ -34,9 +34,13 @@ Route::get('/admin', [
     ]
 );
 
-Route::get('/insert', 'Admin@insert');
+Route::post('/filter', 'Admin@filterable');
 
-Route::get('/update/{post_id}', 'Admin@update');
+Route::post('/insert', 'Admin@insert');
 
-Route::get('/delete/{post_id}', 'Admin@delete');
+Route::post('/update', 'Admin@update');
+
+Route::post('/delete', 'Admin@delete');
+
+Route::post('/edit', 'Admin@edit');
 
