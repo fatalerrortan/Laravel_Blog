@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Posts;
 use App\Images;
 use App\Comments;
+use App\User as Users;
 //get user client ip
 use Illuminate\Support\Facades\Request as IpRequest;
 //event trigger
@@ -83,7 +84,7 @@ class Front extends Controller
         if($flag){
             foreach ($posts as $post){
                 $html .= "<div class='post-preview'>
-                    <a class='post_id' href='http://".$_SERVER['HTTP_HOST']."/blog/public/post/".$post['id']."'>
+                    <a class='post_id' href='http://".$_SERVER['HTTP_HOST']."/post/".$post['id']."'>
                         <h5>
                           ".$post['title']."
                         </h2>
@@ -97,7 +98,7 @@ class Front extends Controller
         }else{
             foreach ($posts as $post){
                 $html .= "<div class='post-preview'>
-                    <a class='post_id' href='http://".$_SERVER['HTTP_HOST']."/blog/public/post/".$post['id']."'>
+                    <a class='post_id' href='http://".$_SERVER['HTTP_HOST']."/post/".$post['id']."'>
                         <h2 class='post-title'>
                           ".$post['title']."
                         </h2>
@@ -131,7 +132,7 @@ class Front extends Controller
         $html = '';
         $keywords = explode(",",$keywords);
         foreach ($keywords as $keyword){
-            $html .= "<a href='/blog/public/search/".$keyword."'>".$keyword."</a>, ";
+            $html .= "<a href='/search/".$keyword."'>".$keyword."</a>, ";
         }
         return $html;
     }
@@ -166,20 +167,11 @@ class Front extends Controller
     }
 
     public function test(){
-        $comments = Comments::where("post_id", 1)->orderBy("created_at", "desc")->take(1)->get();
-        foreach ($comments as $comment){
-            $html = "<div class=\"col-sm-12\">
-                        <div class=\"panel panel-default\">
-                            <div class=\"panel-heading\">
-                                <strong>".$comment['name']."</strong> <span class=\"text-muted\">".$comment['created_at']."</span>
-                            </div>
-                            <div class=\"panel-body\">
-                                ".$comment['comment']."
-                            </div><!-- /panel-body -->
-                        </div><!-- /panel panel-default -->
-                    </div><!-- /col-sm-5 -->";
-            return $html;
-        }
+        Users::create([
+            'name' => 'fatalerrortxl',
+            'email' => 'tiemann9898@mail.com',
+            'password' => bcrypt("Testing73."),
+        ]);
     }
 }
 

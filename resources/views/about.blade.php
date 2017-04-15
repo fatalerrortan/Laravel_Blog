@@ -200,7 +200,7 @@
             postData.append("contact_message", jQuery("#contact_message").val());
             jQuery.ajax({
                 type:"POST",
-                url:"/blog/public/contact",
+                url:"/contact",
                 dataType:"text",
                 contentType:false,
                 cache:false,

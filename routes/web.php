@@ -28,11 +28,16 @@ Route::post('/contact', 'Front@contact');
  * Backend Routes
  */
 
-Route::get('/admin', [
-        'middleware' => 'auth.basic',
-        'uses' => 'Admin@index'
-    ]
-);
+//Route::get('/admin', [
+//        'middleware' => 'auth.basic',
+//        'uses' => 'Admin@index'
+//    ]
+//);
+
+Route::get('/adminauth', 'Admin@auth');
+
+
+Route::post('/admin', 'Admin@index');
 
 Route::post('/filter', 'Admin@filterable');
 

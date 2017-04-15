@@ -47,7 +47,7 @@
             postData.append("last_item_date", last_item_date);
             jQuery.ajax({
                 type:"POST",
-                url:"/blog/public/more",
+                url:"/more",
                 dataType:"text",
                 contentType:false,
                 cache:false,

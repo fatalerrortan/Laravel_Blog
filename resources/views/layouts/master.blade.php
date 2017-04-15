@@ -53,28 +53,28 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="http://{{$_SERVER['HTTP_HOST']}}/blog/public">Home</a>
+                    <a href="http://{{$_SERVER['HTTP_HOST']}}/">Home</a>
                 </li>
                 <li>
                     <a class="dropdown-toggle social-icon" data-toggle="dropdown">PHP
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/blog/public/posts/php">All for PHP</a></li>
-                        <li><a href="/blog/public/posts/php_magento">Magento</a></li>
-                        <li><a href="/blog/public/posts/php_laravel">php_laravel</a></li>
+                        <li><a href="/posts/php">All for PHP</a></li>
+                        <li><a href="/posts/php_magento">Magento</a></li>
+                        <li><a href="/posts/php_laravel">php_laravel</a></li>
                     </ul>
                 </li>
                 <li>
                     <a class="dropdown-toggle social-icon" data-toggle="dropdown">Javascript
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/blog/public/posts/javascript">All for JS</a></li>
-                        <li><a href="/blog/public/posts/jquery">jQuery</a></li>
-                        <li><a href="/blog/public/posts/react">React</a></li>
+                        <li><a href="/posts/javascript">All for JS</a></li>
+                        <li><a href="/posts/jquery">jQuery</a></li>
+                        <li><a href="/posts/react">React</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="/blog/public/about">About/CV</a>
+                    <a href="/about">About/CV</a>
                 </li>
                 <li id="new_post" style="display: none; background-color: #8eb4cb">
                     <a class="social-icon" style="color: #2ca02c">New Post</a>
@@ -183,7 +183,7 @@
     jQuery("#search").keyup(function (e) {
         if(e.keyCode == 13){
             var query = jQuery(this).val();
-            window.location = "http://{{$_SERVER['HTTP_HOST']}}/blog/public/search/" + query;
+            window.location = "http://{{$_SERVER['HTTP_HOST']}}/search/" + query;
         }
     });
 </script>

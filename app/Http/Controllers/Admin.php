@@ -5,12 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Posts;
 use App\Images;
+use App\User;
 use Illuminate\Support\Facades\Log;
 
 class Admin extends Controller{
 
-    public function index(){
-        $posts = Posts::orderBy('updated_at', 'desc')->get();
+    public function auth(){
+        return view('auth', array('page' => 'auth'));
+    }
+
+    public function index(Request $request){
+        $user = User::where("name", $request->input('name'))->first();
+        Log::info("out: ".$request->input('pwd')." and in: ".$user['password']);
+        if($user['password'] != $request->input('pwd')){return exit("日你妈");}
+        $posts = Posts::orderBy('created_at', 'desc')->get();
         return view('admin', array('page' => 'admin', 'posts' => $posts));
     }
 
@@ -44,9 +52,9 @@ class Admin extends Controller{
             'article' => $request->input("post_body"),
         ));
         $state = "<h1>Successfully Inserted</h1>
-                        <h3><a href='http://".$_SERVER['HTTP_HOST']."/blog/public/admin'>To Admin</a></h3>
+                        <h3><a href='http://".$_SERVER['HTTP_HOST']."/admin'>To Admin</a></h3>
                         <h3>OR</h3>
-                        <h3><a href='http://".$_SERVER['HTTP_HOST']."/blog/public/'>To Homepage</a></h3>";
+                        <h3><a href='http://".$_SERVER['HTTP_HOST']."/'>To Homepage</a></h3>";
         if($request->hasFile('post_img')) {
 //            Log::info(print_r($request->file('post_img')->ge, true));
             $file = $request->file("post_img");
@@ -75,9 +83,9 @@ class Admin extends Controller{
             $this->updatePostImage($request);
         }
         $state = "<h1>Successfully Inserted</h1>
-                        <h3><a href='http://".$_SERVER['HTTP_HOST']."/blog/public/admin'>To Admin</a></h3>
+                        <h3><a href='http://".$_SERVER['HTTP_HOST']."/admin'>To Admin</a></h3>
                         <h3>OR</h3>
-                        <h3><a href='http://".$_SERVER['HTTP_HOST']."/blog/public/post/".$request->input('post_id')."'>To Post</a></h3>";
+                        <h3><a href='http://".$_SERVER['HTTP_HOST']."/post/".$request->input('post_id')."'>To Post</a></h3>";
         return $state;
     }
 
@@ -155,7 +163,7 @@ class Admin extends Controller{
         foreach ($posts as $post){
             $html .= "<tr post_id='".$post['id']."'>
                     <th class=\"post_id\" scope=\"row\">".$post['id']."</th>
-                    <td class=\"post_title\"><a class=\"social-icon\" href=\"http://".$_SERVER['HTTP_HOST']."/blog/public/post/".$post['id']."\">".$post['title']."</a></td>
+                    <td class=\"post_title\"><a class=\"social-icon\" href=\"http://".$_SERVER['HTTP_HOST']."/post/".$post['id']."\">".$post['title']."</a></td>
                     <td class=\"post_category\">".$post['category']."</td>
                     <td class=\"post_updated_at\">".$post['updated_at']."</td>
                     <td class=\"post_created_at\">".$post['created_at']."</td>
