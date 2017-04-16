@@ -71,7 +71,7 @@
             @foreach($related_posts as $related_post)
                 <h5><br><br><br>
                     <i class="fa fa-plug" aria-hidden="true"></i>
-                    <a class="social-icon" href="http://{{$_SERVER['HTTP_HOST']}}/post/{{$related_post['id']}}">{{$related_post['title']}}</a></h5><hr>
+                    <a class="social-icon" href="https://{{$_SERVER['HTTP_HOST']}}/post/{{$related_post['id']}}">{{$related_post['title']}}</a></h5><hr>
             @endforeach
         </div>
     </div>

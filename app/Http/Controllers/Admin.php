@@ -52,9 +52,9 @@ class Admin extends Controller{
             'article' => $request->input("post_body"),
         ));
         $state = "<h1>Successfully Inserted</h1>
-                        <h3><a href='http://".$_SERVER['HTTP_HOST']."/admin'>To Admin</a></h3>
+                        <h3><a href='https://".$_SERVER['HTTP_HOST']."/admin'>To Admin</a></h3>
                         <h3>OR</h3>
-                        <h3><a href='http://".$_SERVER['HTTP_HOST']."/'>To Homepage</a></h3>";
+                        <h3><a href='https://".$_SERVER['HTTP_HOST']."/'>To Homepage</a></h3>";
         if($request->hasFile('post_img')) {
 //            Log::info(print_r($request->file('post_img')->ge, true));
             $file = $request->file("post_img");
@@ -83,9 +83,9 @@ class Admin extends Controller{
             $this->updatePostImage($request);
         }
         $state = "<h1>Successfully Inserted</h1>
-                        <h3><a href='http://".$_SERVER['HTTP_HOST']."/admin'>To Admin</a></h3>
+                        <h3><a href='https://".$_SERVER['HTTP_HOST']."/admin'>To Admin</a></h3>
                         <h3>OR</h3>
-                        <h3><a href='http://".$_SERVER['HTTP_HOST']."/post/".$request->input('post_id')."'>To Post</a></h3>";
+                        <h3><a href='https://".$_SERVER['HTTP_HOST']."/post/".$request->input('post_id')."'>To Post</a></h3>";
         return $state;
     }
 
@@ -163,7 +163,7 @@ class Admin extends Controller{
         foreach ($posts as $post){
             $html .= "<tr post_id='".$post['id']."'>
                     <th class=\"post_id\" scope=\"row\">".$post['id']."</th>
-                    <td class=\"post_title\"><a class=\"social-icon\" href=\"http://".$_SERVER['HTTP_HOST']."/post/".$post['id']."\">".$post['title']."</a></td>
+                    <td class=\"post_title\"><a class=\"social-icon\" href=\"https://".$_SERVER['HTTP_HOST']."/post/".$post['id']."\">".$post['title']."</a></td>
                     <td class=\"post_category\">".$post['category']."</td>
                     <td class=\"post_updated_at\">".$post['updated_at']."</td>
                     <td class=\"post_created_at\">".$post['created_at']."</td>

@@ -77,7 +77,7 @@
             @foreach($posts as $post)
                 <tr post_id="{{$post['id']}}">
                     <th class="post_id" scope="row">{{$post['id']}}</th>
-                    <td class="post_title"><a class="social-icon" href="http://{{$_SERVER['HTTP_HOST']}}/post/{{$post['id']}}">{{$post['title']}}</a></td>
+                    <td class="post_title"><a class="social-icon" href="https://{{$_SERVER['HTTP_HOST']}}/post/{{$post['id']}}">{{$post['title']}}</a></td>
                     <td class="post_category">{{$post['category']}}</td>
                     <td class="post_updated_at">{{$post['updated_at']}}</td>
                     <td class="post_created_at">{{$post['created_at']}}</td>

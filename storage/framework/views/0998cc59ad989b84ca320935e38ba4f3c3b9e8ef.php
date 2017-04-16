@@ -70,7 +70,7 @@
             <?php $__currentLoopData = $related_posts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $related_post): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <h5><br><br><br>
                     <i class="fa fa-plug" aria-hidden="true"></i>
-                    <a class="social-icon" href="http://<?php echo e($_SERVER['HTTP_HOST']); ?>/post/<?php echo e($related_post['id']); ?>"><?php echo e($related_post['title']); ?></a></h5><hr>
+                    <a class="social-icon" href="https://<?php echo e($_SERVER['HTTP_HOST']); ?>/post/<?php echo e($related_post['id']); ?>"><?php echo e($related_post['title']); ?></a></h5><hr>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>

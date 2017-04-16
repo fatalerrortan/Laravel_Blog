@@ -28,7 +28,7 @@ class Front extends Controller
  */
 //        Mail::to("tiemann9898@gmail.com")->send(new SiteReview(IpRequest::ip()));
         $posts = Posts::orderBy('updated_at', 'desc')->take(5)->get();
-        return view('home', array('page' => 'home', 'posts' => $posts));
+        return view('home', array('page' => 'Xulin, Tan, Xtan, Study Blog, home', 'posts' => $posts));
     }
 
     public function contact(Request $request){
@@ -59,12 +59,12 @@ class Front extends Controller
         $image = $this->getImage($post_id);
         $comments = Comments::where("post_id", $post_id)->orderBy("updated_at", "asc")->get();
         $related_posts = Posts::where('related', 'like','%,'.$post_id.',%')->get();
-        return view('post', array('page' => 'post', 'post' => $post, 'image' => $image, 'comments' => $comments, 'related_posts' => $related_posts));
+        return view('post', array('page' => 'Xulin, Xulin Tan, Xtan, '.$post['keywords'], 'post' => $post, 'image' => $image, 'comments' => $comments, 'related_posts' => $related_posts));
     }
 
     public function posts($category){
         $posts = Posts::where('category', 'like', $category.'%')->orderBy('updated_at', 'desc')->take(9)->get();
-        return view('posts', array('page' => 'posts', 'posts' => $posts, 'category' => strtoupper($category)));
+        return view('posts', array('page' =>  'Xulin, Xulin Tan, Xtan, '. $category, 'posts' => $posts, 'category' => strtoupper($category)));
     }
 
     public function more(Request $request){
@@ -84,7 +84,7 @@ class Front extends Controller
         if($flag){
             foreach ($posts as $post){
                 $html .= "<div class='post-preview'>
-                    <a class='post_id' href='http://".$_SERVER['HTTP_HOST']."/post/".$post['id']."'>
+                    <a class='post_id' href='https://".$_SERVER['HTTP_HOST']."/post/".$post['id']."'>
                         <h5>
                           ".$post['title']."
                         </h2>
@@ -98,7 +98,7 @@ class Front extends Controller
         }else{
             foreach ($posts as $post){
                 $html .= "<div class='post-preview'>
-                    <a class='post_id' href='http://".$_SERVER['HTTP_HOST']."/post/".$post['id']."'>
+                    <a class='post_id' href='https://".$_SERVER['HTTP_HOST']."/post/".$post['id']."'>
                         <h2 class='post-title'>
                           ".$post['title']."
                         </h2>
@@ -120,12 +120,12 @@ class Front extends Controller
     }
 
     public function about(){
-        return view('about', array('page' => 'about'));
+        return view('about', array('page' =>  'Xulin, Xulin Tan, Xtan, CV, Lebenslauf, 履历, Resume, curriculum vitae'));
     }
 
     public function search($query){
         $posts = Posts::search($query)->get();
-        return view('posts', array('page' => 'posts', 'posts' => $posts, 'category' => strtoupper("we have found...")));
+        return view('posts', array('page' => 'posts', 'posts' => $posts, 'category' => strtoupper("<3 we have found... for '".$query."'")));
     }
 
     public static function keywords($keywords){

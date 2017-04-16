@@ -6,11 +6,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="<?php echo e($page); ?>">
+    <meta name="author" content="xulin Tan, Xtan">
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>" />
+    <link rel="icon" type="image/png" href="<?php echo e(asset('img/cmyk.png')); ?>">
 
-    <title>XTan Blog</title>
+    <title><?php echo e($page); ?></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo e(asset('css/bootstrap.min.css')); ?>" rel="stylesheet">
@@ -30,6 +31,37 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter44225534 = new Ya.Metrika({
+                        id:44225534,
+                        clickmap:true,
+                        trackLinks:true,
+                        accurateTrackBounce:true,
+                        webvisor:true,
+                        trackHash:true
+                    });
+                } catch(e) { }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                    s = d.createElement("script"),
+                    f = function () { n.parentNode.insertBefore(s, n); };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+        })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/44225534" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
 
 </head>
 
@@ -53,7 +85,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="http://<?php echo e($_SERVER['HTTP_HOST']); ?>/">Home</a>
+                    <a href="https://<?php echo e($_SERVER['HTTP_HOST']); ?>/">Home</a>
                 </li>
                 <li>
                     <a class="dropdown-toggle social-icon" data-toggle="dropdown">PHP
@@ -112,6 +144,11 @@
     </div>
 </header>
 <!-- Main Content Start -->
+
+
+   
+                                       
+
 <div class="container">
     <?php echo $__env->yieldContent('contents'); ?>
 </div>
@@ -183,11 +220,10 @@
     jQuery("#search").keyup(function (e) {
         if(e.keyCode == 13){
             var query = jQuery(this).val();
-            window.location = "http://<?php echo e($_SERVER['HTTP_HOST']); ?>/search/" + query;
+            window.location = "https://<?php echo e($_SERVER['HTTP_HOST']); ?>/search/" + query;
         }
     });
 </script>
-
 <?php echo $__env->yieldContent('extra_js'); ?>
 </body>
 

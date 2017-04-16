@@ -15,8 +15,9 @@
                 <div class="col-md-7">
                     {{--<div class="well"></div>--}}
                     <blockquote>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                        <p>天道酬勤</p>
+                        <p>Fortune always appreciate a hardworking man.</p>
+                        <p>Glück schätzt immer einen fleißigen Mann.</p>
                     </blockquote>
                     <div id="skill_img">
                         <div class="row">
@@ -48,7 +49,7 @@
                 <h3><i class="fa fa-id-card" aria-hidden="true"></i>&nbsp;Xulin Tan</h3>
                 <h5><i class="fa fa-file-code-o" aria-hidden="true"></i>&nbsp;Web App Developer</h5>
                 <h5><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;Leipzig, Germany</h5>
-                <h5><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;bss12ejb@studserv.uni-leipzig.de</h5>
+                <h5><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;<button id="contact_me">Contact Me</button></h5>
                 <h5><i class="fa fa-university" aria-hidden="true"></i>&nbsp;University of Leipzig</h5>
                 <h5><i class="fa fa-language" aria-hidden="true"></i>&nbsp; Chinese, English, German</h5>
                 <h5><i class="fa fa-chrome" aria-hidden="true"></i>&nbsp;http://www.xulin-tan.de</h5>
@@ -73,7 +74,7 @@
         </div>
         <div class="col-md-7">
             <div class="well">
-                <h3>Skills</h3>
+                <h3>Skills <3</h3>
                 <h5>PHP>Mangeto 1</h5>
                 <div id="progress_magento_1">
                     <div class="myBar"></div>
@@ -108,8 +109,8 @@
                 </div>
             </div>
             <div class="well">
-                <h3>Contact Me</h3>
                 <form id="contact">
+                    <h3>Contact Me <3</h3>
                     <div class="form-group">
                         <label for="contact_name">Name</label>
                         <input type="text" class="form-control" id="contact_name">
@@ -146,6 +147,13 @@
 //                jQuery("#skill_img img").effect( "bounce", { times: 3}, "slow");
 //            }
 //        });
+        jQuery("#contact_me").click(function () {
+            jQuery('html,body').animate({
+                        scrollTop: jQuery("#contact").offset().top},
+                    'slow');
+        });
+
+
         jQuery(document).ready( function(){
             setTimeout( function(){
                 jQuery('.terminal').typewriting( "Who Am I ? ", {
