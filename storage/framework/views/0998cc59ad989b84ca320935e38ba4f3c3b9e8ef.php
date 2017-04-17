@@ -1,3 +1,7 @@
+<?php $__env->startSection("extra_css"); ?>
+    <link href="<?php echo e(asset('css/prism.css')); ?>" rel="stylesheet">
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('contents'); ?>
 
 <div class="row">
@@ -80,6 +84,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('extra_js'); ?>
+    <script src="<?php echo e(asset('js/prism.js')); ?>"></script>
     <script>
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         jQuery("#comment button").click(function () {

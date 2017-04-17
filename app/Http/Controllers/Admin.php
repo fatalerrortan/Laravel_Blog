@@ -146,8 +146,12 @@ class Admin extends Controller{
                 \"subtitle\":\"".preg_replace( "/\r|\n/", "", str_replace("\"","'",$post->segment))."\",
                 \"related\":\"".str_replace("\"","'",$post->related)."\",
                 \"keywords\":\"".str_replace("\"","'",$post->keywords)."\",
-                \"post_id\":\"".str_replace("\"","'",$post->id)."\",
-                 \"article\":\"".preg_replace( "/\r|\n/", "", str_replace("\"","'",$post->article))."\"}";
+                \"post_id\":\"".str_replace("\"","'",$post->id)."\"}";
+    }
+//\"article\":\"".preg_replace( "/\r|\n/", "", str_replace("\"","'",$post->article))."\"}";
+    public function editArticle(Request $request){
+        $post = Posts::find($request->input("post_id"));
+        return $post->article;
     }
 
     public function operation($pattern, $order){
@@ -167,7 +171,7 @@ class Admin extends Controller{
                     <td class=\"post_category\">".$post['category']."</td>
                     <td class=\"post_updated_at\">".$post['updated_at']."</td>
                     <td class=\"post_created_at\">".$post['created_at']."</td>
-                    <td class=\"post_edit\"><a class=\"social-icon\" onclick=\"postEdit(this)\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></a></td>
+                    <td class=\"post_edit\"><a class=\"social-icon\" onclick=\"postEdit(this); postEditArticle(this)\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></a></td>
                     <td class=\"post_push\"><a class=\"social-icon\" onclick=\"postUpdate(this)\"><i class=\"fa fa-rocket\" aria-hidden=\"true\"></i></a></td>
                     <td class=\"post_delete\"><a class=\"social-icon\" onclick='postDelete(this)'><i class=\"fa fa-trash-o\" aria-hidden=\"true\"></i></a></td>
                 </tr>";

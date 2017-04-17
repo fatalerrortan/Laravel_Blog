@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section("extra_css")
+    <link href="{{asset('css/prism.css')}}" rel="stylesheet">
+@endsection
+
 @section('contents')
 {{--{{$post['id']}}--}}
 <div class="row">
@@ -81,6 +85,7 @@
 @endsection
 
 @section('extra_js')
+    <script src="{{asset('js/prism.js')}}"></script>
     <script>
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         jQuery("#comment button").click(function () {

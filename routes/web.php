@@ -49,3 +49,5 @@ Route::post('/delete', 'Admin@delete');
 
 Route::post('/edit', 'Admin@edit');
 
+Route::post('/editarticle', 'Admin@editArticle');
+

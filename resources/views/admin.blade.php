@@ -81,7 +81,7 @@
                     <td class="post_category">{{$post['category']}}</td>
                     <td class="post_updated_at">{{$post['updated_at']}}</td>
                     <td class="post_created_at">{{$post['created_at']}}</td>
-                    <td class="post_edit"><a class="social-icon" onclick="postEdit(this)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+                    <td class="post_edit"><a class="social-icon" onclick="postEdit(this); postEditArticle(this)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
                     <td class="post_push"><a class="social-icon" onclick="postUpdate(this)"><i class="fa fa-rocket" aria-hidden="true"></i></a></td>
                     <td class="post_delete"><a class="social-icon" onclick="postDelete(this)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
                 </tr>
@@ -150,19 +150,33 @@
             postData.append("_token", CSRF_TOKEN);
             postData.append("post_id", post_id);
             var old_post = retrieveNewPosts(postData, "edit");
-//            console.log(old_post_obj);
             return true;
         }
 
-        function showOldPost() {
-            jQuery("#post_category").val(old_post_obj.category);
-            jQuery("#post_title").val(old_post_obj.title);
-            jQuery("#subtitle").val(old_post_obj.subtitle);
-            jQuery("#related_posts").val(old_post_obj.related);
-            jQuery("#keywords").val(old_post_obj.keywords);
-            jQuery("#post_body").val(old_post_obj.article);
-            jQuery("#post_id").val(old_post_obj.post_id);
-            jQuery("#new_post_form").toggle("slow");
+        function postEditArticle(element) {
+            var post_id = jQuery(element).parent().parent().attr("post_id");
+            var postData = new FormData();
+            postData.append("_token", CSRF_TOKEN);
+            postData.append("post_id", post_id);
+            var old_post = retrieveNewPosts(postData, "editarticle");
+            return true;
+        }
+
+        function showOldPost(article) {
+            if(!article){
+//                console.log(old_post_obj);
+                jQuery("#post_category").val(old_post_obj.category);
+                jQuery("#post_title").val(old_post_obj.title);
+                jQuery("#subtitle").val(old_post_obj.subtitle);
+                jQuery("#related_posts").val(old_post_obj.related);
+                jQuery("#keywords").val(old_post_obj.keywords);
+//            jQuery("#post_body").val(old_post_obj.article);
+                jQuery("#post_id").val(old_post_obj.post_id);
+            }else {
+                jQuery("#post_body").val(article);
+//                jQuery("#new_post_form").toggle("slow");
+                jQuery("#new_post_form").show();
+            }
         }
 
         function retrieveNewPosts(postData, urlPattern) {
@@ -175,11 +189,16 @@
                 processData:false,
                 data:postData,
                 success:function(html){
-                    if(urlPattern != 'edit'){
+                    if((urlPattern != 'edit') && (urlPattern != 'editarticle')){
                         jQuery("tbody").html(html);
                     }else {
-                        old_post_obj = jQuery.parseJSON(html);
-                        showOldPost();
+                        if(urlPattern == 'editarticle'){
+//                            console.log(html);
+                            showOldPost(html);
+                        }else {
+                            old_post_obj = jQuery.parseJSON(html);
+                            showOldPost(false);
+                        }
                         jQuery("#if_update").val("yes");
                     }
                 }
