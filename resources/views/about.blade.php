@@ -52,7 +52,7 @@
                 <h5><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;<button id="contact_me">Contact Me</button></h5>
                 <h5><i class="fa fa-university" aria-hidden="true"></i>&nbsp;University of Leipzig</h5>
                 <h5><i class="fa fa-language" aria-hidden="true"></i>&nbsp; Chinese, English, German</h5>
-                <h5><i class="fa fa-chrome" aria-hidden="true"></i>&nbsp;http://www.xulin-tan.de</h5>
+                <h5><i class="fa fa-chrome" aria-hidden="true"></i>&nbsp;https://www.xulin-tan.de</h5>
             </div>
         </div>
     </div>
@@ -63,6 +63,25 @@
         <div class="col-md-11 col-md-offset-1">
             <div class="well">
                 <div id="terminal_like" class="terminal"></div>
+                <div id="manual"><p>
+                    ls -a /Xulin/Education<br>
+                    > (01.09.2008 - 01.06.2012) Shanghai International Studies University<br>
+                    > > > > > B.A. Germanistik<br>
+                    > (01.10.2012 - 01.02.2016) University of Leipzig<br>
+                    > > > > > B.Sc. Business Information Systems<br>
+                    > (01.10.2015 - present) University of Leipzig<br>
+                    > > > > > M.Sc. Business Information Systems<br>
+                    _>_>_>_>_>_>_>_>_>_>_>_>_>_><br>
+                    > ls -a /Xulin/Work_Experience<br>
+                    > (01.07.2011 - 31.07.2011) Liebherr Machinery Service (Shanghai)<br>
+                    > > > > > Internship in Service Earthmoving and Mining Equipment<br>
+                    > (22.09.2014 - 09.03.2015) M. und F. Valentin Tischlerbedarf GmbH & Co. KG(Berlin)<br>
+                    > > > > > Internship for Web App Development in IT department<br>
+                    > (01.08.2015 - present) nextOrder eBusiness GmbH(Leipzig)<br>
+                    > > > > > Internship for Web App Development in IT department<br>
+                    > echo thanks for your watching :)<br>
+                    > sudo shutdown -h now;
+                </p></div>
             </div>
         </div>
     </div>
@@ -136,40 +155,51 @@
     <script src="{{asset('js/typewriting.js')}}"></script>
     <script src="{{asset('js/github-activity-0.1.4.min.js')}}"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"></script>
-
+    <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+    <script type="text/babel">
+        import React from 'react'
+        import { render } from 'react-dom'
+        function Terminal() {
+            return <h3>Hellp World</h3>;
+        }
+        ReactDOM.render(
+                <Terminal />,
+                document.getElementById('manual')
+        );
+        React.DomServer.renderToString();
+    </script>
     <script>
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         jQuery("#skill_img img").mouseover(function () {
             jQuery(this).effect( "bounce", { times: 3}, "slow");
         });
-//        jQuery(window).scroll(function() {
-//            if(jQuery("#skill_img img").scrollTop() == jQuery(window).scrollTop()) {
-//                jQuery("#skill_img img").effect( "bounce", { times: 3}, "slow");
-//            }
-//        });
+
         jQuery("#contact_me").click(function () {
             jQuery('html,body').animate({
                         scrollTop: jQuery("#contact").offset().top},
                     'slow');
         });
-
+//           jQuery(document).on('pageinit', function () {
 
         jQuery(document).ready( function(){
-            setTimeout( function(){
-                jQuery('.terminal').typewriting( "Who Am I ? ", {
-                    "typing_interval": 50,
-                    "blink_interval": "1s",
-                    "cursor_color": "#00fd55"
-                }, function() {
-                    console.log( "END" );
-                });
-                var text = getText();
+            var ifMobil = "<?php echo App\Http\Controllers\Front::userAgentDetect() ?>";
+            if(ifMobil == "false"){jQuery("#manual").hide()};
                 setTimeout( function(){
-                    jQuery('.terminal').rewrite( text, function(){
-                        console.log( "END, 2." );
+                    jQuery('.terminal').typewriting( "Who Am I ?", {
+                        "typing_interval": 20,
+                        "blink_interval": "1s",
+                        "cursor_color": "#00fd55"
+                    }, function() {
+                        console.log( "END" );
                     });
-                }, 3300);
-            }, 1000);
+                    var text = getText();
+                    setTimeout( function(){
+                        jQuery('.terminal').rewrite( text, function(){
+                            console.log( "END, 2." );
+                        });
+                    }, 3300);
+                }, 1000);
 
             GitHubActivity.feed({
                 username: "fatalerrortan",

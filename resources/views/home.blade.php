@@ -14,7 +14,7 @@
                             {{$post['segment']}}
                         </h3>
                     </a>
-                    <p class="post-meta">Posted by <a href="#">{{$post['autor']}}</a> <span class="updated_at">{{$post['updated_at']}}</span>
+                    <p class="post-meta">Posted by <a href="https://{{$_SERVER['HTTP_HOST']}}/about">{{$post['autor']}}</a> <span class="updated_at">{{$post['updated_at']}}</span>
                     <span class="keywords">Keywords: <?php echo App\Http\Controllers\Front::keywords($post['keywords']) ?></span>
                     </p>
                 </div>

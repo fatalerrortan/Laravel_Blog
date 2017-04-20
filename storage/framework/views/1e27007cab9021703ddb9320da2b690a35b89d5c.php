@@ -164,7 +164,7 @@
 
         function showOldPost(article) {
             if(!article){
-                console.log(old_post_obj);
+//                console.log(old_post_obj);
                 jQuery("#post_category").val(old_post_obj.category);
                 jQuery("#post_title").val(old_post_obj.title);
                 jQuery("#subtitle").val(old_post_obj.subtitle);
@@ -193,7 +193,7 @@
                         jQuery("tbody").html(html);
                     }else {
                         if(urlPattern == 'editarticle'){
-                            console.log(html);
+//                            console.log(html);
                             showOldPost(html);
                         }else {
                             old_post_obj = jQuery.parseJSON(html);

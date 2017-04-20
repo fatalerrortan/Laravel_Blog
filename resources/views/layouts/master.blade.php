@@ -93,7 +93,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="/posts/php">All for PHP</a></li>
                         <li><a href="/posts/php_magento">Magento</a></li>
-                        <li><a href="/posts/php_laravel">php_laravel</a></li>
+                        <li><a href="/posts/php_laravel">Laravel</a></li>
                     </ul>
                 </li>
                 <li>
@@ -135,13 +135,20 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
-                    <h1>Xulin Blog</h1>
+                    <h1>Xulin Blog
+                        <a id="newletter" class="social-icon">
+                            <img class="img-responsive" src="{{asset("img/letter.png")}}" alt="newsletter" style="display: inline">
+                            <span style="font-size: medium; color: whitesmoke">Subscribe Newsletter</span>
+                        </a>
+                    </h1>
                     <hr class="small">
                     <span class="subheading">Hi, I'm Xulin.I would like to share my experience of learning about programming</span>
                 </div>
             </div>
         </div>
     </div>
+
+
 </header>
 <!-- Main Content Start -->
 {{--<!-- Yandex.Metrika informer -->--}}
@@ -210,6 +217,26 @@
 <script src="{{asset('js/clean-blog.min.js')}}"></script>
 {{--for search action--}}
 <script>
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    jQuery("#newletter").on("click", function () {
+        var email = prompt("Please type your email for Newsletter", "i want you@xulin.com");
+        var postData = new FormData();
+        postData.append("_token", CSRF_TOKEN);
+        postData.append("email", email);
+        jQuery.ajax({
+            type:"POST",
+            url:"/newsletter",
+            dataType:"text",
+            contentType:false,
+            cache:false,
+            processData:false,
+            data:postData,
+            success:function(html){
+                alert("Thanks ;) i can't wait to get you some new stuffs");
+            }
+        });
+    });
+
     jQuery(document).ready(function () {
         GitHubCalendar(".calendar", "fatalerrortan");
         var current_page = "{{$page}}";

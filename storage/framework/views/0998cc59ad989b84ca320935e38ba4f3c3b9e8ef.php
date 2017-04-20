@@ -1,7 +1,6 @@
 <?php $__env->startSection("extra_css"); ?>
     <link href="<?php echo e(asset('css/prism.css')); ?>" rel="stylesheet">
 <?php $__env->stopSection(); ?>
-
 <?php $__env->startSection('contents'); ?>
 
 <div class="row">
@@ -16,7 +15,7 @@
 
         <!-- Author -->
         <p class="lead">
-            by <a href="#"><?php echo e($post['autor']); ?></a>
+            by <a href="https://<?php echo e($_SERVER['HTTP_HOST']); ?>/about"><?php echo e($post['autor']); ?></a>
         </p>
 
         <hr>
@@ -34,7 +33,10 @@
         <div class="post_content">
             <?php
                 $doc = new DOMDocument();
-                $doc->loadHTML($post['article']);
+                libxml_use_internal_errors(true);
+                $doc->loadHTML( mb_convert_encoding($post['article'], 'HTML-ENTITIES', "UTF-8"));
+            //                echo htmlentities($post['article']);
+                libxml_clear_errors();
                 echo $doc->saveHTML();
             ?>
         </div>

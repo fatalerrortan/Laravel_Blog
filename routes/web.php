@@ -18,6 +18,8 @@ Route::get('/cv', 'Front@about');
 
 Route::post('/comment', 'Front@comment');
 
+Route::post('/newsletter', 'Front@newsletter');
+
 Route::get('/test', 'Front@test');
 
 Route::get('/about', 'Front@about');

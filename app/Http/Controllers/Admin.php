@@ -47,12 +47,12 @@ class Admin extends Controller{
             'autor' => 'Xulin Tan',
             'segment' => $request->input("subtitle"),
             'category' => $request->input("post_category"),
-            'related' => ",".$request->input("related_posts"),
+            'related' => $request->input("related_posts"),
             'keywords' => $request->input("keywords"),
             'article' => $request->input("post_body"),
         ));
         $state = "<h1>Successfully Inserted</h1>
-                        <h3><a href='https://".$_SERVER['HTTP_HOST']."/admin'>To Admin</a></h3>
+                        <h3><a href='https://".$_SERVER['HTTP_HOST']."/adminauth'>To Admin</a></h3>
                         <h3>OR</h3>
                         <h3><a href='https://".$_SERVER['HTTP_HOST']."/'>To Homepage</a></h3>";
         if($request->hasFile('post_img')) {
@@ -83,7 +83,7 @@ class Admin extends Controller{
             $this->updatePostImage($request);
         }
         $state = "<h1>Successfully Inserted</h1>
-                        <h3><a href='https://".$_SERVER['HTTP_HOST']."/admin'>To Admin</a></h3>
+                        <h3><a href='https://".$_SERVER['HTTP_HOST']."/adminauth'>To Admin</a></h3>
                         <h3>OR</h3>
                         <h3><a href='https://".$_SERVER['HTTP_HOST']."/post/".$request->input('post_id')."'>To Post</a></h3>";
         return $state;

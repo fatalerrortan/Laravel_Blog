@@ -1,9 +1,7 @@
 @extends('layouts.master')
-
 @section("extra_css")
     <link href="{{asset('css/prism.css')}}" rel="stylesheet">
 @endsection
-
 @section('contents')
 {{--{{$post['id']}}--}}
 <div class="row">
@@ -18,7 +16,7 @@
 
         <!-- Author -->
         <p class="lead">
-            by <a href="#">{{$post['autor']}}</a>
+            by <a href="https://{{$_SERVER['HTTP_HOST']}}/about">{{$post['autor']}}</a>
         </p>
 
         <hr>
@@ -36,7 +34,10 @@
         <div class="post_content">
             <?php
                 $doc = new DOMDocument();
-                $doc->loadHTML($post['article']);
+                libxml_use_internal_errors(true);
+                $doc->loadHTML( mb_convert_encoding($post['article'], 'HTML-ENTITIES', "UTF-8"));
+            //                echo htmlentities($post['article']);
+                libxml_clear_errors();
                 echo $doc->saveHTML();
             ?>
         </div>

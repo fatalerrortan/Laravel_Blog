@@ -16,7 +16,7 @@
 
                         </h3>
                     </a>
-                    <p class="post-meta">Posted by <a href="#"><?php echo e($post['autor']); ?></a> <span class="updated_at"><?php echo e($post['updated_at']); ?></span>
+                    <p class="post-meta">Posted by <a href="https://<?php echo e($_SERVER['HTTP_HOST']); ?>/about"><?php echo e($post['autor']); ?></a> <span class="updated_at"><?php echo e($post['updated_at']); ?></span>
                     <span class="keywords">Keywords: <?php echo App\Http\Controllers\Front::keywords($post['keywords']) ?></span>
                     </p>
                 </div>
