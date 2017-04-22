@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\Posts;
 use App\Images;
 use App\User;
+use App\Newsletter;
 use Illuminate\Support\Facades\Log;
+use App\Mail\Newsletters;
+use Illuminate\Support\Facades\Mail;
 
 class Admin extends Controller{
 
@@ -16,7 +19,7 @@ class Admin extends Controller{
 
     public function index(Request $request){
         $user = User::where("name", $request->input('name'))->first();
-        Log::info("out: ".$request->input('pwd')." and in: ".$user['password']);
+//        Log::info("out: ".$request->input('pwd')." and in: ".$user['password']);
         if($user['password'] != $request->input('pwd')){return exit("日你妈");}
         $posts = Posts::orderBy('created_at', 'desc')->get();
         return view('admin', array('page' => 'admin', 'posts' => $posts));
@@ -133,6 +136,14 @@ class Admin extends Controller{
         return $html;
     }
 
+    public function broadcast(Request $request){
+        $post = Posts::find($request->input('post_id'));
+        $users = Newsletter::all(array('email'));
+        foreach ($users as $user){
+            Mail::to($user->email)->send(new Newsletters($post));
+        }
+    }
+
     public function edit(Request $request){
 //        header('Content-Type: application/json');
         $post = Posts::find($request->input("post_id"));
@@ -173,6 +184,7 @@ class Admin extends Controller{
                     <td class=\"post_created_at\">".$post['created_at']."</td>
                     <td class=\"post_edit\"><a class=\"social-icon\" onclick=\"postEdit(this); postEditArticle(this)\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></a></td>
                     <td class=\"post_push\"><a class=\"social-icon\" onclick=\"postUpdate(this)\"><i class=\"fa fa-rocket\" aria-hidden=\"true\"></i></a></td>
+                    <td class=\"post_broadcast\"><a class=\"social-icon\" onclick=\"postBroadcast(this)\"><i class=\"fa fa-envelope\" aria-hidden=\"true\"></i></a></td>
                     <td class=\"post_delete\"><a class=\"social-icon\" onclick='postDelete(this)'><i class=\"fa fa-trash-o\" aria-hidden=\"true\"></i></a></td>
                 </tr>";
         }

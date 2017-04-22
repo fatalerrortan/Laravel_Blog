@@ -220,22 +220,38 @@
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
     jQuery("#newletter").on("click", function () {
         var email = prompt("Please type your email for Newsletter", "i want you@xulin.com");
-        var postData = new FormData();
-        postData.append("_token", CSRF_TOKEN);
-        postData.append("email", email);
-        jQuery.ajax({
-            type:"POST",
-            url:"/newsletter",
-            dataType:"text",
-            contentType:false,
-            cache:false,
-            processData:false,
-            data:postData,
-            success:function(html){
-                alert("Thanks ;) i can't wait to get you some new stuffs");
-            }
-        });
+        if (validateEmail(email)) {
+            var postData = new FormData();
+            postData.append("_token", CSRF_TOKEN);
+            postData.append("email", email);
+            jQuery.ajax({
+                type: "POST",
+                url: "/newsletter",
+                dataType: "text",
+                contentType: false,
+                cache: false,
+                processData: false,
+                data: postData,
+                success: function (html) {
+                    alert("Thanks ;) i can't wait to get you some new stuffs");
+                    }
+                });
+        }else {
+            alert("You have entered an invalid email address!");
+            return false;
+        }
     });
+
+    function validateEmail(email){
+        
+        
+        
+        
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        console.log(re.test(email));
+        return re.test(email);
+
+    }
 
     jQuery(document).ready(function () {
         GitHubCalendar(".calendar", "fatalerrortan");

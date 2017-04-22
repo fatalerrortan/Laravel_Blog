@@ -70,6 +70,7 @@
                 <th>Created_At</th>
                 <th>Edit</th>
                 <th>Push</th>
+                <th>Broadcast</th>
                 <th>Delete</th>
             </tr>
             </thead>
@@ -83,6 +84,7 @@
                     <td class="post_created_at"><?php echo e($post['created_at']); ?></td>
                     <td class="post_edit"><a class="social-icon" onclick="postEdit(this); postEditArticle(this)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
                     <td class="post_push"><a class="social-icon" onclick="postUpdate(this)"><i class="fa fa-rocket" aria-hidden="true"></i></a></td>
+                    <td class="post_broadcast"><a class="social-icon" onclick="postBroadcast(this)"><i class="fa fa-envelope" aria-hidden="true"></i></a></td>
                     <td class="post_delete"><a class="social-icon" onclick="postDelete(this)"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
                 </tr>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -128,7 +130,7 @@
             postData.append("order", filter_state.order);
             postData.append("post_id", post_id);
             if(retrieveNewPosts(postData, "delete")){
-                alert("Deleted");
+                alert("Deleted!");
             }
         }
 
@@ -140,7 +142,7 @@
             postData.append("order", filter_state.order);
             postData.append("post_id", post_id);
             if(retrieveNewPosts(postData, "update")){
-                alert("Updated");
+                alert("Updated!");
             }
         }
         
@@ -160,6 +162,16 @@
             postData.append("post_id", post_id);
             var old_post = retrieveNewPosts(postData, "editarticle");
             return true;
+        }
+
+        function postBroadcast(element) {
+            var post_id = jQuery(element).parent().parent().attr("post_id");
+            var postData = new FormData();
+            postData.append("_token", CSRF_TOKEN);
+            postData.append("post_id", post_id);
+            if(retrieveNewPosts(postData, "broadcast")){
+                alert("broadcasted!");
+            }
         }
 
         function showOldPost(article) {

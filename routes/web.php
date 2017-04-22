@@ -38,7 +38,6 @@ Route::post('/contact', 'Front@contact');
 
 Route::get('/adminauth', 'Admin@auth');
 
-
 Route::post('/admin', 'Admin@index');
 
 Route::post('/filter', 'Admin@filterable');
@@ -53,3 +52,4 @@ Route::post('/edit', 'Admin@edit');
 
 Route::post('/editarticle', 'Admin@editArticle');
 
+Route::post('/broadcast', 'Admin@broadcast');
