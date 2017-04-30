@@ -74,7 +74,7 @@ class Front extends Controller
         $image = $this->getImage($post_id);
         $comments = Comments::where("post_id", $post_id)->orderBy("updated_at", "asc")->get();
         $related_posts = Posts::where('related', 'like','%,'.$post_id.',%')->get();
-        return view('post', array('page' => 'Xulin, 谭许麟, Xulin Tan, Xtan, '.$post['keywords'], 'post' => $post, 'image' => $image, 'comments' => $comments, 'related_posts' => $related_posts));
+        return view('post', array('page' => $post['title'].',谭许麟,Xulin Tan,Xtan,'.$post['keywords'], 'post' => $post, 'image' => $image, 'comments' => $comments, 'related_posts' => $related_posts));
     }
 
     public function posts($category){
@@ -182,11 +182,7 @@ class Front extends Controller
     }
 
     public function test(){
-        Users::create([
-            'name' => 'fatalerrortxl',
-            'email' => 'tiemann9898@mail.com',
-            'password' => bcrypt("Testing73."),
-        ]);
+       Log::info(env('SPARKPOST_SECRET'));
     }
 }
 

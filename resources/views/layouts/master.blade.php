@@ -91,22 +91,22 @@
                     <a class="dropdown-toggle social-icon" data-toggle="dropdown">PHP
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/posts/php">All for PHP</a></li>
-                        <li><a href="/posts/php_magento">Magento</a></li>
-                        <li><a href="/posts/php_laravel">Laravel</a></li>
+                        <li><a href="{{secure_url('/posts/php')}}">All for PHP</a></li>
+                        <li><a href="{{secure_url('/posts/php_magento')}}">Magento</a></li>
+                        <li><a href="{{secure_url('/posts/php_laravel')}}">Laravel</a></li>
                     </ul>
                 </li>
                 <li>
                     <a class="dropdown-toggle social-icon" data-toggle="dropdown">Javascript
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/posts/javascript">All for JS</a></li>
-                        <li><a href="/posts/jquery">jQuery</a></li>
-                        <li><a href="/posts/react">React</a></li>
+                        <li><a href="{{secure_url('/posts/javascript')}}">All for JS</a></li>
+                        <li><a href="{{secure_url('/posts/jquery')}}">jQuery</a></li>
+                        <li><a href="{{secure_url('/posts/javascript_react')}}">React</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="/about">About/CV</a>
+                    <a href="{{secure_url('/about')}}">About/CV</a>
                 </li>
                 <li id="new_post" style="display: none; background-color: #8eb4cb">
                     <a class="social-icon" style="color: #2ca02c">New Post</a>

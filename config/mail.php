@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'driver' => env('MAIL_DRIVER', 'mailgun'),
+    'driver' => env('MAIL_DRIVER', 'sparkpost'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'x.tan@xulin-tan.de'),
+        'address' => env('MAIL_FROM_ADDRESS', env('MAIN_EMAIL_DOMAIN')),
         'name' => env('MAIL_FROM_NAME', 'Xulin Blog'),
     ],
 

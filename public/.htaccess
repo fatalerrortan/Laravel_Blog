@@ -3,7 +3,11 @@ RewriteBase /
 
 Options +FollowSymLinks
 RewriteEngine On
-
+# Force SSL
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Handle Front Controlle
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.php [L]
+#RewriteRule ^(.*)$ https://www.xulin-tan.de/$1 [R,L]

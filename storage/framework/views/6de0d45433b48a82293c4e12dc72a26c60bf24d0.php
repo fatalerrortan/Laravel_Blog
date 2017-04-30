@@ -1,5 +1,4 @@
-
-<?php $__env->startSection('contents'); ?>
+<h1>Xulin has got some News for you!</h1>
     <a href="<?php echo e($post_url); ?>">
         <h1><?php echo e($title); ?></h1>
         <h3><?php echo e($subtitle); ?></h3>
@@ -7,5 +6,3 @@
         <span class="keywords">Keywords: <?php echo e($keywords); ?></span>
         </p>
     </a>
-<?php $__env->stopSection(); ?>
-<?php echo $__env->make('layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

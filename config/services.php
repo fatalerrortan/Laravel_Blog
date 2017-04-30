@@ -15,8 +15,8 @@ return [
     */
 
     'mailgun' => [
-        'domain' => 'sandboxfd42340f8eab42c99ec7f454c5b5a2cf.mailgun.org',
-        'secret' => 'key-83d2550351f5002966a9fab7e716b76e',
+        'domain' => '',
+        'secret' => '',
     ],
 
     'ses' => [
@@ -33,6 +33,10 @@ return [
         'model' => App\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
+    ],
+
+    'mandrill' => [
+        'secret' => '',
     ],
 
 ];
