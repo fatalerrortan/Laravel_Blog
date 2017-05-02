@@ -101,8 +101,15 @@
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="<?php echo e(secure_url('/posts/javascript')); ?>">All for JS</a></li>
-                        <li><a href="<?php echo e(secure_url('/posts/jquery')); ?>">jQuery</a></li>
+                        <li><a href="<?php echo e(secure_url('/posts/javascript_jquery')); ?>">jQuery</a></li>
                         <li><a href="<?php echo e(secure_url('/posts/javascript_react')); ?>">React</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="dropdown-toggle social-icon" data-toggle="dropdown">Others
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="<?php echo e(secure_url('/posts/others_xtext')); ?>">Xtext</a></li>
                     </ul>
                 </li>
                 <li>

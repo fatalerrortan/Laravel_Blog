@@ -16,6 +16,7 @@
                 <option value="javascript">Javascript</option>
                 <option value="javascript_jquery">jQuery</option>
                 <option value="javascript_react">React</option>
+                <option value="others_xtext">Xtext</option>
             </select>
             <label for="post_title">Title</label>
             <input type="text" name="post_title" class="form-control" id="post_title" placeholder="Title">
