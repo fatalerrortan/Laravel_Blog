@@ -53,3 +53,28 @@ Route::post('/edit', 'Admin@edit');
 Route::post('/editarticle', 'Admin@editArticle');
 
 Route::post('/broadcast', 'Admin@broadcast');
+
+/*
+ *  Prototype for domanda
+ */
+//domanda frontend
+Route::get('/domanda', 'Domanda@index');
+
+Route::get('/domanda/profile', 'Domanda@profile');
+
+Route::get('/domanda/profile/edit', 'Domanda@profileEdit');
+
+Route::get('/domanda/dashboard', 'Domanda@dashboard');
+
+Route::get('/domanda/question/{id}', 'Domanda@question');
+
+Route::get('/domanda/question/push', 'Domanda@questionPush');
+
+Route::get('/domanda/answer/{id}', 'Domanda@answer');
+
+Route::get('/domanda/answer/push{id}', 'Domanda@answerPush');
+
+Route::get('/domanda/cancle/{id}', 'Domanda@cancle');
+
+//domanda backend
+Route::get('/domanda/admin', 'Domanda@admin');
