@@ -10,7 +10,7 @@ class Domanda extends Controller{
     //Frontend
 
     public function index(){
-        echo 'domanda';
+        return view('domanda.index', array('page' => 'domanda.index'));
     }
 
     public function profile(){
