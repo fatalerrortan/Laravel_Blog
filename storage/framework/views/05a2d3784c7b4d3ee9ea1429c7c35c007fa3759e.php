@@ -17,6 +17,8 @@
     <link href="<?php echo e(asset('domandas/css/animations.css')); ?>" rel="stylesheet" />
     <link href="<?php echo e(asset('domandas/css/style.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(asset('domandas/color/default.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('domandas/css/loginmodal.css')); ?>" rel="stylesheet">
+
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
@@ -29,7 +31,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8 col-md-offset-6 text-center inner">
+            <div class="col-md-7 col-md-offset-6 text-center inner">
                 <div class="animatedParent">
                     <h1 class="animated fadeInDown">INNOVATION</h1>
                     <p class="animated fadeInUp">a successful <b>Business Innovation</b> starts from here</p>
@@ -68,7 +70,7 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="menu">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="active"><a href="#intro">Home</a></li>
+                            <li class="active" id="login_trigger"><a href="#login-modal">Login</a></li>
                             <li><a href="#about">About Us</a></li>
                             <li><a href="#service">Services</a></li>
                             <li><a href="#works">Works</a></li>
@@ -85,6 +87,97 @@
     </nav>
 </div>
 <!-- /Navigation -->
+
+<!-- BEGIN # MODAL LOGIN -->
+<div id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="display: none">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" align="center">
+                <img class="img-circle" id="img_logo" src="<?php echo e(asset('domandas/img/icons/domanda_small_logo.png')); ?>">
+            </div>
+
+            <!-- Begin # DIV Form -->
+            <div id="div-forms">
+
+                <!-- Begin # Login Form -->
+                <form id="login-form" method="post" action="<?php echo e(secure_url('/domanda/dashboard')); ?>">
+                    <?php echo e(csrf_field()); ?>
+
+                    <div class="modal-body">
+                        <div id="div-login-msg">
+                            <span id="text-login-msg">Type your username and password.</span>
+                        </div>
+                        <input id="login_username" class="form-control" type="text" placeholder="Username (type ERROR for error effect)" required>
+                        <input id="login_password" class="form-control" type="password" placeholder="Password" required>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Remember me
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div>
+                            <button type="submit" id="form_login_button" class="btn btn-primary btn-lg btn-block">Login</button>
+                        </div>
+                        <div>
+                            <button id="login_lost_btn" type="button" class="btn btn-link">Lost Password?</button>
+                            <button id="login_register_btn" type="button" class="btn btn-link">Register</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End # Login Form -->
+
+                <!-- Begin | Lost Password Form -->
+                <form id="lost-form" style="display:none;">
+                    <div class="modal-body">
+                        <div id="div-lost-msg">
+                            <div id="icon-lost-msg" class="glyphicon glyphicon-chevron-right"></div>
+                            <span id="text-lost-msg">Type your e-mail.</span>
+                        </div>
+                        <input id="lost_email" class="form-control" type="text" placeholder="E-Mail (type ERROR for error effect)" required>
+                    </div>
+                    <div class="modal-footer">
+                        <div>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
+                        </div>
+                        <div>
+                            <button id="lost_login_btn" type="button" class="btn btn-link">Log In</button>
+                            <button id="lost_register_btn" type="button" class="btn btn-link">Register</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End | Lost Password Form -->
+
+                <!-- Begin | Register Form -->
+                <form id="register-form" style="display:none;">
+                    <div class="modal-body">
+                        <div id="div-register-msg">
+                            <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
+                            <span id="text-register-msg">Register an account.</span>
+                        </div>
+                        <input id="register_username" class="form-control" type="text" placeholder="Username (type ERROR for error effect)" required>
+                        <input id="register_email" class="form-control" type="text" placeholder="E-Mail" required>
+                        <input id="register_password" class="form-control" type="password" placeholder="Password" required>
+                    </div>
+                    <div class="modal-footer">
+                        <div>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+                        </div>
+                        <div>
+                            <button id="register_login_btn" type="button" class="btn btn-link">Log In</button>
+                            <button id="register_lost_btn" type="button" class="btn btn-link">Lost Password?</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End | Register Form -->
+
+            </div>
+            <!-- End # DIV Form -->
+
+        </div>
+    </div>
+</div>
+<!-- END # MODAL LOGIN -->
 
 <!-- Section: about -->
 <section id="about" class="home-section color-dark bg-white">
@@ -357,7 +450,11 @@
 <script src="<?php echo e(asset('domandas/js/nivo-lightbox.min.js')); ?>"></script>
 <script src="<?php echo e(asset('domandas/js/custom.js')); ?>"></script>
 <script src="<?php echo e(asset('domandas/js/css3-animate-it.js')); ?>"></script>
-
+<script>
+    $("#login_trigger").click(function () {
+        $("#login-modal").toggle("slow");
+    });
+</script>
 </body>
 
 </html>

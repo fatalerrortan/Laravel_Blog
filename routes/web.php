@@ -64,7 +64,7 @@ Route::get('/domanda/profile', 'Domanda@profile');
 
 Route::get('/domanda/profile/edit', 'Domanda@profileEdit');
 
-Route::get('/domanda/dashboard', 'Domanda@dashboard');
+Route::post('/domanda/dashboard', 'Domanda@dashboard');
 
 Route::get('/domanda/question/{id}', 'Domanda@question');
 
@@ -76,5 +76,8 @@ Route::get('/domanda/answer/push{id}', 'Domanda@answerPush');
 
 Route::get('/domanda/cancle/{id}', 'Domanda@cancle');
 
+Route::get('/domanda/dashboad', 'Domanda@dashboard');
+
 //domanda backend
+
 Route::get('/domanda/admin', 'Domanda@admin');
