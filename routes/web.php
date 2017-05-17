@@ -60,7 +60,7 @@ Route::post('/broadcast', 'Admin@broadcast');
 //domanda frontend
 Route::get('/domanda', 'Domanda@index');
 
-Route::get('/domanda/profile', 'Domanda@profile');
+Route::post('/domanda/profile', 'Domanda@profile');
 
 Route::get('/domanda/profile/edit', 'Domanda@profileEdit');
 

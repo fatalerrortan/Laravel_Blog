@@ -3,9 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
-    <meta name="author" content="GeeksLabs">
-    <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+    <meta name="keyword" content="Domanda Demo">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="shortcut icon" href="img/favicon.png">
 
     <title>Creative - Bootstrap Admin Template</title>
@@ -17,7 +16,7 @@
     <!--external css-->
     <!-- font icon -->
     <link href="{{asset('domandas/css/elegant-icons-style.css')}}" rel="stylesheet" />
-    <link href="{{asset('domandas/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet">
     <!-- Custom styles -->
     <link href="{{asset('domandas/css/widgets.css')}}" rel="stylesheet">
     <link href="{{asset('domandas/css/style_dashboard.css')}}" rel="stylesheet">
@@ -33,11 +32,11 @@
 
     <header class="header dark-bg">
         <div class="toggle-nav">
-            <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
+            <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"></div>
         </div>
 
         <!--logo start-->
-        <a href="index.html" class="logo">Nice <span class="lite">Admin</span></a>
+        <a href="http://www.xulin-tan.de/domanda" class="logo">Domanda <span class="lite">Dashboard</span></a>
         <!--logo end-->
 
         <div class="nav search-row" id="top_menu">
@@ -256,33 +255,24 @@
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
-                                <img alt="" src="img/avatar1_small.jpg">
+                                <img class="img-responsive" width="50px" height="50px" src="data:image/jpeg;base64,{{base64_encode($user->image)}}" alt="">
                             </span>
-                        <span class="username">Jenifer Smith</span>
+                        <span class="username">{{$user->firstname}} {{$user->lastname}}</span>
                         <b class="caret"></b>
                     </a>
-                    <ul class="dropdown-menu extended logout">
+                    <ul class="dropdown-menu extended logout" id="right_top_menus">
                         <div class="log-arrow-up"></div>
-                        <li class="eborder-top">
-                            <a href="#"><i class="icon_profile"></i> My Profile</a>
+                        <li class="eborder-top" >
+                            <a id="profile_trigger"><i class="fa fa-user" aria-hidden="true"></i></i> My Profile</a>
                         </li>
                         <li>
-                            <a href="#"><i class="icon_mail_alt"></i> My Inbox</a>
+                            <a><i class="fa fa-cog" aria-hidden="true"></i> Configuration</a>
                         </li>
                         <li>
-                            <a href="#"><i class="icon_clock_alt"></i> Timeline</a>
+                            <a><i class="fa fa-file-text" aria-hidden="true"></i> Documentation</a>
                         </li>
                         <li>
-                            <a href="#"><i class="icon_chat_alt"></i> Chats</a>
-                        </li>
-                        <li>
-                            <a href="login.html"><i class="icon_key_alt"></i> Log Out</a>
-                        </li>
-                        <li>
-                            <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>
-                        </li>
-                        <li>
-                            <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>
+                            <a><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -292,7 +282,6 @@
         </div>
     </header>
     <!--header end-->
-
     <!--sidebar start-->
     <aside>
         <div id="sidebar"  class="nav-collapse ">
@@ -372,7 +361,6 @@
         </div>
     </aside>
     <!--sidebar end-->
-
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper">
@@ -386,6 +374,7 @@
                     </ol>
                 </div>
             </div>
+            <div id="dashboard_content"></div>
         </section>
         <div class="text-right">
             <div class="credits">
@@ -395,17 +384,14 @@
                     Licensing information: https://bootstrapmade.com/license/
                     Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
                 -->
-                <a href="https://bootstrapmade.com/free-business-bootstrap-themes-website-templates/">Business Bootstrap Themes</a> by <a href="https://bootstrapmade.com/">BootstrapMade</a>
             </div>
         </div>
     </section>
     <!--main content end-->
-
 </section>
-<!-- container section start -->
+
 
 <!-- javascripts -->
-
 <script src="{{asset('domandas/js/jquery-ui-1.10.4.min.js')}}"></script>
 <script src="{{asset('js/jquery.min.js')}}"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
@@ -415,7 +401,25 @@
 <script src="{{asset('domandas/js/jquery.nicescroll.js')}}" type="text/javascript"></script>
 <!--custome script for all page-->
 <script src="{{asset('domandas/js/scripts.js')}}"></script>
-
-
+<script>
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    $("#profile_trigger").click(function () {
+        var postData = new FormData();
+        postData.append("_token", CSRF_TOKEN);
+        postData.append('user_id','{{$user->id}}');
+        $.ajax({
+            type:"POST",
+            url:"/domanda/profile",
+            dataType:"text",
+            contentType:false,
+            cache:false,
+            processData:false,
+            data:postData,
+            success:function(html){
+                $("#dashboard_content").html(html);
+            }
+        });
+    });
+</script>
 </body>
 </html>

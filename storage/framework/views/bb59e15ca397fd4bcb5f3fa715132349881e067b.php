@@ -113,6 +113,13 @@
                     </ul>
                 </li>
                 <li>
+                    <a class="dropdown-toggle social-icon" data-toggle="dropdown">Tools
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="<?php echo e(secure_url('/domanda')); ?>">Domanda</a></li>
+                    </ul>
+                </li>
+                <li>
                     <a href="<?php echo e(secure_url('/about')); ?>">About/CV</a>
                 </li>
                 <li id="new_post" style="display: none; background-color: #8eb4cb">

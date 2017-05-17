@@ -11,7 +11,7 @@
 
     <!-- css -->
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('domandas/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{asset('domandas/css/nivo-lightbox.css')}}" rel="stylesheet" />
     <link href="{{asset('domandas/css/nivo-lightbox-theme/default/default.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('domandas/css/animations.css')}}" rel="stylesheet" />
@@ -106,8 +106,8 @@
                         <div id="div-login-msg">
                             <span id="text-login-msg">Type your username and password.</span>
                         </div>
-                        <input id="login_username" class="form-control" type="text" placeholder="Username (type ERROR for error effect)" required>
-                        <input id="login_password" class="form-control" type="password" placeholder="Password" required>
+                        <input id="login_username" name="login_username" class="form-control" type="text" placeholder="Username" required>
+                        <input id="login_password" name="login_password" class="form-control" type="password" placeholder="Password" required>
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox"> Remember me

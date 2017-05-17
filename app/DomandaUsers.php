@@ -8,5 +8,5 @@ class DomandaUsers extends BaseModel
 {
     protected $primaryKey = 'id';
     protected $table = 'domanda_users';
-    protected $fillable = array('firstname', 'lastname','email','password','skills', 'department', 'position','project', 'image','created_at');
+    protected $fillable = array('firstname', 'lastname','email','password','skills', 'department', 'position', 'company','project', 'image','created_at');
 }

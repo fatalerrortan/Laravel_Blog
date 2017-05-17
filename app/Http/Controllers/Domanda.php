@@ -15,13 +15,16 @@ class Domanda extends Controller{
     }
 
     public function dashboard(Request $request){
-        $user = DomandaUsers::find(1);
-        echo $user->email;
-        return view('domanda.dashboard', array('page' => 'domanda.dashboard'));
+        $account = $request->input('login_username');
+//        $password = $request->input('login_password');
+        $user = DomandaUsers::where('email', $account)->first();
+        return view('domanda.dashboard', array('page' => 'domanda.dashboard', 'user' => $user));
     }
 
-    public function profile(){
-        echo 'profile';
+    public function profile(Request $request){
+        $user_id =  $request->input('user_id');
+        $user = DomandaUsers::find($user_id);
+        return view('domanda.profile', array('user' => $user));
     }
 
     public function profileEdit(){

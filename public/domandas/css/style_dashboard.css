@@ -1,5 +1,5 @@
 /*
-    Theme Name: NiceAdmin
+    Theme Name: Xulin
     Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
     Author: BootstrapMade
     Author URL: https://bootstrapmade.com
@@ -11,6 +11,9 @@
 @import url(line-icons.css);
 
 
+#right_top_menus li {
+    color: #00a0df;
+}
 
 body {
 
@@ -49,6 +52,8 @@ ul li {
 
 
 a, a:hover, a:focus {
+
+    cursor: pointer;
 
     text-decoration: none;
 
@@ -1538,7 +1543,9 @@ div[data-role="editor-toolbar"] {
 
 }
 
-
+#right_top_menus a {
+    cursor:pointer;
+}
 
 .dropdown-menu.extended.logout > li {
 
@@ -1587,6 +1594,7 @@ div[data-role="editor-toolbar"] {
 .dropdown-menu.extended.logout > li:last-child > a:hover > i{
 
     color: #fff;
+    cursor: pointer;
 
 }
 
@@ -1597,6 +1605,7 @@ div[data-role="editor-toolbar"] {
 }
 
 .dropdown-menu.extended.logout > li > a {
+    cursor:pointer;
 
     border-bottom: 1px solid #EBEBEB !important;
 
@@ -1609,7 +1618,6 @@ div[data-role="editor-toolbar"] {
     width: 100%;
 
     display: inline-block;
-
 }
 
 
@@ -9869,4 +9877,5 @@ span.customSelect.changed {
     background:url(../img/customSelect-arrow.gif) no-repeat center right;
 
 }
+
 
