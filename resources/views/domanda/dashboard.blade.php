@@ -374,7 +374,50 @@
                     </ol>
                 </div>
             </div>
-            <div id="dashboard_content"></div>
+            <div id="dashboard_content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Created_at</th>
+                                <th>Title</th>
+                                <th>Keywords</th>
+                                <th>Target</th>
+                                <th>Duration</th>
+                                <th>Access</th>
+                                <th>Project</th>
+                                <th>File</th>
+                                <th>Status</th>
+                                <th>Contributor</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+
+                            foreach ($questions as $question){
+                                echo '<tr>';
+                                    echo '<td>'.$question->created_at.'</td>';
+                                    echo '<td><a href="question/'.$question->id.'">'.$question->title.'</a></td>';
+                                    echo '<td>'.$question->keywords.'</td>';
+                                    echo '<td>'.$question->target.'</td>';
+                                    echo '<td>'.$question->duration.' Min.</td>';
+                                    $access = $question->access ? 'limitless' : 'limited';
+                                    echo '<td>'.$access.'</td>';
+                                    echo '<td>'.$question->project.'</td>';
+                                    $file = $question->file === null ? 'No' : 'Yes';
+                                    echo '<td>'.$file.'</td>';
+                                    $stauts = $question->is_done ? 'Done' : 'In Process';
+                                    echo '<td>'.$stauts.'</td>';
+                                    echo '<td>'.$question->contributor.'</td>';
+                                echo '</tr>';
+                            }
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </section>
         <div class="text-right">
             <div class="credits">

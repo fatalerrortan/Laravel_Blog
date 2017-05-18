@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\DomandaUsers;
+use App\DomandaQuestions;
 
 class Domanda extends Controller{
 
@@ -18,7 +19,10 @@ class Domanda extends Controller{
         $account = $request->input('login_username');
 //        $password = $request->input('login_password');
         $user = DomandaUsers::where('email', $account)->first();
-        return view('domanda.dashboard', array('page' => 'domanda.dashboard', 'user' => $user));
+        $questions = DomandaQuestions::where('owner', $user->id)->get();
+        return view('domanda.dashboard', array('page' => 'domanda.dashboard',
+            'user' => $user,
+            'questions' => $questions));
     }
 
     public function profile(Request $request){
