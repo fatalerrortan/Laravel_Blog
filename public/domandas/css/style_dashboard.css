@@ -10,6 +10,9 @@
 
 @import url(line-icons.css);
 
+.ct-label {
+    font-size: large;
+}
 
 #right_top_menus li {
     color: #00a0df;

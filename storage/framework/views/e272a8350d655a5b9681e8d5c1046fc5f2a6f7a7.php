@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>" />
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>Creative - Bootstrap Admin Template</title>
+    <title>Domanda Dashboard</title>
 
     <!-- Bootstrap CSS -->
     <link href="<?php echo e(asset('css/bootstrap.min.css')); ?>" rel="stylesheet">
@@ -368,8 +368,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
-                    <ol class="breadcrumb">
-                        <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
+                    <ol class="breadcrumb" id="dashboard_path">
+                        <li><i class="fa fa-home"></i>Home</li>
                         <li><i class="fa fa-laptop"></i>Dashboard</li>
                     </ol>
                 </div>
