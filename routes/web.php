@@ -66,7 +66,7 @@ Route::get('/domanda/profile/edit', 'Domanda@profileEdit');
 
 Route::post('/domanda/dashboard', 'Domanda@dashboard');
 
-Route::get('/domanda/question/{id}', 'Domanda@question');
+Route::post('/domanda/question', 'Domanda@question');
 
 Route::get('/domanda/question/push', 'Domanda@questionPush');
 

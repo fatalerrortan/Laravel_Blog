@@ -287,75 +287,58 @@
         <div id="sidebar"  class="nav-collapse ">
             <!-- sidebar menu start-->
             <ul class="sidebar-menu">
-                <li class="active">
-                    <a class="" href="index.html">
-                        <i class="icon_house_alt"></i>
+                <li>
+                    <a class="" href="https://wwww.xulin-tan.de/domanda/dashboard">
+                        <i class="fa fa-laptop"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
-                <li class="sub-menu">
-                    <a href="javascript:;" class="">
-                        <i class="icon_document_alt"></i>
-                        <span>Forms</span>
-                        <span class="menu-arrow arrow_carrot-right"></span>
-                    </a>
-                    <ul class="sub">
-                        <li><a class="" href="form_component.html">Form Elements</a></li>
-                        <li><a class="" href="form_validation.html">Form Validation</a></li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;" class="">
-                        <i class="icon_desktop"></i>
-                        <span>UI Fitures</span>
-                        <span class="menu-arrow arrow_carrot-right"></span>
-                    </a>
-                    <ul class="sub">
-                        <li><a class="" href="general.html">Elements</a></li>
-                        <li><a class="" href="buttons.html">Buttons</a></li>
-                        <li><a class="" href="grids.html">Grids</a></li>
-                    </ul>
-                </li>
                 <li>
-                    <a class="" href="widgets.html">
-                        <i class="icon_genius"></i>
-                        <span>Widgets</span>
+                    <a class="" id="question" href="#">
+                        <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+                        <span>Ask Questions</span>
                     </a>
                 </li>
                 <li>
-                    <a class="" href="chart-chartjs.html">
-                        <i class="icon_piechart"></i>
-                        <span>Charts</span>
-
+                    <a class="" href="#">
+                        <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                        <span>Message</span>
                     </a>
-
                 </li>
-
+                <li>
+                    <a class="" href="#">
+                        <i class="fa fa-area-chart" aria-hidden="true"></i>
+                        <span>Usage</span>
+                    </a>
+                </li>
+                {{--<li class="sub-menu">--}}
+                    {{--<a href="javascript:;" class="">--}}
+                        {{--<i class="fa fa-question-circle-o" aria-hidden="true"></i>--}}
+                        {{--<span>Question</span>--}}
+                        {{--<span class="menu-arrow arrow_carrot-right"></span>--}}
+                    {{--</a>--}}
+                    {{--<ul class="sub">--}}
+                        {{--<li><a class="" href="form_component.html">Form Elements</a></li>--}}
+                        {{--<li><a class="" href="form_validation.html">Form Validation</a></li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
-                        <i class="icon_table"></i>
-                        <span>Tables</span>
-                        <span class="menu-arrow arrow_carrot-right"></span>
+                        <i class="fa fa-cogs" aria-hidden="true"></i>
+                        <span>Configuration</span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="basic_table.html">Basic Table</a></li>
+                        <li><a class="" href="#">Question</a></li>
+                        <li><a class="" href="#">CMS</a></li>
+                        <li><a class="" href="#">Documentation</a></li>
                     </ul>
                 </li>
-
-                <li class="sub-menu">
-                    <a href="javascript:;" class="">
-                        <i class="icon_documents_alt"></i>
-                        <span>Pages</span>
-                        <span class="menu-arrow arrow_carrot-right"></span>
+                <li>
+                    <a class="" href="#">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                        <span>Log Out</span>
                     </a>
-                    <ul class="sub">
-                        <li><a class="" href="profile.html">Profile</a></li>
-                        <li><a class="" href="login.html"><span>Login Page</span></a></li>
-                        <li><a class="" href="blank.html">Blank Page</a></li>
-                        <li><a class="" href="404.html">404 Error</a></li>
-                    </ul>
                 </li>
-
             </ul>
             <!-- sidebar menu end-->
         </div>
@@ -407,7 +390,7 @@
                                     echo '<td>'.$question->project.'</td>';
                                     $file = $question->file === null ? 'No' : 'Yes';
                                     echo '<td>'.$file.'</td>';
-                                    $stauts = $question->is_done ? 'Done' : 'In Process';
+                                    $stauts = $question->is_done ? '<span style="color: #2ab27b">Done</span>' : '<span style="color: tomato">In Process</span>';
                                     echo '<td>'.$stauts.'</td>';
                                     echo '<td>'.$question->contributor.'</td>';
                                 echo '</tr>';
@@ -448,11 +431,19 @@
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
     $("#profile_trigger").click(function () {
         var postData = new FormData();
-        postData.append("_token", CSRF_TOKEN);
         postData.append('user_id','{{$user->id}}');
+        contentChange('POST', '/domanda/profile', postData);
+    });
+    $("#question").click(function () {
+        var postData = new FormData();
+        postData.append('user_id','{{$user->id}}');
+        contentChange('POST', '/domanda/question', postData);
+    });
+    function contentChange(method, urlPattern, postData) {
+        postData.append("_token", CSRF_TOKEN);
         $.ajax({
-            type:"POST",
-            url:"/domanda/profile",
+            type:method,
+            url:urlPattern,
             dataType:"text",
             contentType:false,
             cache:false,
@@ -462,7 +453,7 @@
                 $("#dashboard_content").html(html);
             }
         });
-    });
+    }
 </script>
 </body>
 </html>

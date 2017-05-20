@@ -31,12 +31,12 @@ class Domanda extends Controller{
         return view('domanda.profile', array('user' => $user));
     }
 
-    public function profileEdit(){
-        echo 'profileEdit';
-    }
+//    public function profileEdit(){
+//        echo 'profileEdit';
+//    }
 
-    public function question(){
-        echo 'question';
+    public function question(Request $request){
+        return view('domanda.question');
     }
 
     public function questionPush(){
