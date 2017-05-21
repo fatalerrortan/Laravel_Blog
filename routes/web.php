@@ -62,13 +62,15 @@ Route::get('/domanda', 'Domanda@index');
 
 Route::post('/domanda/profile', 'Domanda@profile');
 
-Route::get('/domanda/profile/edit', 'Domanda@profileEdit');
+//Route::get('/domanda/profile/edit', 'Domanda@profileEdit');
 
 Route::post('/domanda/dashboard', 'Domanda@dashboard');
 
 Route::post('/domanda/question', 'Domanda@question');
 
-Route::get('/domanda/question/push', 'Domanda@questionPush');
+Route::post('/domanda/question/push', 'Domanda@questionPush');
+
+Route::post('/domanda/question/review', 'Domanda@questionReview');
 
 Route::get('/domanda/answer/{id}', 'Domanda@answer');
 

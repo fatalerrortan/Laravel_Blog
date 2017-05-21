@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keyword" content="Domanda Demo">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="shortcut icon" href="">
 
     <title>Domanda Dashboard</title>
 
     <!-- Bootstrap CSS -->
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+
     <!-- bootstrap theme -->
     <link href="{{asset('domandas/css/bootstrap-theme.css')}}" rel="stylesheet">
     <!--external css-->
@@ -22,7 +23,6 @@
     <link href="{{asset('domandas/css/style_dashboard.css')}}" rel="stylesheet">
     <link href="{{asset('domandas/css/style-responsive.css')}}" rel="stylesheet" />
     <link href="{{asset('domandas/css/jquery-ui-1.10.4.min.css')}}" rel="stylesheet">
-
 </head>
 
 <body>
@@ -153,7 +153,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <span class="photo"><img alt="avatar" src="./img/avatar-mini.jpg"></span>
+                                <span class="photo"><img alt="avatar" src=""></span>
                                 <span class="subject">
                                     <span class="from">Greg  Martin</span>
                                     <span class="time">1 min</span>
@@ -165,7 +165,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <span class="photo"><img alt="avatar" src="./img/avatar-mini2.jpg"></span>
+                                <span class="photo"><img alt="avatar" src=""></span>
                                 <span class="subject">
                                     <span class="from">Bob   Mckenzie</span>
                                     <span class="time">5 mins</span>
@@ -177,7 +177,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <span class="photo"><img alt="avatar" src="./img/avatar-mini3.jpg"></span>
+                                <span class="photo"><img alt="avatar" src=""></span>
                                 <span class="subject">
                                     <span class="from">Phillip   Park</span>
                                     <span class="time">2 hrs</span>
@@ -189,7 +189,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <span class="photo"><img alt="avatar" src="./img/avatar-mini4.jpg"></span>
+                                <span class="photo"><img alt="avatar" src=""></span>
                                 <span class="subject">
                                     <span class="from">Ray   Munoz</span>
                                     <span class="time">1 day</span>
@@ -288,7 +288,7 @@
             <!-- sidebar menu start-->
             <ul class="sidebar-menu">
                 <li>
-                    <a class="" href="https://wwww.xulin-tan.de/domanda/dashboard">
+                    <a class="" href="#" id="returen_dashboard">
                         <i class="fa fa-laptop"></i>
                         <span>Dashboard</span>
                     </a>
@@ -381,7 +381,7 @@
                             foreach ($questions as $question){
                                 echo '<tr>';
                                     echo '<td>'.$question->created_at.'</td>';
-                                    echo '<td><a href="question/'.$question->id.'">'.$question->title.'</a></td>';
+                                    echo '<td><a href="#" onclick="question_review('.$question->id.')">'.$question->title.'</a></td>';
                                     echo '<td>'.$question->keywords.'</td>';
                                     echo '<td>'.$question->target.'</td>';
                                     echo '<td>'.$question->duration.' Min.</td>';
@@ -402,6 +402,7 @@
                 </div>
             </div>
         </section>
+
         <div class="text-right">
             <div class="credits">
                 <!--
@@ -415,12 +416,13 @@
     </section>
     <!--main content end-->
 </section>
-
+<input type="hidden" id="user_id" value="{{$user->id}}">
 
 <!-- javascripts -->
-<script src="{{asset('domandas/js/jquery-ui-1.10.4.min.js')}}"></script>
 <script src="{{asset('js/jquery.min.js')}}"></script>
+<script src="{{asset('domandas/js/jquery-ui-1.10.4.min.js')}}"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
+<script src="{{asset('domandas/js/textarea.js')}}"></script>
 {{--<script type="text/javascript" src="js/jquery-ui-1.9.2.custom.min.js"></script>--}}
 <!-- nice scroll -->
 <script src="{{asset('domandas/js/jquery.scrollTo.js')}}"></script>
@@ -428,6 +430,12 @@
 <!--custome script for all page-->
 <script src="{{asset('domandas/js/scripts.js')}}"></script>
 <script>
+    $(document).ready(function () {
+        $('#summernote').summernote();
+    });
+    $("#returen_dashboard").click(function () {
+        location.reload();
+    });
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
     $("#profile_trigger").click(function () {
         var postData = new FormData();
@@ -439,6 +447,11 @@
         postData.append('user_id','{{$user->id}}');
         contentChange('POST', '/domanda/question', postData);
     });
+    function question_review(question_id) {
+        var postData = new FormData();
+        postData.append('question_id', question_id);
+        contentChange('POST', '/domanda/question/review', postData);
+    }
     function contentChange(method, urlPattern, postData) {
         postData.append("_token", CSRF_TOKEN);
         $.ajax({

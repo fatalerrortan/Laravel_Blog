@@ -325,22 +325,22 @@
                 <div class="row gallery-item">
                     <div class="col-md-3 animated fadeInUp">
                         <a href="img/works/1.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
-                            <img src="img/works/1.jpg" class="img-responsive" alt="img">
+                            <img src="" class="img-responsive" alt="img">
                         </a>
                     </div>
                     <div class="col-md-3 animated fadeInUp slow">
                         <a href="img/works/2.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
-                            <img src="img/works/2.jpg" class="img-responsive" alt="img">
+                            <img src="" class="img-responsive" alt="img">
                         </a>
                     </div>
                     <div class="col-md-3 animated fadeInUp slower">
                         <a href="img/works/3.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
-                            <img src="img/works/3.jpg" class="img-responsive" alt="img">
+                            <img src="" class="img-responsive" alt="img">
                         </a>
                     </div>
                     <div class="col-md-3 animated fadeInUp">
                         <a href="img/works/4.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
-                            <img src="img/works/4.jpg" class="img-responsive" alt="img">
+                            <img src="" class="img-responsive" alt="img">
                         </a>
                     </div>
                 </div>

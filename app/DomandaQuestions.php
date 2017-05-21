@@ -8,5 +8,5 @@ class DomandaQuestions extends BaseModel
 {
     protected $primaryKey = 'id';
     protected $table = 'domanda_questions';
-    protected $fillable = array('title', 'keywords','question', 'target', 'duration', 'access','project', 'file', 'is_done', 'owner', 'contributor');
+    protected $fillable = array('title', 'keywords','question', 'target', 'duration', 'access','project', 'file', 'is_done', 'owner', 'contributor', 'created_at','updated_at');
 }

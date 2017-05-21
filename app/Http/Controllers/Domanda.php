@@ -39,8 +39,36 @@ class Domanda extends Controller{
         return view('domanda.question');
     }
 
-    public function questionPush(){
-        echo 'questionPush';
+    public function questionReview(Request $request){
+        $question_id = $request->input('question_id');
+        $question = DomandaQuestions::find($question_id);
+        return view('domanda.questionReview', array('question' => $question));
+    }
+
+    public function questionPush(Request $request){
+        $user_id = $request->input('user_id');
+        $title = $request->input('title');
+        $keywords = $request->input('keywords');
+        $project = $request->input('project');
+        $target = $request->input('target');
+        $duration = $request->input('duration');
+        $access = $request->input('access');
+        $question = $request->input('question');
+        $fileTmpName = $_FILES['qfile']['tmp_name'];
+        $fileName = $_FILES['qfile']['name'];
+        move_uploaded_file($fileTmpName, public_path('uploads/domanda/'.$fileName));
+//        Log::info($fileTmpName." and ".public_path('upload/domanda/test.xml'));
+        DomandaQuestions::create(array(
+            'title' => $title,
+            'keywords' => $keywords,
+            'question' => $question,
+            'target' => $target,
+            'duration' => $duration,
+            'access' => $access,
+            'project' => $project,
+            'owner' => $user_id,
+            'file' => $fileName
+        ));
     }
 
     public function answer(){
