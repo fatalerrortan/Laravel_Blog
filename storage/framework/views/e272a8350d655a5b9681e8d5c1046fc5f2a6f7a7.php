@@ -272,7 +272,7 @@
                             <a><i class="fa fa-file-text" aria-hidden="true"></i> Documentation</a>
                         </li>
                         <li>
-                            <a><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</a>
+                            <a class="" href="https://www.xulin-tan.de/domanda"><i class="fa fa-sign-out" aria-hidden="true"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -306,7 +306,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="" href="#">
+                    <a class="" href="#" id="usage">
                         <i class="fa fa-area-chart" aria-hidden="true"></i>
                         <span>Usage</span>
                     </a>
@@ -334,7 +334,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a class="" href="#">
+                    <a class="" href="https://www.xulin-tan.de/domanda">
                         <i class="fa fa-sign-out" aria-hidden="true"></i>
                         <span>Log Out</span>
                     </a>
@@ -390,7 +390,17 @@
                                     echo '<td>'.$question->project.'</td>';
                                     $file = $question->file === null ? 'No' : 'Yes';
                                     echo '<td>'.$file.'</td>';
-                                    $stauts = $question->is_done ? '<span style="color: #2ab27b">Done</span>' : '<span style="color: tomato">In Process</span>';
+                                    switch ($question->status){
+                                        case 0:
+                                            $stauts = '<span style="color:#167AC6">Scanning</span>';
+                                            break;
+                                        case 1:
+                                            $stauts = '<span style="color: tomato">Processing</span>';
+                                            break;
+                                        case 2:
+                                            $stauts = '<span style="color: #2ab27b">Done</span>';
+                                            break;
+                                    }
                                     echo '<td>'.$stauts.'</td>';
                                     echo '<td>'.$question->contributor.'</td>';
                                 echo '</tr>';
@@ -437,7 +447,7 @@
         location.reload();
     });
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-    $("#profile_trigger").click(function () {
+    $("#profile_trigger, #usage").click(function () {
         var postData = new FormData();
         postData.append('user_id','<?php echo e($user->id); ?>');
         contentChange('POST', '/domanda/profile', postData);

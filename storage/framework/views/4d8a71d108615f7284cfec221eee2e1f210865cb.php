@@ -22,7 +22,19 @@
             <li class="list-group-item list-group-item-danger"><span><b>Access:</b></span> <?php echo $access ?></li>
             <?php $attachment = $question->file == null ? "No Attachment" : "<a href='".public_path('uploads/domanda/'.$question->file)."' download>".$question->file."</a>" ?>
             <li class="list-group-item list-group-item-info"><span><b>Attachment:</b></span> <?php echo $attachment ?></li>
-            <?php $stauts = $question->is_done ? '<span style="color: #2ab27b">Done</span>' : '<span style="color: tomato">In Process</span>';?>
+            <?php
+                switch ($question->status){
+                    case 0:
+                            $stauts = '<span style="color:#167AC6">Scanning</span>';
+                            break;
+                    case 1:
+                            $stauts = '<span style="color: tomato">Processing</span>';
+                            break;
+                    case 2:
+                            $stauts = '<span style="color: #2ab27b">Done</span>';
+                            break;
+            }
+            ?>
             <li class="list-group-item list-group-item-success"><span><b>Status:</b></span> <?php echo $stauts ?></li>
             <li class="list-group-item list-group-item-warning"><span><b>Contributor:</b></span> <?php echo e($question->contributor); ?></li>
         </ul>

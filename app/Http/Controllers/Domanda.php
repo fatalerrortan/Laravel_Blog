@@ -10,7 +10,7 @@ use App\DomandaQuestions;
 class Domanda extends Controller{
 
     //Frontend
-
+    public $take = false;
     public function index(){
         return view('domanda.index', array('page' => 'domanda.index'));
     }
@@ -54,13 +54,17 @@ class Domanda extends Controller{
         $duration = $request->input('duration');
         $access = $request->input('access');
         $question = $request->input('question');
-        $fileTmpName = $_FILES['qfile']['tmp_name'];
-        $fileName = $_FILES['qfile']['name'];
-        move_uploaded_file($fileTmpName, public_path('uploads/domanda/'.$fileName));
+        if ($request->hasFile('qfile')) {
+            $fileTmpName = $_FILES['qfile']['tmp_name'];
+            $fileName = $_FILES['qfile']['name'];
+            move_uploaded_file($fileTmpName, public_path('uploads/domanda/'.$fileName));
+        }else{
+            $fileName = null;
+        }
 //        Log::info($fileTmpName." and ".public_path('upload/domanda/test.xml'));
         DomandaQuestions::create(array(
             'title' => $title,
-            'keywords' => $keywords,
+            'keywords' => strtolower($keywords),
             'question' => $question,
             'target' => $target,
             'duration' => $duration,
@@ -69,6 +73,31 @@ class Domanda extends Controller{
             'owner' => $user_id,
             'file' => $fileName
         ));
+        $question = DomandaQuestions::where('owner', $user_id)->orderBy("created_at", "desc")->first();
+        if(!empty($question)){
+            echo "test";
+            $this->expertLoop($question);
+        }
+    }
+
+    public function expertLoop($question){
+        $duration_sec = $question->duration * 60;
+        $targetTag = strstr($question->keywords, ',', true);
+        $experts = DomandaUsers::where('skills', 'like','%'.$targetTag.'%')->get();
+        foreach ($experts as $expert){
+//            Log::info(print_r($expert->firstname. " and ".$expert->lastname, true));
+            $question->contributor = $expert->id;
+            $question->save();
+            $timer=0;
+            while ($timer <= $duration_sec){
+                if($question->status != 0){
+                    $this->take = true;
+                    break;}
+                sleep(1);
+                $timer++;
+            }
+            if($this->take){break;}else{continue;}
+        }
     }
 
     public function answer(){
