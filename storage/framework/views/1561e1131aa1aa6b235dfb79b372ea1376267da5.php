@@ -30,6 +30,7 @@
         <div class="form-group">
             <label for="duration">Answer Duration For Each Challenger</label>
             <select multiple class="form-control" id="duration" required>
+                <option value="0.5">0.5 Min.</option>
                 <option value="1">1 Min.</option>
                 <option value="5">5 Min.</option>
                 <option value="10">10 Min.</option>
@@ -56,6 +57,15 @@
     </form>
     </div>
 </div>
+<div class="row">
+    <div id="dialog" title="Expert Searching..." style="display: none;">
+        <div class="progress progress-striped active">
+            <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                <span class="sr-only"></span>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
     $(document).ready(function () {
@@ -76,10 +86,15 @@
 //        var duration = $("#duration").val();
 //        var access = $("#access").val();
 //        var question = $('#questionTextarea').summernote('code');
+        $( "#dialog" ).dialog();
         var postData = new FormData();
         postData.append('user_id',$("#user_id").val());
         postData.append('title',$("#title").val());
-        postData.append('keywords',$("#keywords").val());
+        var keyword = $("#keywords").val();
+        if(keyword.indexOf(",") == -1){
+            keyword = keyword + ",";
+        }
+        postData.append('keywords',keyword);
         postData.append('project',$("#project").val());
         postData.append('target',$("#target").val());
         postData.append('duration',$("#duration").val());
@@ -101,7 +116,7 @@
             data:postData,
             success:function(html){
 //                $("#dashboard_content").html(html);
-                alert('We are going all out to find an expert for you!');
+                alert('We got someone to help you! :)');
                 location.reload();
             }
         });

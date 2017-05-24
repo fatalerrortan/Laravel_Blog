@@ -20,9 +20,13 @@ class Domanda extends Controller{
 //        $password = $request->input('login_password');
         $user = DomandaUsers::where('email', $account)->first();
         $questions = DomandaQuestions::where('owner', $user->id)->get();
+        $toAnswers = DomandaQuestions::where('contributor_id', $user->id)->get();
+
         return view('domanda.dashboard', array('page' => 'domanda.dashboard',
             'user' => $user,
-            'questions' => $questions));
+            'questions' => $questions,
+            'toAnswers' => $toAnswers
+        ));
     }
 
     public function profile(Request $request){
@@ -75,7 +79,6 @@ class Domanda extends Controller{
         ));
         $question = DomandaQuestions::where('owner', $user_id)->orderBy("created_at", "desc")->first();
         if(!empty($question)){
-            echo "test";
             $this->expertLoop($question);
         }
     }
@@ -86,7 +89,8 @@ class Domanda extends Controller{
         $experts = DomandaUsers::where('skills', 'like','%'.$targetTag.'%')->get();
         foreach ($experts as $expert){
 //            Log::info(print_r($expert->firstname. " and ".$expert->lastname, true));
-            $question->contributor = $expert->id;
+            $question->contributor_id = $expert->id;
+            $question->contributor = $expert->firstname." ".$expert->lastname;
             $question->save();
             $timer=0;
             while ($timer <= $duration_sec){

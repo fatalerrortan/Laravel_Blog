@@ -52,14 +52,16 @@
     <nav class="navbar navbar-custom" role="navigation">
         <div class="container">
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-4">
                     <div class="site-logo">
-                        <a href="index.html" class="brand">DOMANDA</a>
+                        <a href="index.html" class="brand">
+                            <img class="img-responsive img-circle" width="100px" height="100px" src="{{asset('domandas/img/icons/domanda_icon.png')}}" style="display: inline" alt="">
+                            DOMANDA</a>
                     </div>
                 </div>
 
 
-                <div class="col-md-10">
+                <div class="col-md-8">
 
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
@@ -203,11 +205,20 @@
             <div class="col-lg-8 col-lg-offset-2 animatedParent">
                 <div class="text-center">
                     <p>
-                        DOMANDA DOMANDA DOMANDA DOMANDA DOMANDA DOMANDA DOMANDA DOMANDA DOMANDA DOMANDA DOMANDA DOMANDA DOMANDA DOMANDADOMANDADOMANDADOMANDA DOMANDADOMANDA
-                    </p>
+                        Domanda supports a direct and efficient way to solve issues. Long searching for the right contact and long interruptions of the actual activity are a thing of the past.
+                        This tool will help you to clarify such problems within a few minutes and send your Question to the perfect specialist. And all from your WORKSPACE!
+                        You can devote yourself your current activities and will be notified as soon as the question has been resolved.                    </p>
                     <p>
-                        DOMANDA DOMANDA DOMANDA DOMANDA DOMANDA DOMANDA DOMANDA DOMANDA DOMANDA DOMANDA DOMANDA DOMANDA DOMANDA DOMANDA DOMANDA DOMANDADOMANDADOMANDADOMANDA DOMANDADOMANDA
-                    </p>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-4">“Sometimes it s very difficult to find the right person for a specific question…”
+                            Peter Hurandu (PHP Developer)</div>
+                        <div class="col-md-4">“Clarify an issue can take a long time, sometimes 1 or 2 h…”
+                            Angela Menderez (Marketing Assistant)</div>
+                        <div class="col-md-4">“Many questions stay unresolved because there is often no time to search for the right contact…”
+                            Hans-Uwe Xulin (Web Developer)</div>
+                    </div>
+
                     <a href="#service" class="btn btn-skin btn-scroll">Get Started</a>
                 </div>
             </div>

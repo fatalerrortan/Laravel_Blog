@@ -36,7 +36,9 @@
         </div>
 
         <!--logo start-->
-        <a href="http://www.xulin-tan.de/domanda" class="logo">Domanda <span class="lite">Dashboard</span></a>
+        <a href="http://www.xulin-tan.de/domanda" class="logo">
+            <img class="img-responsive img-circle" width="70px" height="70px" src="{{asset('domandas/img/icons/domanda_icon.png')}}" style="display: inline" alt="">
+            Domanda <span class="lite">Dashboard</span></a>
         <!--logo end-->
 
         <div class="nav search-row" id="top_menu">
@@ -358,8 +360,21 @@
                 </div>
             </div>
             <div id="dashboard_content">
+                 {{--My Questions--}}
                 <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="tag_trigger">Workspace</label>
+                            <select class="form-control" id="tag_trigger">
+                                <option value="myquestions">My Questions</option>
+                                <option value="mychallenges">My Challenges</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="myquestions" style="display: none;">
                     <div class="col-md-12">
+                        <h1>My Questions</h1>
                         <table class="table table-striped">
                             <thead>
                             <tr>
@@ -410,6 +425,56 @@
                         </table>
                     </div>
                 </div>
+                {{--To Answer--}}
+                <div class="row" id="mychallenges" style="display: none;">
+                    <div class="col-md-12">
+                        <h1>My Challenges</h1>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Created_at</th>
+                                <th>Title</th>
+                                <th>Keywords</th>
+                                <th>Duration</th>
+                                <th>Project</th>
+                                <th>File</th>
+                                <th>Status</th>
+                                <th>Solve It</th>
+                                <th>Hand Over</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            foreach ($toAnswers as $toAnswer){
+                                echo '<tr>';
+                                echo '<td>'.$toAnswer->created_at.'</td>';
+                                echo '<td><a href="#" onclick="question_review('.$toAnswer->id.')">'.$toAnswer->title.'</a></td>';
+                                echo '<td>'.$toAnswer->keywords.'</td>';
+                                echo '<td>'.$toAnswer->duration.' Min.</td>';
+                                echo '<td>'.$toAnswer->project.'</td>';
+                                $file = $toAnswer->file === null ? 'No' : 'Yes';
+                                echo '<td>'.$file.'</td>';
+                                switch ($toAnswer->status){
+                                    case 0:
+                                        $stauts = '<span style="color:#167AC6">Scanning</span>';
+                                        break;
+                                    case 1:
+                                        $stauts = '<span style="color: tomato">Processing</span>';
+                                        break;
+                                    case 2:
+                                        $stauts = '<span style="color: #2ab27b">Done</span>';
+                                        break;
+                                }
+                                echo '<td>'.$stauts.'</td>';
+                                echo '<td><a onclick="solveIt('.$toAnswer->id.')"><i class="fa fa-wrench" aria-hidden="true"></i></a></td>';
+                                echo '<td><a onclick="handOver('.$toAnswer->id.')"><i class="fa fa-handshake-o" aria-hidden="true"></i></a></td>';
+                                echo '</tr>';
+                            }
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -440,9 +505,21 @@
 <!--custome script for all page-->
 <script src="{{asset('domandas/js/scripts.js')}}"></script>
 <script>
+    var dashboard_tag = {active_tag: "myquestions"}
     $(document).ready(function () {
+        $("#"+dashboard_tag.active_tag).toggle("slow");
         $('#summernote').summernote();
     });
+    $("#tag_trigger").change(function () {
+        var target_tag = $(this).val();
+        var tag_to_close = dashboard_tag.active_tag;
+        $("#"+tag_to_close).hide();
+        dashboard_tag.active_tag = target_tag;
+        $("#"+target_tag).toggle('slow');
+    });
+//    jQuery("#tag_button a").mouseover(function () {
+//        jQuery(this).effect( "bounce", { times: 3}, "slow");
+//    });
     $("#returen_dashboard").click(function () {
         location.reload();
     });
