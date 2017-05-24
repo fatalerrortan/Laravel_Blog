@@ -88,20 +88,41 @@ class Domanda extends Controller{
         $targetTag = strstr($question->keywords, ',', true);
         $experts = DomandaUsers::where('skills', 'like','%'.$targetTag.'%')->get();
         foreach ($experts as $expert){
-//            Log::info(print_r($expert->firstname. " and ".$expert->lastname, true));
             $question->contributor_id = $expert->id;
             $question->contributor = $expert->firstname." ".$expert->lastname;
             $question->save();
             $timer=0;
             while ($timer <= $duration_sec){
-                if($question->status != 0){
-                    $this->take = true;
-                    break;}
+                if(DomandaQuestions::find($question->id)->status != 0){
+                    break;
+                }
                 sleep(1);
                 $timer++;
             }
-            if($this->take){break;}else{continue;}
+            if(DomandaQuestions::find($question->id)->status == 1){
+                break;
+            }else{
+                $newQuestion = DomandaQuestions::find($question->id);
+                $newQuestion->status = 0;
+                $newQuestion->save();
+//                Log::info("changed ID: ". DomandaQuestions::find($question->id)->status);
+                continue;
+            }
         }
+    }
+
+    public function solveIt(Request $request){
+        $question_id = $request->input('question_id');
+        $question = DomandaQuestions::find($question_id);
+        $question->status = 1;
+        $question->save();
+    }
+
+    public function handOver(Request $request){
+        $question_id = $request->input('question_id');
+        $question = DomandaQuestions::find($question_id);
+        $question->status = 3;
+        $question->save();
     }
 
     public function answer(){

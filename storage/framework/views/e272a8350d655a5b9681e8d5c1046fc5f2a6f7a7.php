@@ -407,16 +407,19 @@
                                     echo '<td>'.$file.'</td>';
                                     switch ($question->status){
                                         case 0:
-                                            $stauts = '<span style="color:#167AC6">Scanning</span>';
+                                            $status = '<span style="color:#167AC6">Scanning</span>';
                                             break;
                                         case 1:
-                                            $stauts = '<span style="color: tomato">Processing</span>';
+                                            $status = '<span style="color: tomato">Processing</span>';
                                             break;
                                         case 2:
-                                            $stauts = '<span style="color: #2ab27b">Done</span>';
+                                            $status = '<span style="color: #2ab27b">Done</span>';
+                                            break;
+                                        default:
+                                            $status = '<span style="color:#167AC6">Scanning</span>';
                                             break;
                                     }
-                                    echo '<td>'.$stauts.'</td>';
+                                    echo '<td>'.$status.'</td>';
                                     echo '<td>'.$question->contributor.'</td>';
                                 echo '</tr>';
                             }
@@ -456,16 +459,19 @@
                                 echo '<td>'.$file.'</td>';
                                 switch ($toAnswer->status){
                                     case 0:
-                                        $stauts = '<span style="color:#167AC6">Scanning</span>';
+                                        $status = '<span style="color:#167AC6">Scanning</span>';
                                         break;
                                     case 1:
-                                        $stauts = '<span style="color: tomato">Processing</span>';
+                                        $status = '<span style="color: tomato">Processing</span>';
                                         break;
                                     case 2:
-                                        $stauts = '<span style="color: #2ab27b">Done</span>';
+                                        $status = '<span style="color: #2ab27b">Done</span>';
+                                        break;
+                                    default:
+                                        $status = '<span style="color:#167AC6">Scanning</span>';
                                         break;
                                 }
-                                echo '<td>'.$stauts.'</td>';
+                                echo '<td>'.$status.'</td>';
                                 echo '<td><a onclick="solveIt('.$toAnswer->id.')"><i class="fa fa-wrench" aria-hidden="true"></i></a></td>';
                                 echo '<td><a onclick="handOver('.$toAnswer->id.')"><i class="fa fa-handshake-o" aria-hidden="true"></i></a></td>';
                                 echo '</tr>';
@@ -510,6 +516,19 @@
         $("#"+dashboard_tag.active_tag).toggle("slow");
         $('#summernote').summernote();
     });
+    function solveIt(question_id) {
+        var postData = new FormData();
+        postData.append('question_id', question_id);
+        contentChange('POST', '/domanda/question/solveit', postData, false);
+        location.reload();
+
+    }
+    function handOver(question_id) {
+        var postData = new FormData();
+        postData.append('question_id', question_id);
+        contentChange('POST', '/domanda/question/handover', postData, false);
+        location.reload();
+    }
     $("#tag_trigger").change(function () {
         var target_tag = $(this).val();
         var tag_to_close = dashboard_tag.active_tag;
@@ -523,23 +542,23 @@
     $("#returen_dashboard").click(function () {
         location.reload();
     });
-    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
     $("#profile_trigger, #usage").click(function () {
         var postData = new FormData();
         postData.append('user_id','<?php echo e($user->id); ?>');
-        contentChange('POST', '/domanda/profile', postData);
+        contentChange('POST', '/domanda/profile', postData, true);
     });
     $("#question").click(function () {
         var postData = new FormData();
         postData.append('user_id','<?php echo e($user->id); ?>');
-        contentChange('POST', '/domanda/question', postData);
+        contentChange('POST', '/domanda/question', postData, true);
     });
     function question_review(question_id) {
         var postData = new FormData();
         postData.append('question_id', question_id);
-        contentChange('POST', '/domanda/question/review', postData);
+        contentChange('POST', '/domanda/question/review', postData, true);
     }
-    function contentChange(method, urlPattern, postData) {
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    function contentChange(method, urlPattern, postData, contentUpdate) {
         postData.append("_token", CSRF_TOKEN);
         $.ajax({
             type:method,
@@ -550,7 +569,12 @@
             processData:false,
             data:postData,
             success:function(html){
-                $("#dashboard_content").html(html);
+                if(contentUpdate){
+                    $("#dashboard_content").html(html);
+                }else{
+                    location.reload();
+                }
+
             }
         });
     }

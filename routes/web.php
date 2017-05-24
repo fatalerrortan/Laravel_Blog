@@ -72,9 +72,16 @@ Route::post('/domanda/question/push', 'Domanda@questionPush');
 
 Route::post('/domanda/question/review', 'Domanda@questionReview');
 
-Route::get('/domanda/answer/{id}', 'Domanda@answer');
+Route::post('/domanda/question/review', 'Domanda@questionReview');
 
-Route::get('/domanda/answer/push{id}', 'Domanda@answerPush');
+Route::post('/domanda/question/solveit', 'Domanda@solveIt');
+
+Route::post('/domanda/question/handover', 'Domanda@handOver');
+/*
+ * to implement
+ */
+
+Route::get('/domanda/answer/{id}', 'Domanda@answer');
 
 Route::get('/domanda/cancle/{id}', 'Domanda@cancle');
 
