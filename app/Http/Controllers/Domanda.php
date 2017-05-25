@@ -1,4 +1,12 @@
 <?php
+/*
+ * Question status:
+ * 0: scanning -> searching expert
+ * 1: some one takes it -> processing
+ * 2: well done -> all finish
+ * 3: handover -> search next expert
+ * 4: answered wait to judge (accept or hand over continue)
+ */
 
 namespace App\Http\Controllers;
 
@@ -58,12 +66,11 @@ class Domanda extends Controller{
         $duration = $request->input('duration');
         $access = $request->input('access');
         $question = $request->input('question');
+        $fileName = null;
         if ($request->hasFile('qfile')) {
             $fileTmpName = $_FILES['qfile']['tmp_name'];
             $fileName = $_FILES['qfile']['name'];
             move_uploaded_file($fileTmpName, public_path('uploads/domanda/'.$fileName));
-        }else{
-            $fileName = null;
         }
 //        Log::info($fileTmpName." and ".public_path('upload/domanda/test.xml'));
         DomandaQuestions::create(array(
@@ -125,12 +132,27 @@ class Domanda extends Controller{
         $question->save();
     }
 
-    public function answer(){
-        echo 'answer';
+    public function answer(Request $request){
+        $question_id = $request->input('question_id');
+        $answer = $request->input('answer');
+        $fileName = null;
+        if ($request->hasFile('afile')) {
+            $fileTmpName = $_FILES['afile']['tmp_name'];
+            $fileName = $_FILES['afile']['name'];
+            move_uploaded_file($fileTmpName, public_path('uploads/domanda/'.$fileName));
+        }
+        $question = DomandaQuestions::find($question_id);
+        $question->answer = $answer;
+        $question->file_answer = $fileName;
+        $question->status = 4;
+        $question->save();
     }
 
-    public function answerPush(){
-        echo 'answerPush';
+    public function accept(Request $request){
+        $question_id = $request->input('question_id');
+        $question = DomandaQuestions::find($question_id);
+        $question->status = 2;
+        $question->save();
     }
 
     public function cancle(){

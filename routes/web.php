@@ -77,13 +77,13 @@ Route::post('/domanda/question/review', 'Domanda@questionReview');
 Route::post('/domanda/question/solveit', 'Domanda@solveIt');
 
 Route::post('/domanda/question/handover', 'Domanda@handOver');
+
+Route::post('/domanda/answer', 'Domanda@answer');
+
+Route::post('/domanda/answer/accept', 'Domanda@accept');
 /*
  * to implement
  */
-
-Route::get('/domanda/answer/{id}', 'Domanda@answer');
-
-Route::get('/domanda/cancle/{id}', 'Domanda@cancle');
 
 Route::get('/domanda/dashboad', 'Domanda@dashboard');
 

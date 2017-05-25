@@ -66,7 +66,7 @@
                     <ul class="dropdown-menu extended tasks-bar">
                         <div class="notify-arrow notify-arrow-blue"></div>
                         <li>
-                            <p class="blue">You have 6 pending letter</p>
+                            <p class="blue">You have 6 pending projects</p>
                         </li>
                         <li>
                             <a href="#">
@@ -146,58 +146,52 @@
                 <li id="mail_notificatoin_bar" class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <i class="icon-envelope-l"></i>
-                        <span class="badge bg-important">5</span>
+                        <span class="badge bg-important">3</span>
                     </a>
                     <ul class="dropdown-menu extended inbox">
                         <div class="notify-arrow notify-arrow-blue"></div>
                         <li>
-                            <p class="blue">You have 5 new messages</p>
+                            <p class="blue">You have 3 new messages</p>
                         </li>
                         <li>
                             <a href="#">
-                                <span class="photo"><img alt="avatar" src=""></span>
+                                <span class="photo">
+                                    <img class="img-responsive img-circle" width="70px" height="70px" src="{{asset('domandas/img/pp1.png')}}" alt="">
+                                </span>
                                 <span class="subject">
-                                    <span class="from">Greg  Martin</span>
+                                    <span class="from">Donald Trump</span>
                                     <span class="time">1 min</span>
                                     </span>
-                                <span class="message">
-                                        I really like this admin panel.
+                                <span class="">
+                                        Your answer is so helpful :)
                                     </span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
-                                <span class="photo"><img alt="avatar" src=""></span>
+                                <span class="photo">
+                                    <img class="img-responsive img-circle" width="70px" height="70px" src="{{asset('domandas/img/pp2.png')}}" alt="">
+                                </span>
                                 <span class="subject">
-                                    <span class="from">Bob   Mckenzie</span>
+                                    <span class="from">Angela Merkel</span>
                                     <span class="time">5 mins</span>
                                     </span>
-                                <span class="message">
-                                     Hi, What is next project plan?
+                                <span class="">
+                                     Great Job Bro! You saved really<br /> my time <3
                                     </span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
-                                <span class="photo"><img alt="avatar" src=""></span>
+                                <span class="photo">
+                                    <img class="img-responsive img-circle" width="70px" height="70px" src="{{asset('domandas/img/pp3.png')}}" alt="">
+                                </span>
                                 <span class="subject">
-                                    <span class="from">Phillip   Park</span>
+                                    <span class="from">Domanda Godzilla</span>
                                     <span class="time">2 hrs</span>
                                     </span>
-                                <span class="message">
-                                        I am like to buy this Admin Template.
-                                    </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="photo"><img alt="avatar" src=""></span>
-                                <span class="subject">
-                                    <span class="from">Ray   Munoz</span>
-                                    <span class="time">1 day</span>
-                                    </span>
-                                <span class="message">
-                                        Icon fonts are great.
+                                <span class="">
+                                        your answer is awesome !!!
                                     </span>
                             </a>
                         </li>
@@ -212,39 +206,32 @@
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 
                         <i class="icon-bell-l"></i>
-                        <span class="badge bg-important">7</span>
+                        <span class="badge bg-important">3</span>
                     </a>
                     <ul class="dropdown-menu extended notification">
                         <div class="notify-arrow notify-arrow-blue"></div>
                         <li>
-                            <p class="blue">You have 4 new notifications</p>
+                            <p class="blue">You have 3 new notifications</p>
                         </li>
                         <li>
                             <a href="#">
                                 <span class="label label-primary"><i class="icon_profile"></i></span>
-                                Friend Request
+                                You have got a new challenge
                                 <span class="small italic pull-right">5 mins</span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
                                 <span class="label label-warning"><i class="icon_pin"></i></span>
-                                John location.
+                                please complete your profile
                                 <span class="small italic pull-right">50 mins</span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
                                 <span class="label label-danger"><i class="icon_book_alt"></i></span>
-                                Project 3 Completed.
+                                Xulin accepted your answer <br />(Contribute Point +1)
                                 <span class="small italic pull-right">1 hr</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="label label-success"><i class="icon_like"></i></span>
-                                Mick appreciated your work.
-                                <span class="small italic pull-right"> Today</span>
                             </a>
                         </li>
                         <li>
@@ -371,6 +358,14 @@
                             </select>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <a id="answer_redirect" style="display: none">
+                            <h3>
+                                <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                                Domanda Hero :) someone(<span class="answer_count" style="color: #880000"></span>) needs your help
+                            </h3>
+                        </a>
+                    </div>
                 </div>
                 <div class="row" id="myquestions" style="display: none;">
                     <div class="col-md-12">
@@ -415,6 +410,9 @@
                                         case 2:
                                             $status = '<span style="color: #2ab27b">Done</span>';
                                             break;
+                                        case 4:
+                                            $status = '<span style="color: #F48024">Evaluating</span>';
+                                            break;
                                         default:
                                             $status = '<span style="color:#167AC6">Scanning</span>';
                                             break;
@@ -431,7 +429,7 @@
                 {{--To Answer--}}
                 <div class="row" id="mychallenges" style="display: none;">
                     <div class="col-md-12">
-                        <h1>My Challenges</h1>
+                        <h1>My Challenges(<span class="answer_count" style="color: #880000"></span>)</h1>
                         <table class="table table-striped">
                             <thead>
                             <tr>
@@ -446,7 +444,7 @@
                                 <th>Hand Over</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="answer_table">
                             <?php
                             foreach ($toAnswers as $toAnswer){
                                 echo '<tr>';
@@ -459,7 +457,7 @@
                                 echo '<td>'.$file.'</td>';
                                 switch ($toAnswer->status){
                                     case 0:
-                                        $status = '<span style="color:#167AC6">Scanning</span>';
+                                        $status = '<span class="scanning" style="color:#167AC6">Scanning</span>';
                                         break;
                                     case 1:
                                         $status = '<span style="color: tomato">Processing</span>';
@@ -467,13 +465,16 @@
                                     case 2:
                                         $status = '<span style="color: #2ab27b">Done</span>';
                                         break;
+                                    case 4:
+                                        $status = '<span style="color: #F48024">Evaluating</span>';
+                                        break;
                                     default:
-                                        $status = '<span style="color:#167AC6">Scanning</span>';
+                                        $status = '<span class="scanning" style="color:#167AC6">Scanning</span>';
                                         break;
                                 }
-                                echo '<td>'.$status.'</td>';
-                                echo '<td><a onclick="solveIt('.$toAnswer->id.')"><i class="fa fa-wrench" aria-hidden="true"></i></a></td>';
-                                echo '<td><a onclick="handOver('.$toAnswer->id.')"><i class="fa fa-handshake-o" aria-hidden="true"></i></a></td>';
+                                echo '<td status="'.$toAnswer->status.'" class="status">'.$status.'</td>';
+                                echo '<td class="solveIt"><a onclick="solveIt('.$toAnswer->id.')" ><i class="fa fa-wrench" aria-hidden="true"></i></a></td>';
+                                echo '<td class="handOver"><a onclick="handOver('.$toAnswer->id.')"><i class="fa fa-handshake-o" aria-hidden="true"></i></a></td>';
                                 echo '</tr>';
                             }
                             ?>
@@ -514,7 +515,17 @@
     var dashboard_tag = {active_tag: "myquestions"}
     $(document).ready(function () {
         $("#"+dashboard_tag.active_tag).toggle("slow");
-        $('#summernote').summernote();
+        $("#answer_table tr").each(function () {
+            var status = parseInt($(this).find("td.status").attr('status'));
+            if(status != 0){
+                $(this).find("td.solveIt, td.handOver").hide();
+            }
+        });
+        var signal = $("#answer_table span.scanning").length;
+        if(signal > 0){
+            $("span.answer_count").html(signal);
+            $("#answer_redirect").toggle('slow');
+        }
     });
     function solveIt(question_id) {
         var postData = new FormData();
@@ -535,6 +546,13 @@
         $("#"+tag_to_close).hide();
         dashboard_tag.active_tag = target_tag;
         $("#"+target_tag).toggle('slow');
+    });
+    $("#answer_redirect").click(function () {
+        $("#myquestions").hide();
+        $("#mychallenges").toggle('slow');
+        dashboard_tag.active_tag = 'mychallenges';
+        $("#tag_trigger").val('mychallenges');
+
     });
 //    jQuery("#tag_button a").mouseover(function () {
 //        jQuery(this).effect( "bounce", { times: 3}, "slow");

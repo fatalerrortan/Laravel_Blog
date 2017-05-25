@@ -78,14 +78,6 @@
         );
     });
     $("#question_submit").click(function () {
-//        var user_id = $("#user_id").val();
-//        var title = $("#title").val();
-//        var keywords = $("#keywords").val();
-//        var project = $("#project").val();
-//        var target = $("#target").val();
-//        var duration = $("#duration").val();
-//        var access = $("#access").val();
-//        var question = $('#questionTextarea').summernote('code');
         $( "#dialog" ).dialog();
         var postData = new FormData();
         postData.append('user_id',$("#user_id").val());
