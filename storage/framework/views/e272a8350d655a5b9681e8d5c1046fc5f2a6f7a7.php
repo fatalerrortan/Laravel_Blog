@@ -365,6 +365,18 @@
                                 Domanda Hero :) someone(<span class="answer_count" style="color: #880000"></span>) needs your help
                             </h3>
                         </a>
+                        <a id="accept_redirect" style="display: none">
+                            <h3>
+                                <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                                You have got (<span class="accept_count" style="color: #880000"></span>) answer from your colleague
+                            </h3>
+                        </a>
+                        <a id="wiki_redirect" style="display: none">
+                            <h3>
+                                <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                                You have got (<span class="wiki_count" style="color: #880000"></span>) approval from your colleague
+                            </h3>
+                        </a>
                     </div>
                 </div>
                 <div class="row" id="myquestions" style="display: none;">
@@ -385,7 +397,7 @@
                                 <th>Contributor</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="question_table">
                             <?php
 
                             foreach ($questions as $question){
@@ -411,7 +423,7 @@
                                             $status = '<span style="color: #2ab27b">Done</span>';
                                             break;
                                         case 4:
-                                            $status = '<span style="color: #F48024">Evaluating</span>';
+                                            $status = '<span class="evaluating" style="color: #F48024">Evaluating</span>';
                                             break;
                                         default:
                                             $status = '<span style="color:#167AC6">Scanning</span>';
@@ -463,7 +475,7 @@
                                         $status = '<span style="color: tomato">Processing</span>';
                                         break;
                                     case 2:
-                                        $status = '<span style="color: #2ab27b">Done</span>';
+                                        $status = '<span class="wiki" style="color: #2ab27b">Done</span>';
                                         break;
                                     case 4:
                                         $status = '<span style="color: #F48024">Evaluating</span>';
@@ -521,10 +533,22 @@
                 $(this).find("td.solveIt, td.handOver").hide();
             }
         });
-        var signal = $("#answer_table span.scanning").length;
-        if(signal > 0){
-            $("span.answer_count").html(signal);
+        var answer_signal = $("#answer_table span.scanning").length;
+        if(answer_signal > 0){
+//            console.log('to Answer '+answer_signal);
+            $("span.answer_count").html(answer_signal);
             $("#answer_redirect").toggle('slow');
+        }
+        var accept_signal = $("#question_table span.evaluating").length;
+        if(accept_signal > 0){
+            $("span.accept_count").html(accept_signal);
+            $("#accept_redirect").toggle('slow');
+        }
+        var wiki_signal = $("#answer_table span.wiki").length;
+        if(wiki_signal > 0){
+//            console.log('to wiki '+wiki_signal);
+            $("span.wiki_count").html(wiki_signal);
+            $("#wiki_redirect").toggle('slow');
         }
     });
     function solveIt(question_id) {
@@ -532,7 +556,6 @@
         postData.append('question_id', question_id);
         contentChange('POST', '/domanda/question/solveit', postData, false);
         location.reload();
-
     }
     function handOver(question_id) {
         var postData = new FormData();
@@ -547,12 +570,17 @@
         dashboard_tag.active_tag = target_tag;
         $("#"+target_tag).toggle('slow');
     });
-    $("#answer_redirect").click(function () {
+    $("#answer_redirect, #wiki_redirect").click(function () {
         $("#myquestions").hide();
         $("#mychallenges").toggle('slow');
         dashboard_tag.active_tag = 'mychallenges';
         $("#tag_trigger").val('mychallenges');
-
+    });
+    $("#accept_redirect").click(function () {
+        $("#mychallenges").hide();
+        $("#myquestions").show();
+        dashboard_tag.active_tag = 'myquestions';
+        $("#tag_trigger").val('myquestions');
     });
 //    jQuery("#tag_button a").mouseover(function () {
 //        jQuery(this).effect( "bounce", { times: 3}, "slow");

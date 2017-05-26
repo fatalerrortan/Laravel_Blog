@@ -27,6 +27,9 @@ class Domanda extends Controller{
         $account = $request->input('login_username');
 //        $password = $request->input('login_password');
         $user = DomandaUsers::where('email', $account)->first();
+        if(empty($user)){
+            exit('Plz use test Account (test@domanda.com) and Password (test)');
+        }
         $questions = DomandaQuestions::where('owner', $user->id)->get();
         $toAnswers = DomandaQuestions::where('contributor_id', $user->id)->get();
 

@@ -28,7 +28,7 @@ class Front extends Controller
  *      event(new EmailTrigger($user));
  */
 //        Mail::to("tiemann9898@gmail.com")->send(new SiteReview(IpRequest::ip()));
-        $posts = Posts::orderBy('updated_at', 'desc')->take(5)->get();
+        $posts = Posts::orderBy('created_at', 'desc')->take(5)->get();
         return view('home', array('page' => 'Xulin, 谭许麟, Tan, Xtan, Study Blog, home', 'posts' => $posts));
     }
 
@@ -72,13 +72,13 @@ class Front extends Controller
         $post->reading_amount = $post->reading_amount + 1;
         $post->save();
         $image = $this->getImage($post_id);
-        $comments = Comments::where("post_id", $post_id)->orderBy("updated_at", "asc")->get();
+        $comments = Comments::where("post_id", $post_id)->orderBy("created_at", "asc")->get();
         $related_posts = Posts::where('related', 'like','%,'.$post_id.',%')->get();
         return view('post', array('page' => $post['title'].',谭许麟,Xulin Tan,Xtan,'.$post['keywords'], 'post' => $post, 'image' => $image, 'comments' => $comments, 'related_posts' => $related_posts));
     }
 
     public function posts($category){
-        $posts = Posts::where('category', 'like', $category.'%')->orderBy('updated_at', 'desc')->take(9)->get();
+        $posts = Posts::where('category', 'like', $category.'%')->orderBy('created_at', 'desc')->take(9)->get();
         return view('posts', array('page' =>  'Xulin, 谭许麟, Xulin Tan, Xtan, '. $category, 'posts' => $posts, 'category' => strtoupper($category)));
     }
 

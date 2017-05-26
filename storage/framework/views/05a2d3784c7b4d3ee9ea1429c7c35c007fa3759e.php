@@ -212,12 +212,18 @@
                     <p>
                     <hr />
                     <div class="row">
-                        <div class="col-md-4">“Sometimes it s very difficult to find the right person for a specific question…”
-                            Peter Hurandu (PHP Developer)</div>
-                        <div class="col-md-4">“Clarify an issue can take a long time, sometimes 1 or 2 h…”
-                            Angela Menderez (Marketing Assistant)</div>
-                        <div class="col-md-4">“Many questions stay unresolved because there is often no time to search for the right contact…”
-                            Hans-Uwe Xulin (Web Developer)</div>
+                        <div class="col-md-4">
+                            <img class="img-circle" id="img_logo" width="70px" height="70px" src="<?php echo e(asset('domandas/img/batman.png')); ?>">
+                            <br>“Sometimes it s very difficult to find the right person for a specific question…”
+                            Mr. Batman (PHP Developer)</div>
+                        <div class="col-md-4">
+                            <img class="img-circle" id="img_logo" width="70px" height="70px" src="<?php echo e(asset('domandas/img/deadpool.png')); ?>">
+                            <br>“Clarify an issue can take a long time, sometimes 1 or 2 h…”
+                            Mr. Deadpool (Marketing Assistant)</div>
+                        <div class="col-md-4">
+                            <img class="img-circle" id="img_logo" width="70px" height="70px"width="100px" height="100px" src="<?php echo e(asset('domandas/img/spiderman.png')); ?>">
+                            <br>“Many questions stay unresolved because there is often no time to search for the right contact…”
+                            Mr. Spiderman (Senior Designer)</div>
                     </div>
 
                     <a href="#service" class="btn btn-skin btn-scroll">Get Started</a>
