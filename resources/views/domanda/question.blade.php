@@ -77,6 +77,13 @@
                 "<li class='tmp_path'><i class='fa fa-question-circle-o' aria-hidden='true'></i>Ask Question</li>"
         );
     });
+//    $('#questionTextarea').on('summernote.keydown', function(we, e) {
+//        if(e.keyCode == 32){
+////        console.log($('#questionTextarea').summernote('code','<h1>123</h1>'));
+//            var new_text = $('#questionTextarea').summernote('code') + '<span>test</span>';
+//            $('#questionTextarea').summernote('code',new_text);
+//        }
+//    });
     $("#question_submit").click(function () {
         $( "#dialog" ).dialog();
         var postData = new FormData();

@@ -93,9 +93,17 @@
                     <label for="questionInputFile">Attachment</label>
                     <input type="file" class="form-control-file" id="answer_file" aria-describedby="fileHelp">
                 </div>
+                <div class="form-group" id="gamification_1" style="display: none">
+                    <img src="{{asset('domandas/img/add.png')}}" class="img-fluid" alt="plus">
+                    <img src="{{asset('domandas/img/one.png')}}" class="img-fluid" alt="one">
+                </div>
                 <button type="button" id="answer_submit" class="btn btn-primary">Submit</button>
             </li>
             <li class="list-group-item" id="wiki" style="display: none;">
+                <div id="gamification_2" style="display: none">
+                    <img src="{{asset('domandas/img/add.png')}}" class="img-fluid" alt="plus">
+                    <img src="{{asset('domandas/img/two.png')}}" class="img-fluid" alt="two">
+                </div>
                 <h3>Would you like post your contribution to Accenture Wiki?</h3>
                 <div class="col-md-offset-4 col-md-3">
                     <button type="button" id="wiki_push" class="btn btn-success">
@@ -107,12 +115,12 @@
     </div>
 </div>
 <script>
+    var current_user = parseInt($("#user_id").val());
     $(document).ready(function () {
         $("#dashboard_path li.tmp_path").remove();
         $("#dashboard_path").append(
                 "<li class='tmp_path'><i class='fa fa-quora' aria-hidden='true'></i>Question Review</li>"
         );
-        var current_user = parseInt($("#user_id").val());
         var question_owner = parseInt({{$question->owner}});
         var status = parseInt({{$question->status}});
         if((current_user != question_owner) && (status != 2)){
@@ -122,7 +130,17 @@
                 height: 300
             });
         }else if((current_user != question_owner) && (status == 2)){
+            $("html, body").animate({ scrollTop: $(document).height() }, 1000);
             $("#wiki").toggle('slow');
+            //gamification + 2 on
+            $("#gamification_2").fadeIn('slow');
+            $("#gamification_2").effect( "bounce", { times: 5}, "slow");
+            $("#gamification_2").fadeOut('slow');
+            var postData_2 = new FormData();
+            postData_2.append('user_id', current_user);
+            postData_2.append('cp', 2);
+            contentChange('POST', '/domanda/game', postData_2, 'gamification');
+            //gamification + 2 off
         } else {
             if(status == 4){
                 $("#answer_evaluation").toggle('slow');
@@ -133,11 +151,20 @@
         alert("In Development :)");
     });
     $("#answer_submit").click(function () {
+        //gamification + 1 on
+        $("#gamification_1").fadeIn('slow');
+//        $("#gamification_1").fadeOut();
+        $("#gamification_1").effect( "bounce", { times: 3}, "slow");
+        //gamification + 1 off
         var postData = new FormData();
         postData.append('question_id', '{{$question->id}}');
         postData.append('answer',$('#answer_editor').summernote('code'));
         postData.append('afile',$("#answer_file")[0].files[0]);
         contentChange('POST', '/domanda/answer', postData, 'submit');
+        var postData_1 = new FormData();
+        postData_1.append('user_id', current_user);
+        postData_1.append('cp', 1);
+        contentChange('POST', '/domanda/game', postData_1, 'gamification');
     });
     $("#take_answer").click(function () {
         var postData = new FormData();
@@ -156,13 +183,18 @@
             processData:false,
             data:postData,
             success:function(html){
-//                $("#dashboard_content").html(html);
-                if(returnPattern == 'submit'){
-                    alert('Thanks for your contribution <3');
-                }else {
-                    alert('We are pleased to be of assistance. :)');
+                switch (returnPattern) {
+                    case 'submit':
+                        alert('Thanks for your contribution, you have just got 1 CP <3');
+                        location.reload();
+                        break;
+                    case 'accept':
+                        alert('We are pleased to be of assistance. :)');
+                        location.reload();
+                        break;
+                    case 'gamification':
+                        break;
                 }
-                location.reload();
             }
         });
     }

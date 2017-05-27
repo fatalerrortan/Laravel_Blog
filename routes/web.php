@@ -81,12 +81,11 @@ Route::post('/domanda/question/handover', 'Domanda@handOver');
 Route::post('/domanda/answer', 'Domanda@answer');
 
 Route::post('/domanda/answer/accept', 'Domanda@accept');
+
+Route::post('/domanda/game', 'Domanda@gamification');
+
 /*
  * to implement
  */
-
-Route::get('/domanda/dashboad', 'Domanda@dashboard');
-
-//domanda backend
 
 Route::get('/domanda/admin', 'Domanda@admin');

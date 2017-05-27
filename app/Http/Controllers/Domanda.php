@@ -158,8 +158,12 @@ class Domanda extends Controller{
         $question->save();
     }
 
-    public function cancle(){
-        echo 'cancle';
+    public function gamification(Request $request){
+        $user_id = $request->input('user_id');
+        $cp = (int)$request->input('cp');
+        $user = DomandaUsers::find($user_id);
+        $user->credit = $user->credit + $cp;
+        $user->save();
     }
 
     //Backend
