@@ -6,6 +6,7 @@
     <meta name="keyword" content="Domanda Demo">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="shortcut icon" href="">
+    <link rel="icon" type="image/png" href="{{asset('domandas/img/link_log.png')}}">
 
     <title>Domanda Dashboard</title>
 

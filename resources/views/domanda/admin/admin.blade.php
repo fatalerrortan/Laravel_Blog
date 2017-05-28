@@ -6,6 +6,7 @@
     <meta name="keyword" content="Domanda Demo">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="shortcut icon" href="">
+    <link rel="icon" type="image/png" href="{{asset('domandas/img/link_log.png')}}">
 
     <title>Domanda Admin Center</title>
 
@@ -192,7 +193,7 @@
             <!-- sidebar menu start-->
             <ul class="sidebar-menu">
                 <li>
-                    <a class="" href="#" id="returen_dashboard">
+                    <a onclick="location.reload()"  href="#" id="returen_dashboard">
                         <i class="fa fa-laptop"></i>
                         <span>Admin</span>
                     </a>
@@ -213,12 +214,12 @@
                         <span>Department</span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="#">IT</a></li>
-                        <li><a class="" href="#">Design</a></li>
-                        <li><a class="" href="#">Marketing</a></li>
-                        <li><a class="" href="#">Sales</a></li>
-                        <li><a class="" href="#">HR</a></li>
-                        <li><a class="" href="#">Innovation</a></li>
+                        <li><a onclick="getDepartmentView()" class="" href="#">IT</a></li>
+                        <li><a onclick="getDepartmentView()" class="" href="#">Design</a></li>
+                        <li><a onclick="getDepartmentView()" class="" href="#">Marketing</a></li>
+                        <li><a onclick="getDepartmentView()" class="" href="#">Sales</a></li>
+                        <li><a onclick="getDepartmentView()" class="" href="#">HR</a></li>
+                        <li><a onclick="getDepartmentView()" class="" href="#">Innovation</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -227,7 +228,7 @@
                         <span>Module</span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="#">Installation/Update</a></li>
+                        <li><a onclick="getModuleView()" class="" href="#">Installation/Update</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -236,9 +237,7 @@
                         <span>API</span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="#">Token Management</a></li>
-                        <li><a class="" href="#">Communiacation</a></li>
-                        <li><a class="" href="#">Access Control List</a></li>
+                        <li><a onclick="getApiView()" class="" href="#">Token/Access</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -300,6 +299,9 @@
                             <i class="fa fa-flag" aria-hidden="true"></i>
                             Up 18,89% from last month
                         </p>
+                    </div>
+                    <div class="col-md-offset-3">
+                        <button type="button" onclick="alert('In Development')" class="btn btn-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Excel Export</button>
                     </div>
                 </div>
             </div>
@@ -376,6 +378,9 @@
                             The best Contributor <b>Ron Sem</b> has not joined the project <b>p102</b>
                         </p>
                     </div>
+                    <div class="col-md-offset-3">
+                        <button type="button" onclick="alert('In Development')" class="btn btn-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Excel Export</button>
+                    </div>
                 </div>
             </div>
         <hr />
@@ -403,7 +408,7 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <th scope="row">Marketing</th>
+                                <th scope="row"><a onclick="getDepartmentView(this)">Marketing</a></th>
                                 <td>Adrian Andrä</td>
                                 <td>30/37(81,08%)</td>
                                 <td>p201(13)</td>
@@ -412,7 +417,7 @@
                                 <td>Leonardo DiCaprio</td>
                             </tr>
                             <tr>
-                                <th scope="row">Sales</th>
+                                <th scope="row"><a onclick="getDepartmentView(this)">Sales</a></th>
                                 <td>Victoria König</td>
                                 <td>32/37(86,49%)</td>
                                 <td>p202(11)</td>
@@ -421,7 +426,7 @@
                                 <td>Nicolas Cage</td>
                             </tr>
                             <tr>
-                                <th scope="row">Design</th>
+                                <th scope="row"><a onclick="getDepartmentView(this)">Design</a></th>
                                 <td>Ron Sem</td>
                                 <td>27/35(77,14%)</td>
                                 <td>p203(10)</td>
@@ -430,7 +435,7 @@
                                 <td>Steve Jobs</td>
                             </tr>
                             <tr class="bg-danger">
-                                <th scope="row">IT</th>
+                                <th scope="row"><a onclick="getDepartmentView(this)">IT</a></th>
                                 <td>Xulin Tan</td>
                                 <td>27/37(72,97%)</td>
                                 <td>p204(15)</td>
@@ -447,7 +452,11 @@
                                 Department <b>IT</b> needs more help from <b>#Design</b>
                             </p>
                         </div>
+                        <div class="col-md-offset-3">
+                            <button onclick="alert('In Development')" type="button" class="btn btn-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Excel Export</button>
+                        </div>
                     </div>
+
                 </div>
         <hr />
                 {{--Department Overview off--}}
@@ -501,9 +510,22 @@
 </script>
 {{--Sum of opened and solved Questions per month off--}}
 <script>
+
     function getProjectView() {
         var postData = new FormData();
         contentChange('POST', '/domanda/admin/project', postData, true);
+    }
+    function getDepartmentView() {
+        var postData = new FormData();
+        contentChange('POST', '/domanda/admin/department', postData, true);
+    }
+    function getModuleView() {
+        var postData = new FormData();
+        contentChange('POST', '/domanda/admin/module', postData, true);
+    }
+    function getApiView() {
+        var postData = new FormData();
+        contentChange('POST', '/domanda/admin/api', postData, true);
     }
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
     function contentChange(method, urlPattern, postData, contentUpdate) {

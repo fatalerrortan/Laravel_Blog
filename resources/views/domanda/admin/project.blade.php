@@ -22,7 +22,11 @@
                 <b>Project p104</b> need more help from <b>#erp</b>!(Most opened Questions)
             </p>
         </div>
+        <div class="col-md-offset-3">
+            <button type="button" onclick="alert('In Development')" class="btn btn-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Excel Export</button>
+        </div>
     </div>
+
 </div>
 <hr />
 <div id="theme_and_department_distribution">
@@ -49,11 +53,14 @@
                     <b>Project p104</b> got most help from <b>Innovation</b> Department
                 </p>
             </div>
+            <div class="col-md-offset-3">
+                <button type="button" onclick="alert('In Development')" class="btn btn-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Excel Export</button>
+            </div>
         </div>
 </div>
 <hr />
-<div class="row">
-    <div id="unsolved_question">
+
+<div id="unsolved_question">
         <div class="row">
             <div class="col-md-offset-4">
                 <h3><b>Unresolved Question Within A Week</b></h3>
@@ -84,7 +91,7 @@
                     <td>#Innovation</td>
                     <td>#Innovation, #Test, #Chrome</td>
                     <td><a><i class="fa fa-rocket" aria-hidden="true"></i></a></td>
-                    <td><a><i class="fa fa-ban" aria-hidden="true"></i></a></td>
+                    <td><a onclick="removeRow(this)"><i class="fa fa-ban" aria-hidden="true"></i></a></td>
                 </tr>
                 <tr>
                     <th scope="row">222</th>
@@ -94,7 +101,7 @@
                     <td>#Marketing</td>
                     <td>#Marketing, #OnlineShop, #Payment</td>
                     <td><a><i class="fa fa-rocket" aria-hidden="true"></i></a></td>
-                    <td><a><i class="fa fa-ban" aria-hidden="true"></i></a></td>
+                    <td><a onclick="removeRow(this)"><i class="fa fa-ban" aria-hidden="true"></i></a></td>
                 </tr>
                 <tr>
                     <th scope="row">333</th>
@@ -104,7 +111,7 @@
                     <td>#Sales</td>
                     <td>#Sales, #Consulting, #Gurantee</td>
                     <td><a><i class="fa fa-rocket" aria-hidden="true"></i></a></td>
-                    <td><a><i class="fa fa-ban" aria-hidden="true"></i></a></td>
+                    <td><a onclick="removeRow(this)"><i class="fa fa-ban" aria-hidden="true"></i></a></td>
                 </tr>
                 <tr>
                     <th scope="row">111</th>
@@ -114,14 +121,16 @@
                     <td>#Design</td>
                     <td>#Desing, #Photoshop, #Template</td>
                     <td><a><i class="fa fa-rocket" aria-hidden="true"></i></a></td>
-                    <td><a><i class="fa fa-ban" aria-hidden="true"></i></a></td>
+                    <td><a onclick="removeRow(this)"><i class="fa fa-ban" aria-hidden="true"></i></a></td>
                 </tr>
                 </tbody>
             </table>
+                <div class="col-md-offset-3">
+                    <button type="button" onclick="alert('In Development')" class="btn btn-success"><i class="fa fa-file-excel-o" aria-hidden="true"></i>Excel Export</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 <script>
     $(document).ready(function () {
         $("#dashboard_path li.tmp_path").remove();
@@ -129,6 +138,9 @@
                 "<li class='tmp_path'><i class='fa fa-users' aria-hidden='true'></i>Project</li>"
         );
     });
+    function removeRow(element) {
+        $(element).parent().parent().toggle('slow');
+    }
 </script>
 {{--Theme distribution on--}}
 <script>
