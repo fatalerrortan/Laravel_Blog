@@ -57,7 +57,7 @@ Route::post('/broadcast', 'Admin@broadcast');
 /*
  *  Prototype for domanda
  */
-//domanda frontend
+//domanda frontend Dashboard
 Route::get('/domanda', 'Domanda@index');
 
 Route::post('/domanda/profile', 'Domanda@profile');
@@ -85,7 +85,7 @@ Route::post('/domanda/answer/accept', 'Domanda@accept');
 Route::post('/domanda/game', 'Domanda@gamification');
 
 /*
- * to implement
+ * Backend Domanda Admin
  */
 
-Route::get('/domanda/admin', 'Domanda@admin');
+Route::post('/domanda/admin/project', 'DomandaAdmin@project');

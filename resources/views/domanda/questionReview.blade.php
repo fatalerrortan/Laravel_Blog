@@ -16,7 +16,24 @@
             </li>
             <li class="list-group-item list-group-item-success"><span><b>Keywords:</b></span> {{$question->keywords}}</li>
             <li class="list-group-item list-group-item-info"><span><b>Created_At:</b></span> {{$question->created_at}}</li>
-            <li class="list-group-item list-group-item-danger"><span><b>Related Project:</b></span> {{$question->project}}</li>
+            <li class="list-group-item list-group-item-danger"><span><b>Related Project:</b></span> <a id="project_trigger">{{$question->project}}</a></li>
+            <li class="list-group-item" id="project_overview" style="display: none">
+                <h4><b>Overview Of Project: {{$question->project}}</b></h4>
+                <p>
+                    Your goal is: "Complete an online course in project management at the University of leipzig
+                    by the end of June of this year, with a grade of 3.0 or better, and be able to write a scope
+                    definition, a Project Overview Statement, and a Work Breakdown Structure for a project at your
+                    workplace."
+                    <table border="1px">
+                        <tr>
+                            <td>Star of Sales</td><td>Star of Marketing</td><td>Star of Design</td><td>Star of IT</td>
+                        </tr>
+                        <tr>
+                            <td>Victoria</td><td>Adrian</td><td>Ron</td><td>Xulin</td>
+                        </tr>
+                    </table>
+                </p>
+            </li>
             <li class="list-group-item list-group-item-info"><span><b>Target:</b></span> {{$question->target}}</li>
             <li class="list-group-item list-group-item-warning"><span><b>Duration:</b></span> {{$question->duration}} <span>Min.</span></li>
             <?php $access = $question->access ? 'limitless' : 'limited'; ?>
@@ -146,6 +163,9 @@
                 $("#answer_evaluation").toggle('slow');
             }
         }
+    });
+    $("#project_trigger").click(function () {
+        $("#project_overview").toggle('slow');
     });
     $("#wiki_push").click(function () {
         alert("In Development :)");

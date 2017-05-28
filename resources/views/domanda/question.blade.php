@@ -15,7 +15,7 @@
         </div>
         <div class="form-group">
              <label for="project">Related Project</label>
-             <input type="text" class="form-control" id="project" placeholder="plz enter your project id  if necessary">
+             <input type="text" class="form-control" id="project" placeholder="plz enter your project id if necessary">
         </div>
         <div class="form-group">
             <label for="target">Target Expert</label>
