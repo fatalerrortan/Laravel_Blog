@@ -206,11 +206,11 @@
                 switch (returnPattern) {
                     case 'submit':
                         alert('Thanks for your contribution, you have just got 1 CP <3');
-                        location.reload();
+                        custom_reload();
                         break;
                     case 'accept':
                         alert('We are pleased to be of assistance. :)');
-                        location.reload();
+                        custom_reload();
                         break;
                     case 'gamification':
                         break;

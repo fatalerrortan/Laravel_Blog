@@ -86,9 +86,9 @@ class Front extends Controller
         if ($request->isMethod('post')){
             $last_item_date = $request->input('last_item_date');
             if(!empty($request->input('category'))){
-                $html = $this->getHtml(Posts::where('category', 'like', $request->input('category').'%')->where('updated_at', '<', $last_item_date)->orderBy('updated_at', 'desc')->take(9)->get(), true);
+                $html = $this->getHtml(Posts::where('category', 'like', $request->input('category').'%')->where('created_at', '<', $last_item_date)->orderBy('created_at', 'desc')->take(9)->get(), true);
             }else{
-                $html = $this->getHtml(Posts::where('updated_at', '<', $last_item_date)->orderBy('updated_at', 'desc')->take(5)->get());
+                $html = $this->getHtml(Posts::where('created_at', '<', $last_item_date)->orderBy('created_at', 'desc')->take(5)->get());
             }
             return $html;
         }
@@ -104,7 +104,7 @@ class Front extends Controller
                           ".$post['title']."
                         </h2>
                     </a>
-                    <p class='post-meta'>Posted by <a href='https://".$_SERVER['HTTP_HOST']."/about'>".$post['autor']."</a> <span class='updated_at'>".$post['updated_at']."</span>
+                    <p class='post-meta'>Posted by <a href='https://".$_SERVER['HTTP_HOST']."/about'>".$post['autor']."</a> <span class='updated_at'>".$post['created_at']."</span>
                     <span class='keywords'>Keywords: ".$this->keywords($post['keywords'])."</span>
                     </p>
                 </div>
@@ -121,7 +121,7 @@ class Front extends Controller
                             ".$post['segment']."
                         </h3>
                     </a>
-                    <p class='post-meta'>Posted by <a href='https://".$_SERVER['HTTP_HOST']."/about'>".$post['autor']."</a> <span class='updated_at'>".$post['updated_at']."</span>
+                    <p class='post-meta'>Posted by <a href='https://".$_SERVER['HTTP_HOST']."/about'>".$post['autor']."</a> <span class='updated_at'>".$post['created_at']."</span>
                      <span class='keywords'>Keywords: ".$this->keywords($post['keywords'])."</span>
                     </p>
                 </div>

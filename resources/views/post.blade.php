@@ -21,8 +21,14 @@
 
         <hr>
         <!-- Date/Time -->
-        <p><i class="fa fa-calendar" aria-hidden="true"></i> {{$post['updated_at']}} <span class="keywords">
-                <i class="fa fa-key" aria-hidden="true"></i> <?php echo App\Http\Controllers\Front::keywords($post['keywords']) ?></span></p>
+        <p>
+            <i class="fa fa-calendar" aria-hidden="true"></i> {{$post['updated_at']}}
+            <span class="keywords">
+                <i class="fa fa-key" aria-hidden="true"></i>
+                <?php echo App\Http\Controllers\Front::keywords($post['keywords']) ?>
+            </span>
+            <i class="fa fa-eye" aria-hidden="true"></i><span class="reading_qty"> {{$post['reading_amount']}}</span>
+        </p>
 
         <hr>
 

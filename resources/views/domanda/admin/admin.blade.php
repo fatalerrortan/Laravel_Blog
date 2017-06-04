@@ -193,7 +193,7 @@
             <!-- sidebar menu start-->
             <ul class="sidebar-menu">
                 <li>
-                    <a onclick="location.reload()"  href="#" id="returen_dashboard">
+                    <a onclick="custom_reload()"  href="#" id="returen_dashboard">
                         <i class="fa fa-laptop"></i>
                         <span>Admin</span>
                     </a>
@@ -510,7 +510,14 @@
 </script>
 {{--Sum of opened and solved Questions per month off--}}
 <script>
-
+    var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari.pushNotification);
+    function custom_reload() {
+        if(isSafari){
+            return history.go(0);
+        }else {
+            return location.reload();
+        }
+    }
     function getProjectView() {
         var postData = new FormData();
         contentChange('POST', '/domanda/admin/project', postData, true);
@@ -542,9 +549,8 @@
                 if(contentUpdate){
                     $("#admin_content").html(html);
                 }else{
-                    location.reload();
+                    custom_reload();
                 }
-
             }
         });
     }

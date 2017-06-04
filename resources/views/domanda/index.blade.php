@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="icon" type="image/png" href="{{asset('domandas/img/link_log.png')}}">
 
     <title>Domanda</title>
 
@@ -72,7 +73,7 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="menu">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="active" id="login_trigger"><a href="#login-modal">Login</a></li>
+                            <li class="active" id="login_trigger"><a href="#about">Login</a></li>
                             <li><a href="#about">About Us</a></li>
                             <li><a href="#service">Services</a></li>
                             <li><a href="#works">Works</a></li>
@@ -205,8 +206,8 @@
             <div class="col-lg-8 col-lg-offset-2 animatedParent">
                 <div class="text-center">
                     <p>
-                        Domanda supports a direct and efficient way to solve issues. Long searching for the right contact and long interruptions of the actual activity are a thing of the past.
-                        This tool will help you to clarify such problems within a few minutes and send your Question to the perfect specialist. And all from your WORKSPACE!
+                        <b>Domanda</b> supports a <b>direct and efficient way</b> to solve issues. Long searching for the right contact and long interruptions of the actual activity are a thing of the past.
+                        This tool will help you to <b>clarify such problems within a few minutes</b> and send your Question to the <b>perfect specialist</b>. And all from your WORKSPACE!
                         You can devote yourself your current activities and will be notified as soon as the question has been resolved.                    </p>
                     <p>
                     <hr />
@@ -261,15 +262,17 @@
                     <div class="animated rotateInDownLeft">
                         <div class="service-box">
                             <div class="service-icon">
-                                <span class="fa fa-laptop fa-2x"></span>
+                                <span class="fa fa-users fa-2x"></span>
                             </div>
                             <div class="service-desc">
-                                <h5>Domanda Service 1</h5>
+                                <h5>Intelligent Questions Assignment</h5>
                                 <div class="divider-header"></div>
                                 <p>
-                                    Domanda Service 1 Domanda Service 1 Domanda Service 1 Domanda Service 1 Domanda Service 1 Domanda Service 1
+                                    Exact Expert Location<br />
+                                    Switch To Next Expert By Busy<br />
+                                    Continuous Search Until Your Approval
                                 </p>
-                                <a href="#" class="btn btn-skin">Learn more</a>
+                                <a href="#works" class="btn btn-skin">Learn more</a>
                             </div>
                         </div>
                     </div>
@@ -278,15 +281,17 @@
                     <div class="animated rotateInDownLeft slow">
                         <div class="service-box">
                             <div class="service-icon">
-                                <span class="fa fa-camera fa-2x"></span>
+                                <span class="fa fa-plug fa-2x"></span>
                             </div>
                             <div class="service-desc">
-                                <h5>Domanda Service 2</h5>
+                                <h5>Multiple Tools Integration</h5>
                                 <div class="divider-header"></div>
                                 <p>
-                                    Domanda Service 1 Domanda Service 1 Domanda Service 1 Domanda Service 1 Domanda Service 1 Domanda Service 1
+                                    Domanda Plugin Marketplace<br />
+                                    APPs Workflow Without Boundary<br />
+                                    Security Mechanism Via Access Control List and Token Authentication
                                 </p>
-                                <a href="#" class="btn btn-skin">Learn more</a>
+                                <a href="#works" class="btn btn-skin">Learn more</a>
                             </div>
                         </div>
                     </div>
@@ -295,15 +300,17 @@
                     <div class="animated rotateInDownLeft slower">
                         <div class="service-box">
                             <div class="service-icon">
-                                <span class="fa fa-code fa-2x"></span>
+                                <span class="fa fa-line-chart fa-2x"></span>
                             </div>
                             <div class="service-desc">
-                                <h5>Domanda Service 3</h5>
+                                <h5>Comprehensive Questions Related Analyses</h5>
                                 <div class="divider-header"></div>
                                 <p>
-                                    Domanda Service 1 Domanda Service 1 Domanda Service 1 Domanda Service 1 Domanda Service 1 Domanda Service 1
+                                    Multiple Export Formats<br />
+                                    Tracking Project Progress<br />
+                                    Mining Business Innovation Potentials
                                 </p>
-                                <a href="#" class="btn btn-skin">Learn more</a>
+                                <a href="#works" class="btn btn-skin">Learn more</a>
                             </div>
                         </div>
                     </div>
@@ -324,7 +331,7 @@
                 <div>
                     <div class="animatedParent">
                         <div class="section-heading text-center">
-                            <h2 class="h-bold animated bounceInDown"></h2>
+                            <h2 class="h-bold animated bounceInDown">Get Involved In Domanda</h2>
                             <div class="divider-header"></div>
                         </div>
                     </div>
@@ -341,23 +348,23 @@
 
                 <div class="row gallery-item">
                     <div class="col-md-3 animated fadeInUp">
-                        <a href="img/works/1.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
-                            <img src="" class="img-responsive" alt="img">
+                        <a href="{{asset('domandas/img/demo_1.png')}}" title="Question Processing" data-lightbox-gallery="gallery1" data-lightbox-hidpi="{{asset('domandas/img/demo_1.png')}}">
+                            <img src="{{asset('domandas/img/demo_1.png')}}" class="img-responsive" alt="img">
                         </a>
                     </div>
                     <div class="col-md-3 animated fadeInUp slow">
-                        <a href="img/works/2.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
-                            <img src="" class="img-responsive" alt="img">
+                        <a href="{{asset('domandas/img/demo_2.png')}}" title="User Profile" data-lightbox-gallery="gallery1" data-lightbox-hidpi="{{asset('domandas/img/demo_2.png')}}">
+                            <img src="{{asset('domandas/img/demo_2.png')}}" class="img-responsive" alt="img">
                         </a>
                     </div>
                     <div class="col-md-3 animated fadeInUp slower">
-                        <a href="img/works/3.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
-                            <img src="" class="img-responsive" alt="img">
+                        <a href="{{asset('domandas/img/demo_3.png')}}" title="Analytical Graph" data-lightbox-gallery="gallery1" data-lightbox-hidpi="{{asset('domandas/img/demo_3.png')}}">
+                            <img src="{{asset('domandas/img/demo_3.png')}}" class="img-responsive" alt="img">
                         </a>
                     </div>
                     <div class="col-md-3 animated fadeInUp">
-                        <a href="img/works/4.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="img/works/1@2x.jpg">
-                            <img src="" class="img-responsive" alt="img">
+                        <a href="{{asset('domandas/img/demo_4.png')}}" title="Module Administration" data-lightbox-gallery="gallery1" data-lightbox-hidpi="{{asset('domandas/img/demo_4.png')}}">
+                            <img src="{{asset('domandas/img/demo_4.png')}}" class="img-responsive" alt="img">
                         </a>
                     </div>
                 </div>
@@ -440,7 +447,7 @@
                 </ul>
             </div>
             <div class="col-md-6 text-right copyright">
-                &copy;Copyright - Bocor. All Rights Reserved
+                Domanda Leipzig GmbH 2017
                 <div class="credits">
                     <!--
                         All the links in the footer should remain intact.
@@ -448,7 +455,7 @@
                         Licensing information: https://bootstrapmade.com/license/
                         Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Bocor
                     -->
-                    <a href="https://bootstrapmade.com/free-business-bootstrap-themes-website-templates/">Business Bootstrap Themes</a> by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                    {{--<a href="https://bootstrapmade.com/free-business-bootstrap-themes-website-templates/">Business Bootstrap Themes</a> by <a href="https://bootstrapmade.com/">BootstrapMade</a>--}}
                 </div>
             </div>
         </div>

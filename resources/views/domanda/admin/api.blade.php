@@ -143,31 +143,31 @@
                 <tr>
                     <th scope="row">IT</th>
                     <td class="status">active</td>
-                    <td><a><i class="fa fa-rocket" aria-hidden="true"></i></a></td>
+                    <td><a onclick="active(this)"><i class="fa fa-rocket" aria-hidden="true"></i></a></td>
                     <td><a onclick="inactive(this)"><i class="fa fa-ban" aria-hidden="true"></i></a></td>
                 </tr>
                 <tr>
                     <th scope="row">HR</th>
                     <td class="status">active</td>
-                    <td><a><i class="fa fa-rocket" aria-hidden="true"></i></a></td>
+                    <td><a onclick="active(this)"><i class="fa fa-rocket" aria-hidden="true"></i></a></td>
                     <td><a onclick="inactive(this)"><i class="fa fa-ban" aria-hidden="true"></i></a></td>
                 </tr>
                 <tr>
                     <th scope="row">Marketing</th>
                     <td class="status">active</td>
-                    <td><a><i class="fa fa-rocket" aria-hidden="true"></i></a></td>
+                    <td><a onclick="active(this)"><i class="fa fa-rocket" aria-hidden="true"></i></a></td>
                     <td><a onclick="inactive(this)"><i class="fa fa-ban" aria-hidden="true"></i></a></td>
                 </tr>
                 <tr>
                     <th scope="row">Sales</th>
                     <td class="status">active</td>
-                    <td><a><i class="fa fa-rocket" aria-hidden="true"></i></a></td>
+                    <td><a onclick="active(this)"><i class="fa fa-rocket" aria-hidden="true"></i></a></td>
                     <td><a onclick="inactive(this)"><i class="fa fa-ban" aria-hidden="true"></i></a></td>
                 </tr>
                 <tr>
                     <th scope="row">Innovation</th>
                     <td class="status">active</td>
-                    <td><a><i class="fa fa-rocket" aria-hidden="true"></i></a></td>
+                    <td><a onclick="active(this)"><i class="fa fa-rocket" aria-hidden="true"></i></a></td>
                     <td><a onclick="inactive(this)"><i class="fa fa-ban" aria-hidden="true"></i></a></td>
                 </tr>
                 </tbody>
@@ -178,6 +178,9 @@
 <script>
     function inactive(element) {
         $(element).parent().parent().find("td.status").html("<span style='color: red'>inactive</span>");
+    }
+    function active(element) {
+        $(element).parent().parent().find("td.status").html("<span'>active</span>");
     }
     function removeRow(element) {
         $(element).parent().parent().toggle('slow');
@@ -195,7 +198,7 @@
                             "<td>12.06.2017</td>"+
                             "<td>vbgqwe456qwe123456</td>"+
                             "<td><a><i class='fa fa-rocket' aria-hidden='true'></i></a></td>"+
-                            "<td><a><i class='fa fa-ban' aria-hidden='true'></i></a></td>"+
+                            "<td><a onclick='removeRow(this)'><i class='fa fa-ban' aria-hidden='true'></i></a></td>"+
                             "</tr>";
         $("#token_table").append(token_html);
         $("#new_token").toggle('slow');
@@ -208,7 +211,7 @@
                 "<td>12.06.2017</td>"+
                 "<td>"+token+"</td>"+
                 "<td><a><i class='fa fa-rocket' aria-hidden='true'></i></a></td>"+
-                "<td><a><i class='fa fa-ban' aria-hidden='true'></i></a></td>"+
+                "<td><a onclick='removeRow(this)'><i class='fa fa-ban' aria-hidden='true'></i></a></td>"+
                 "</tr>";
         $("#enabled_table").append(token_html);
         $("#new_api").toggle('slow');

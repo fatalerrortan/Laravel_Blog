@@ -116,7 +116,7 @@
             success:function(html){
 //                $("#dashboard_content").html(html);
                 alert('We got someone to help you! :)');
-                location.reload();
+                custom_reload();
             }
         });
     }

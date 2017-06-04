@@ -301,17 +301,6 @@
                         <span>Usage</span>
                     </a>
                 </li>
-                {{--<li class="sub-menu">--}}
-                    {{--<a href="javascript:;" class="">--}}
-                        {{--<i class="fa fa-question-circle-o" aria-hidden="true"></i>--}}
-                        {{--<span>Question</span>--}}
-                        {{--<span class="menu-arrow arrow_carrot-right"></span>--}}
-                    {{--</a>--}}
-                    {{--<ul class="sub">--}}
-                        {{--<li><a class="" href="form_component.html">Form Elements</a></li>--}}
-                        {{--<li><a class="" href="form_validation.html">Form Validation</a></li>--}}
-                    {{--</ul>--}}
-                {{--</li>--}}
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
                         <i class="fa fa-cogs" aria-hidden="true"></i>
@@ -500,12 +489,6 @@
 
         <div class="text-right">
             <div class="credits">
-                <!--
-                    All the links in the footer should remain intact.
-                    You can delete the links only if you purchased the pro version.
-                    Licensing information: https://bootstrapmade.com/license/
-                    Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
-                -->
             </div>
         </div>
     </section>
@@ -525,6 +508,18 @@
 <!--custome script for all page-->
 <script src="{{asset('domandas/js/scripts.js')}}"></script>
 <script>
+    var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari.pushNotification);
+    function custom_reload() {
+        if(isSafari){
+//            window.history.go(0);
+//            window.location.reload(true);
+//            window.location.reload();
+//            window.history.back();
+            return window.history.go(0);
+        }else {
+            return location.reload();
+        }
+    }
     var dashboard_tag = {active_tag: "myquestions"}
     $(document).ready(function () {
         $("#"+dashboard_tag.active_tag).toggle("slow");
@@ -556,13 +551,13 @@
         var postData = new FormData();
         postData.append('question_id', question_id);
         contentChange('POST', '/domanda/question/solveit', postData, false);
-        location.reload();
+        custom_reload();
     }
     function handOver(question_id) {
         var postData = new FormData();
         postData.append('question_id', question_id);
         contentChange('POST', '/domanda/question/handover', postData, false);
-        location.reload();
+        custom_reload();
     }
     $("#tag_trigger").change(function () {
         var target_tag = $(this).val();
@@ -587,7 +582,7 @@
 //        jQuery(this).effect( "bounce", { times: 3}, "slow");
 //    });
     $("#returen_dashboard").click(function () {
-        location.reload();
+        custom_reload();
     });
     $("#profile_trigger, #usage").click(function () {
         var postData = new FormData();
@@ -619,9 +614,8 @@
                 if(contentUpdate){
                     $("#dashboard_content").html(html);
                 }else{
-                    location.reload();
+                    custom_reload();
                 }
-
             }
         });
     }
