@@ -147,7 +147,7 @@ class Admin extends Controller{
     public function edit(Request $request){
 //        header('Content-Type: application/json');
         $post = Posts::find($request->input("post_id"));
-        Log::info($post->category." and ".$post->title);
+//        Log::info($post->category." and ".$post->title);
 //        return json_encode(array(
 //            "title" => $post->title,
 //            "category" => $post->category

@@ -33,7 +33,7 @@
         <hr>
 
         <!-- Preview Image -->
-        <img class="img-responsive" width="750px" height="270px" src="data:image/jpeg;base64,{{base64_encode($image)}}" alt="">
+        <img class="img-responsive" width="600px" height="200px" src="data:image/jpeg;base64,{{base64_encode($image)}}" alt="">
         <hr>
 
         <!-- Post Content -->

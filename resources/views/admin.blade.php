@@ -44,6 +44,7 @@
         </div>
         <button id="cancle" type="button" class="btn btn-default">Cancle</button>
         <button type="submit" class="btn btn-default">Submit</button>
+         <button type="button" id="convert" class="btn btn-default">Convert</button>
         <hr>
      </form>
     </div>
@@ -109,6 +110,18 @@
             postData.append("pattern", filter_state.category);
             postData.append("order", filter_state.order);
             retrieveNewPosts(postData, "filter");
+        });
+        
+        $("#convert").click(function () {
+            var toConvert = $("#post_body").val();
+            var vDom = $("<html></html>").html(toConvert);
+           vDom.find('code').each(function () {
+               var converted= String($(this).html()).replace(/</g ,'&lt;').replace(/>/g ,'&gt;');
+//               console.log(converted);
+               $(this).html(converted);
+           });
+            var output = vDom.html().toString();
+            $("#post_body").val(output);
         });
 
         jQuery("a.post_order").click(function () {
