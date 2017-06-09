@@ -174,7 +174,6 @@
     @yield('contents')
 </div>
 <!-- Main Content End -->
-
 <!-- Footer -->
 <hr>
 <footer>

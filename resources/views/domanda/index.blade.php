@@ -35,7 +35,7 @@
             <div class="col-md-7 col-md-offset-6 text-center inner">
                 <div class="animatedParent">
                     <h1 class="animated fadeInDown">INNOVATION</h1>
-                    <p class="animated fadeInUp">a successful <b>Business Innovation</b> starts from here</p>
+                    <p class="animated fadeInUp">a successful <b>Troubleshooting</b> starts here</p>
                 </div>
             </div>
         </div>
@@ -222,8 +222,7 @@
                             Mr. Deadpool (Marketing Assistant)</div>
                         <div class="col-md-4">
                             <img class="img-circle" id="img_logo" width="70px" height="70px"width="100px" height="100px" src="{{asset('domandas/img/spiderman.png')}}">
-                            <br>“Many questions stay unresolved because there is often no time to search for the right contact…”
-                            Mr. Spiderman (Senior Designer)</div>
+                            <br>“Usually problem areas are not identified.” Mr. Spiderman (Senior Designer)</div>
                     </div>
 
                     <a href="#service" class="btn btn-skin btn-scroll">Get Started</a>
@@ -268,7 +267,7 @@
                                 <h5>Intelligent Questions Assignment</h5>
                                 <div class="divider-header"></div>
                                 <p>
-                                    Exact Expert Location<br />
+                                    Exact One Expert Location<br />
                                     Switch To Next Expert By Busy<br />
                                     Continuous Search Until Your Approval
                                 </p>
@@ -306,7 +305,7 @@
                                 <h5>Comprehensive Questions Related Analyses</h5>
                                 <div class="divider-header"></div>
                                 <p>
-                                    Multiple Export Formats<br />
+                                    Identifying Problem Areas and Competences<br />
                                     Tracking Project Progress<br />
                                     Mining Business Innovation Potentials
                                 </p>
@@ -474,6 +473,18 @@
 <script src="{{asset('domandas/js/custom.js')}}"></script>
 <script src="{{asset('domandas/js/css3-animate-it.js')}}"></script>
 <script>
+    $(document).ready(function () {
+        var sound_1 = new Audio('{{asset('domandas/sound/welcome.mp3')}}');
+        var sound_2 = new Audio('{{asset('domandas/sound/to.mp3')}}');
+        var sound_3 = new Audio('{{asset('domandas/sound/domanda.mp3')}}');
+        sound_1.play();
+        setTimeout(function () {
+            sound_2.play();
+        }, 800);
+        setTimeout(function () {
+            sound_3.play();
+        }, 1200);
+    });
     $("#login_trigger").click(function () {
         $("#login-modal").toggle("slow");
     });

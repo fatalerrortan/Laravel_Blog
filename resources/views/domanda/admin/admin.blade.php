@@ -37,7 +37,7 @@
         </div>
 
         <!--logo start-->
-        <a href="http://www.xulin-tan.de/domanda" class="logo">
+        <a onclick="custom_reload()" class="logo">
             <img class="img-responsive img-circle" width="70px" height="70px" src="{{asset('domandas/img/icons/domanda_icon.png')}}" style="display: inline" alt="">
             Domanda <span class="lite">Admin</span><span style="color: #A3FBD3"> Center</span></a>
         <!--logo end-->
@@ -515,7 +515,7 @@
         if(isSafari){
             return history.go(0);
         }else {
-            return location.reload();
+            return location.reload(true);
         }
     }
     function getProjectView() {

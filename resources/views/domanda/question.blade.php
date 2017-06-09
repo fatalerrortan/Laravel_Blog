@@ -28,7 +28,16 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="duration">Answer Duration For Each Challenger</label>
+            <label for="expiration">Expiration Time(Optional)</label>
+            <select class="form-control" id="expiration">
+                <option value="IT">1 hr.</option>
+                <option value="Design">3 hr.</option>
+                <option value="Marketing">12 hr</option>
+                <option value="HR">24 hr</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="duration">Reaction Duration Pro Expert(Default 10 Min. Optional)</label>
             <select multiple class="form-control" id="duration" required>
                 <option value="0.5">0.5 Min.</option>
                 <option value="1">1 Min.</option>
@@ -58,7 +67,7 @@
     </div>
 </div>
 <div class="row">
-    <div id="dialog" title="Expert Searching..." style="display: none;">
+    <div id="dialog" title="Expert Searching...(2 Matched Expert)" style="display: none;">
         <div class="progress progress-striped active">
             <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
                 <span class="sr-only"></span>
@@ -86,6 +95,8 @@
 //    });
     $("#question_submit").click(function () {
         $( "#dialog" ).dialog();
+        var post_sound = new Audio('{{asset('domandas/sound/post.m4a')}}');
+        post_sound.play();
         var postData = new FormData();
         postData.append('user_id',$("#user_id").val());
         postData.append('title',$("#title").val());

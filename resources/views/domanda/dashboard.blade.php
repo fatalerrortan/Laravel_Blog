@@ -9,8 +9,6 @@
     <link rel="icon" type="image/png" href="{{asset('domandas/img/link_log.png')}}">
 
     <title>Domanda Dashboard</title>
-
-    <!-- Bootstrap CSS -->
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- bootstrap theme -->
@@ -37,7 +35,7 @@
         </div>
 
         <!--logo start-->
-        <a href="http://www.xulin-tan.de/domanda" class="logo">
+        <a onclick="custom_reload()" class="logo">
             <img class="img-responsive img-circle" width="70px" height="70px" src="{{asset('domandas/img/icons/domanda_icon.png')}}" style="display: inline" alt="">
             Domanda <span class="lite">Dashboard</span></a>
         <!--logo end-->
@@ -511,13 +509,9 @@
     var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari.pushNotification);
     function custom_reload() {
         if(isSafari){
-//            window.history.go(0);
-//            window.location.reload(true);
-//            window.location.reload();
-//            window.history.back();
             return window.history.go(0);
         }else {
-            return location.reload();
+            return location.reload(true);
         }
     }
     var dashboard_tag = {active_tag: "myquestions"}
@@ -578,9 +572,6 @@
         dashboard_tag.active_tag = 'myquestions';
         $("#tag_trigger").val('myquestions');
     });
-//    jQuery("#tag_button a").mouseover(function () {
-//        jQuery(this).effect( "bounce", { times: 3}, "slow");
-//    });
     $("#returen_dashboard").click(function () {
         custom_reload();
     });

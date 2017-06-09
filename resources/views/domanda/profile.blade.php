@@ -32,7 +32,7 @@
 {{--Contributor Point per month--}}
 <div class="row">
     <div class="col-md-offset-4">
-        <h3><b>Contribute Points Per Month</b></h3>
+        <h3><b>Contribution Points Per Month</b></h3>
     </div>
 </div>
 <div class="row">

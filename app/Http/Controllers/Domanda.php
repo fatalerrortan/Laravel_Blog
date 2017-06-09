@@ -28,7 +28,7 @@ class Domanda extends Controller{
 //        $password = $request->input('login_password');
         $user = DomandaUsers::where('email', $account)->first();
         if(empty($user)){
-            exit('Plz use test Account (test@domanda.com)/(test2@domanda.com) and Password (test)');
+            exit('Freigabe der Test-Accounts nach der Präsentation!!!');
         }
         if($user->position == 'Boss'){
 
@@ -170,8 +170,8 @@ class Domanda extends Controller{
         $user->save();
     }
 
-    //Backend
-    public function admin(){
-        echo 'admin';
+    public function test(){
+       return view('domanda.test', array('page' => 'test account'));
     }
+
 }

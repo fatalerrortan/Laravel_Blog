@@ -84,6 +84,8 @@ Route::post('/domanda/answer/accept', 'Domanda@accept');
 
 Route::post('/domanda/game', 'Domanda@gamification');
 
+Route::get('/domanda/test', 'Domanda@test');
+
 /*
  * Backend Domanda Admin
  */
