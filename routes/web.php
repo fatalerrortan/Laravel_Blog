@@ -54,6 +54,8 @@ Route::post('/editarticle', 'Admin@editArticle');
 
 Route::post('/broadcast', 'Admin@broadcast');
 
+Route::post('/status', 'Admin@status');
+
 /*
  *  Prototype for Domanda
  */

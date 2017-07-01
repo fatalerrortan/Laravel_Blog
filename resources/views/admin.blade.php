@@ -70,6 +70,7 @@
                     <a class="social-icon post_order" order="desc"><i class="fa fa-arrow-down" aria-hidden="true"></i></a>
                 </th>
                 <th>Created_At</th>
+                <th>Status</th>
                 <th>Edit</th>
                 <th>Push</th>
                 <th>Broadcast</th>
@@ -84,6 +85,12 @@
                     <td class="post_category">{{$post['category']}}</td>
                     <td class="post_updated_at">{{$post['updated_at']}}</td>
                     <td class="post_created_at">{{$post['created_at']}}</td>
+                    <?php
+                        $status = $post['status'] ?
+                                "<a style='color: green; cursor: pointer' onclick='updateStatus(this)'><span>active</span></a>" :
+                                "<a style='color: red; cursor: pointer' onclick='updateStatus(this)'><span>deactive</span></a>";
+                    ?>
+                    <td class="post_status"><?php echo $status ?></td>
                     <td class="post_edit"><a class="social-icon" onclick="postEdit(this); postEditArticle(this)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
                     <td class="post_push"><a class="social-icon" onclick="postUpdate(this)"><i class="fa fa-rocket" aria-hidden="true"></i></a></td>
                     <td class="post_broadcast"><a class="social-icon" onclick="postBroadcast(this)"><i class="fa fa-envelope" aria-hidden="true"></i></a></td>
@@ -135,6 +142,19 @@
             postData.append("order", filter_state.order);
             retrieveNewPosts(postData, "filter");
         });
+        
+        function updateStatus(element) {
+            var post_id = jQuery(element).parent().parent().attr("post_id");
+            var currentStatus = jQuery(element).find('span').html();
+            var postData = new FormData();
+            postData.append("_token", CSRF_TOKEN);
+            postData.append("post_id", post_id);
+            postData.append("post_status", currentStatus);
+            if(retrieveNewPosts(postData, "status")){
+                alert("Status Updated");
+                location.reload();
+            }
+        }
 
         function postDelete(element) {
             var post_id = jQuery(element).parent().parent().attr("post_id");

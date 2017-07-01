@@ -20,7 +20,7 @@ class Admin extends Controller{
     public function index(Request $request){
         $user = User::where("name", $request->input('name'))->first();
 //        Log::info("out: ".$request->input('pwd')." and in: ".$user['password']);
-        if($user['password'] != $request->input('pwd')){return exit("日你妈");}
+        if($user['password'] != $request->input('pwd')){return exit("呵呵");}
         $posts = Posts::orderBy('created_at', 'desc')->get();
         return view('admin', array('page' => 'admin', 'posts' => $posts));
     }
@@ -144,6 +144,13 @@ class Admin extends Controller{
         }
     }
 
+    public function status(Request $request){
+        $post = Posts::find($request->input("post_id"));
+        $newStatus = $request->input("post_status") == 'active' ? null : 1 ;
+        $post->status = $newStatus;
+        return $post->save();
+    }
+
     public function edit(Request $request){
 //        header('Content-Type: application/json');
         $post = Posts::find($request->input("post_id"));
@@ -176,12 +183,16 @@ class Admin extends Controller{
     public function gethtml($posts){
         $html = "";
         foreach ($posts as $post){
+            $status = $post['status'] ?
+                "<a style='color: green; cursor: pointer' onclick='updateStatus(this)'><span>active</span></a>" :
+                "<a style='color: red; cursor: pointer' onclick='updateStatus(this)'><span>deactive</span></a>";
             $html .= "<tr post_id='".$post['id']."'>
                     <th class=\"post_id\" scope=\"row\">".$post['id']."</th>
                     <td class=\"post_title\"><a class=\"social-icon\" href=\"https://".$_SERVER['HTTP_HOST']."/post/".$post['id']."\">".$post['title']."</a></td>
                     <td class=\"post_category\">".$post['category']."</td>
                     <td class=\"post_updated_at\">".$post['updated_at']."</td>
                     <td class=\"post_created_at\">".$post['created_at']."</td>
+                    <td class=\"post_status\">".$status."</td>
                     <td class=\"post_edit\"><a class=\"social-icon\" onclick=\"postEdit(this); postEditArticle(this)\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></a></td>
                     <td class=\"post_push\"><a class=\"social-icon\" onclick=\"postUpdate(this)\"><i class=\"fa fa-rocket\" aria-hidden=\"true\"></i></a></td>
                     <td class=\"post_broadcast\"><a class=\"social-icon\" onclick=\"postBroadcast(this)\"><i class=\"fa fa-envelope\" aria-hidden=\"true\"></i></a></td>

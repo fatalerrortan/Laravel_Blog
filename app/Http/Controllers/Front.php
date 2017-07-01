@@ -28,7 +28,7 @@ class Front extends Controller
  *      event(new EmailTrigger($user));
  */
 //        Mail::to("tiemann9898@gmail.com")->send(new SiteReview(IpRequest::ip()));
-        $posts = Posts::orderBy('created_at', 'desc')->take(5)->get();
+        $posts = Posts::where('status', 1)->orderBy('created_at', 'desc')->take(5)->get();
         return view('home', array('page' => 'Xulin, 谭许麟, Tan, Xtan, Study Blog, home', 'posts' => $posts));
     }
 
@@ -78,7 +78,7 @@ class Front extends Controller
     }
 
     public function posts($category){
-        $posts = Posts::where('category', 'like', $category.'%')->orderBy('created_at', 'desc')->take(9)->get();
+        $posts = Posts::where('status', 1)->where('category', 'like', $category.'%')->orderBy('created_at', 'desc')->take(9)->get();
         return view('posts', array('page' =>  'Xulin, 谭许麟, Xulin Tan, Xtan, '. $category, 'posts' => $posts, 'category' => strtoupper($category)));
     }
 
@@ -86,9 +86,9 @@ class Front extends Controller
         if ($request->isMethod('post')){
             $last_item_date = $request->input('last_item_date');
             if(!empty($request->input('category'))){
-                $html = $this->getHtml(Posts::where('category', 'like', $request->input('category').'%')->where('created_at', '<', $last_item_date)->orderBy('created_at', 'desc')->take(9)->get(), true);
+                $html = $this->getHtml(Posts::where('status', 1)->where('category', 'like', $request->input('category').'%')->where('created_at', '<', $last_item_date)->orderBy('created_at', 'desc')->take(9)->get(), true);
             }else{
-                $html = $this->getHtml(Posts::where('created_at', '<', $last_item_date)->orderBy('created_at', 'desc')->take(5)->get());
+                $html = $this->getHtml(Posts::where('status', 1)->where('created_at', '<', $last_item_date)->orderBy('created_at', 'desc')->take(5)->get());
             }
             return $html;
         }

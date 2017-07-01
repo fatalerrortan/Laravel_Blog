@@ -10,5 +10,5 @@ class Posts extends BaseModel
     use Searchable;
     protected $primaryKey = 'id';
     protected $table = 'posts';
-    protected $fillable = array('title', 'autor','category', 'article', 'segment', 'related','keywords', 'comments','reading_amount', "created_at", "updated_at");
+    protected $fillable = array('title', 'autor','category', 'article', 'segment', 'status','related','keywords', 'comments','reading_amount', "created_at", "updated_at");
 }
